@@ -1,15 +1,16 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Form, Button } from "react-bootstrap";
-import { useAppDispatch } from "../app/hooks";
+import { useAppDispatch, useAppSelector } from "../app/hooks";
 import { login } from "../features/user/userSlice";
-import { Link } from "react-router-dom";
+import { Link, redirect } from "react-router-dom";
 
 // NOTES
-// automatically redirect to Dashboard! useNavigate or Navigate of react-router
+// automatically redirect to profile! use redirect or useNavigate or what??
+// Pop out a message for successfully login - failed login
 
 const LoginForm = () => {
   const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('')
+  const [password, setPassword] = useState('');
   const dispatch = useAppDispatch();
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {

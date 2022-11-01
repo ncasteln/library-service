@@ -1,13 +1,12 @@
-import { Navbar, Container, Nav, NavDropdown } from 'react-bootstrap';
+import { Navbar, Container, Nav, NavDropdown, Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import { useAppSelector } from '../app/hooks';
-
-// NOTES
-// add logout action
+import { useAppDispatch, useAppSelector } from '../app/hooks';
+import { logout } from '../features/user/userSlice';
 
 const Header = () => {
   const isLogged = useAppSelector(state => state.user.isLogged)
-  const { username } = useAppSelector(state => state.user.userInfo)
+  const { id, username } = useAppSelector(state => state.user.userInfo)
+  const dispatch = useAppDispatch();
 
   return (
     <Navbar bg="dark" variant="dark" expand="sm">
@@ -20,7 +19,7 @@ const Header = () => {
             <Nav.Link as={Link} to='/'>Home</Nav.Link>
           </Nav.Item>
           <Nav.Item as="li">
-            <Nav.Link as={Link} to='/cat'>Catalogue</Nav.Link>
+            <Nav.Link as={Link} to='/catalogue'>Catalogue</Nav.Link>
           </Nav.Item>
           <Nav.Item className="border-right border-light"></Nav.Item>
             {
@@ -28,10 +27,9 @@ const Header = () => {
                 ? 
                 <Nav.Item className="ml-3" as="li">
                   <NavDropdown title={username} id="navbarScrollingDropdown">
-                    <NavDropdown.Item as={Link} to='/profile'>Profile</NavDropdown.Item>
-                    <NavDropdown.Item as={Link} to='/dashboard'>Dashboard</NavDropdown.Item>
+                    <NavDropdown.Item as={Link} to={`/profile/${id}`}>Profile</NavDropdown.Item>
                     <NavDropdown.Divider />
-                    <NavDropdown.Item href="#">Logout</NavDropdown.Item>
+                    <NavDropdown.Item as={Button} onClick={() => dispatch(logout())}>Logout</NavDropdown.Item>
                   </NavDropdown>
                 </Nav.Item>
                 :

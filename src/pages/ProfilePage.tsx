@@ -1,6 +1,12 @@
+import { useParams } from "react-router-dom";
+import { useAppSelector } from "../app/hooks";
+
+// NOTES
+// Add a message to log in and a link in case of the dashboard doesn't exist
+
 const ProfilePage = () => {
   return (
-    <div>PROFILE</div>
+    <div>Profile page!!!</div>
   )
 };
 

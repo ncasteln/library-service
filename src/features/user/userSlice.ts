@@ -18,15 +18,17 @@ interface ILogin {
 }
 
 interface IuserInfo extends ILogin {
+  id: number;
+  username: string;
+  isAdmin: boolean;
+  first_name: string;
+  last_name: string;
   location: {
     street: string;
     city: string;
     state: string;
-    postcode: number;
+    postcode: number | string;
   };
-  username: string;
-  first_name: string;
-  last_name: string;
   picture: string;
 }
 
@@ -51,7 +53,11 @@ const initialState: IUser = {
 const userSlice = createSlice({
   name: 'user',
   initialState,
-  reducers: {},
+  reducers: {
+    logout () {
+      return initialState;
+    }
+  },
   extraReducers: (builder) => {
     builder.addCase(signUp.pending, (state) => {
 
@@ -112,6 +118,7 @@ export const login = createAsyncThunk(
         const user = data.find((item: IuserInfo) => {
           return item.email === email && item.password === password;
         });
+        localStorage.setItem('userId', user.id);
         return user;
       }
       else {
@@ -124,18 +131,18 @@ export const login = createAsyncThunk(
   }
 )
 
-export const logout = createAsyncThunk(
-  'user/logout',
-  async () => {
-    try {
+// export const logout = createAsyncThunk(
+//   'user/logout',
+//   async () => {
+//     try {
       
-    }
-    catch (error) {
+//     }
+//     catch (error) {
   
-    }
-  }
-)
+//     }
+//   }
+// )
 
-export const {} = userSlice.actions;
+export const { logout } = userSlice.actions;
 
 export default userSlice.reducer;
