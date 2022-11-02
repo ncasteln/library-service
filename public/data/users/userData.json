@@ -18,7 +18,7 @@
   },
   {
     "id": 469521368,
-    "isAdmin": false,
+    "isAdmin": true,
     "email": "melissa.fleming@example.com",
     "location": {
       "street": "3655 manchester road",
@@ -52,7 +52,7 @@
   },
   {
     "id": 9608479,
-    "isAdmin": false,
+    "isAdmin": true,
     "email": "valtteri.pulkkinen@example.com",
     "location": {
       "street": "6489 hermiankatu",

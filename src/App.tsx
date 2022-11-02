@@ -1,5 +1,6 @@
 import Header from './components/Header';
 import Routing from './routing/Routing';
+// import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 
 const App = () => {

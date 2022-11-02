@@ -6,7 +6,7 @@ import { useAppSelector } from "../app/hooks";
 
 const ProfilePage = () => {
   return (
-    <div>Profile page!!!</div>
+    <div>Profile page!</div>
   )
 };
 

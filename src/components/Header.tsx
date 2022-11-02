@@ -10,15 +10,16 @@ import { logout } from '../features/user/userSlice';
 
 const Header = () => {
   const isLogged = useAppSelector(state => state.user.isLogged)
-  const { id, username } = useAppSelector(state => state.user.userInfo)
+  const { id, username, isAdmin } = useAppSelector(state => state.user.userInfo)
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
-  useEffect(() => {
-    isLogged
-      ? navigate('/catalogue')
-      : navigate('/')
-  }, [isLogged])
+  // Another way to Navigate away from Login page
+  // useEffect(() => {
+  //   isLogged
+  //     ? navigate('/catalogue')
+  //     : navigate('/')
+  // }, [isLogged])
 
   return (
     <Navbar bg="primary" variant="dark" expand="sm">
@@ -33,13 +34,18 @@ const Header = () => {
           <Nav.Item as="li">
             <Nav.Link as={Link} to='/catalogue'>Catalogue</Nav.Link>
           </Nav.Item>
+          {/* Nav item to delete - only explaination pourpose */}
+          <Nav.Item as="li">
+            <Nav.Link as={Link} to='/profile'>Profile</Nav.Link>
+          </Nav.Item>
           <Nav.Item className="border-right border-light"></Nav.Item>
             {
               isLogged
                 ? 
                 <Nav.Item className="ml-3" as="li">
                   <NavDropdown title={username} id="navbarScrollingDropdown">
-                    <NavDropdown.Item as={Link} to={`/profile/${id}`}>Profile</NavDropdown.Item>
+                    {/* <NavDropdown.Item as={Link} to={`/profile/${isAdmin ? 'admin' : 'user'}/${id}`}>Profile</NavDropdown.Item> */}
+                    <NavDropdown.Item as={Link} to={`/profile`}>Profile</NavDropdown.Item>
                     <NavDropdown.Item as={Link} to={`/wishlist/${id}`}>Wishlist</NavDropdown.Item>
                     <NavDropdown.Divider />
                     <NavDropdown.Item as={Button} onClick={() => dispatch(logout())}>Logout</NavDropdown.Item>

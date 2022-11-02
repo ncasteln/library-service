@@ -1,8 +1,8 @@
-import { useState, useEffect } from "react";
-import { Form, Button } from "react-bootstrap";
-import { useAppDispatch, useAppSelector } from "../app/hooks";
+import { useState } from "react";
+import { Form, Button, Container } from "react-bootstrap";
+import { useAppDispatch } from "../app/hooks";
 import { login } from "../features/user/userSlice";
-import { Link } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 
 // NOTES
 // automatically redirect to profile! use redirect or useNavigate or what??
@@ -14,43 +14,52 @@ const Login = () => {
   const [password, setPassword] = useState('');
   const dispatch = useAppDispatch();
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const navigate = useNavigate();
+  const location = useLocation();
+  const from = location.state?.from?.pathname || '/';
+  console.log(`from is ${from}`)
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    dispatch(login({ email, password }));
+    await dispatch(login({ email, password }));
     setEmail('');
     setPassword('');
+    navigate(from, { replace: true });
   }
 
   return (
-    <Form onSubmit={handleSubmit}>
-      <h2>Login form</h2>
-      <Form.Group>
-        <Form.Label>
-          Enter your email and password to access your private data.
-        </Form.Label>
-        <Link to='/registration'> Are you not yet registered?</Link>
-      </Form.Group>
-      <Form.Group className="mb-3" controlId="formBasicEmail">
-        <Form.Label>Email address</Form.Label>
-        <Form.Control 
-          type="email" 
-          placeholder="Enter your email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)} />
-      </Form.Group>
-      <Form.Group className="mb-3" controlId="formBasicPassword">
-        <Form.Label>Password</Form.Label>
-        <Form.Control 
-          type="password" 
-          placeholder="Password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)} />
-      </Form.Group>
-      <div>Example melissa.fleming@example.com sick</div>
-      <Button variant="primary" type="submit">
-        Submit
-      </Button>
-    </Form>
+    <Container className='Login-container d-flex justify-content-center align-items-center'>
+      <Form className='Login p-4' onSubmit={handleSubmit}>
+        <h2>Login form</h2>
+        <Form.Group>
+          <Form.Label>
+            Enter your email and password to access your private data.
+          </Form.Label>
+          <Link to='/registration'> Are you not yet registered?</Link>
+        </Form.Group>
+        <Form.Group className="mb-3" controlId="formBasicEmail">
+          <Form.Label>Email address</Form.Label>
+          <Form.Control 
+            type="email" 
+            placeholder="Enter your email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)} />
+        </Form.Group>
+        <Form.Group className="mb-3" controlId="formBasicPassword">
+          <Form.Label>Password</Form.Label>
+          <Form.Control 
+            type="password" 
+            placeholder="Password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)} />
+        </Form.Group>
+        <Button variant="primary" type="submit">
+          Submit
+        </Button>
+        <div>melissa.fleming@example.com sick</div>
+        <div>christoffer.christiansen@example.com samuel</div>
+      </Form>
+    </Container>
   )
 };
 

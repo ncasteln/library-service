@@ -6,20 +6,24 @@ import Login from '../components/Login';
 import Registration from '../components/Registration';
 import Profile from '../components/Profile';
 import ProtectedRoute from '../routing/ProtectedRoute';
+import RequireAuth from "./RequireAuth";
 
 const Routing = () => {
   return (
     <Routes>
+      {/* Public routes */}
       <Route path='/' element={<Home />} />
       <Route path='/catalogue' element={<Catalogue />} />
       <Route path='/login' element={<Login />} />
-      <Route element={<ProtectedRoute />}>
-        <Route path='/profile/:id' element={<Profile />} />
-      </Route>
-      <Route element={<ProtectedRoute />}>
-        <Route path='/wishlist/:id' element={<div>User Wishlist</div>} />
-      </Route>
       <Route path='/registration' element={<Registration />} />
+
+      {/* Protected routes */}
+      <Route element={<RequireAuth />}>
+        <Route path='/profile' element={<Profile />} />
+        <Route path='/wishlist' element={<div>User Wishlist</div>} />
+      </Route>
+
+      {/* Not found */}
       <Route path='*' element={<NoMatch />} />
     </Routes>
   )
