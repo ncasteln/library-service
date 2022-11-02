@@ -1,15 +1,27 @@
+import { useEffect } from 'react';
 import { Navbar, Container, Nav, NavDropdown, Button } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../app/hooks';
 import { logout } from '../features/user/userSlice';
+
+// NOTES
+// Change navigate() to profile (and not to catalogue) when logged
+// Add Profile image on the right of the username
 
 const Header = () => {
   const isLogged = useAppSelector(state => state.user.isLogged)
   const { id, username } = useAppSelector(state => state.user.userInfo)
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    isLogged
+      ? navigate('/catalogue')
+      : navigate('/')
+  }, [isLogged])
 
   return (
-    <Navbar bg="dark" variant="dark" expand="sm">
+    <Navbar bg="primary" variant="dark" expand="sm">
       <Container fluid>
         <Navbar.Brand href="#home">Bibl.io</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
@@ -28,6 +40,7 @@ const Header = () => {
                 <Nav.Item className="ml-3" as="li">
                   <NavDropdown title={username} id="navbarScrollingDropdown">
                     <NavDropdown.Item as={Link} to={`/profile/${id}`}>Profile</NavDropdown.Item>
+                    <NavDropdown.Item as={Link} to={`/wishlist/${id}`}>Wishlist</NavDropdown.Item>
                     <NavDropdown.Divider />
                     <NavDropdown.Item as={Button} onClick={() => dispatch(logout())}>Logout</NavDropdown.Item>
                   </NavDropdown>

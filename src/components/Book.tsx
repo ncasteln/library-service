@@ -1,8 +1,11 @@
-import { Col, Card, ListGroup, Container, Row, Button } from "react-bootstrap";
+import { Col, Card, ListGroup, Container, Row, Button, Badge } from "react-bootstrap";
 import { IBook } from "../features/catalogue/catalogueSlice";
 import { Link } from "react-router-dom";
+import { useAppSelector } from "../app/hooks";
+import CatalogueButton from "../features/catalogue/CatalogueButton";
 
-const Book = ({ 
+const Book = ({
+  book_status,
   author, 
   country, 
   imageLink, 
@@ -11,6 +14,7 @@ const Book = ({
   pages, 
   title, 
   year }: IBook) => {
+  const isLogged = useAppSelector(state => state.user.isLogged);
 
   return (
     <Col>
@@ -18,13 +22,29 @@ const Book = ({
         <Row>
           <Col>
             <Card.Img className="book-img" variant="top" src={imageLink} alt={`${title} bookc cover`} />
-            <Button>Book now</Button>
-            <Button>Add to wishlist</Button>
+            {
+              isLogged
+                ?
+                  <>
+                    <CatalogueButton 
+                      action="Book now!"
+                      bookTitle={title} />
+                    <CatalogueButton 
+                      action="Add to Wishlist"
+                      bookTitle={title} />
+                  </>
+                : null
+            }
           </Col>
           <Col>
             <Card.Body>
               <Card.Link as={Link} to='/'>{title}</Card.Link>
               <Card.Subtitle>{author}, {year}</Card.Subtitle>
+              {
+                book_status.available_copies > 0
+                  ? <Badge bg="success">{book_status.available_copies} copies available!</Badge>
+                  : <Badge bg="danger">Out of stock</Badge>
+              }
               <Card.Link href={link} target='_blank'>
                 More about <em>{title}</em> on Wikipedia
               </Card.Link>

@@ -1,5 +1,12 @@
 [
   {
+    "book_status": {
+      "available_copies": 3,
+      "current_user": "",
+      "user_history": [
+
+      ]
+    },
     "author": "Chinua Achebe",
     "country": "Nigeria",
     "imageLink": "./data/books/images/things-fall-apart.jpg",
@@ -10,6 +17,13 @@
     "year": 1958
   },
   {
+    "book_status": {
+      "available_copies": 0,
+      "current_user": "",
+      "user_history": [
+
+      ]
+    },
     "author": "Hans Christian Andersen",
     "country": "Denmark",
     "imageLink": "./data/books/images/fairy-tales.jpg",
@@ -20,6 +34,13 @@
     "year": 1836
   },
   {
+    "book_status": {
+      "available_copies": 2,
+      "current_user": "",
+      "user_history": [
+
+      ]
+    },
     "author": "Dante Alighieri",
     "country": "Italy",
     "imageLink": "./data/books/images/the-divine-comedy.jpg",
@@ -30,6 +51,13 @@
     "year": 1315
   },
   {
+    "book_status": {
+      "available_copies": 1,
+      "current_user": "",
+      "user_history": [
+
+      ]
+    },
     "author": "Unknown",
     "country": "Sumer and Akkadian Empire",
     "imageLink": "./data/books/images/the-epic-of-gilgamesh.jpg",
@@ -40,6 +68,13 @@
     "year": -1700
   },
   {
+    "book_status": {
+      "available_copies": 5,
+      "current_user": "",
+      "user_history": [
+
+      ]
+    },
     "author": "Unknown",
     "country": "Achaemenid Empire",
     "imageLink": "./data/books/images/the-book-of-job.jpg",
@@ -50,6 +85,13 @@
     "year": -600
   },
   {
+    "book_status": {
+      "available_copies": 0,
+      "current_user": "",
+      "user_history": [
+
+      ]
+    },
     "author": "Unknown",
     "country": "India/Iran/Iraq/Egypt/Tajikistan",
     "imageLink": "./data/books/images/one-thousand-and-one-nights.jpg",
@@ -60,6 +102,13 @@
     "year": 1200
   },
   {
+    "book_status": {
+      "available_copies": 3,
+      "current_user": "",
+      "user_history": [
+
+      ]
+    },
     "author": "Unknown",
     "country": "Iceland",
     "imageLink": "./data/books/images/njals-saga.jpg",
@@ -70,6 +119,13 @@
     "year": 1350
   },
   {
+    "book_status": {
+      "available_copies": 3,
+      "current_user": "",
+      "user_history": [
+
+      ]
+    },
     "author": "Jane Austen",
     "country": "United Kingdom",
     "imageLink": "./data/books/images/pride-and-prejudice.jpg",
@@ -80,6 +136,13 @@
     "year": 1813
   },
   {
+    "book_status": {
+      "available_copies": 3,
+      "current_user": "",
+      "user_history": [
+
+      ]
+    },
     "author": "Honor\u00e9 de Balzac",
     "country": "France",
     "imageLink": "./data/books/images/le-pere-goriot.jpg",
@@ -90,6 +153,13 @@
     "year": 1835
   },
   {
+    "book_status": {
+      "available_copies": 3,
+      "current_user": "",
+      "user_history": [
+
+      ]
+    },
     "author": "Samuel Beckett",
     "country": "Republic of Ireland",
     "imageLink": "./data/books/images/molloy-malone-dies-the-unnamable.jpg",
@@ -100,6 +170,13 @@
     "year": 1952
   },
   {
+    "book_status": {
+      "available_copies": 3,
+      "current_user": "",
+      "user_history": [
+
+      ]
+    },
     "author": "Giovanni Boccaccio",
     "country": "Italy",
     "imageLink": "./data/books/images/the-decameron.jpg",
@@ -110,6 +187,13 @@
     "year": 1351
   },
   {
+    "book_status": {
+      "available_copies": 3,
+      "current_user": "",
+      "user_history": [
+
+      ]
+    },
     "author": "Jorge Luis Borges",
     "country": "Argentina",
     "imageLink": "./data/books/images/ficciones.jpg",
@@ -120,6 +204,13 @@
     "year": 1965
   },
   {
+    "book_status": {
+      "available_copies": 3,
+      "current_user": "",
+      "user_history": [
+
+      ]
+    },
     "author": "Emily Bront\u00eb",
     "country": "United Kingdom",
     "imageLink": "./data/books/images/wuthering-heights.jpg",
@@ -130,6 +221,13 @@
     "year": 1847
   },
   {
+    "book_status": {
+      "available_copies": 3,
+      "current_user": "",
+      "user_history": [
+
+      ]
+    },
     "author": "Albert Camus",
     "country": "Algeria, French Empire",
     "imageLink": "./data/books/images/l-etranger.jpg",
@@ -140,6 +238,13 @@
     "year": 1942
   },
   {
+    "book_status": {
+      "available_copies": 3,
+      "current_user": "",
+      "user_history": [
+
+      ]
+    },
     "author": "Paul Celan",
     "country": "Romania, France",
     "imageLink": "./data/books/images/poems-paul-celan.jpg",
@@ -150,6 +255,13 @@
     "year": 1952
   },
   {
+    "book_status": {
+      "available_copies": 3,
+      "current_user": "",
+      "user_history": [
+
+      ]
+    },
     "author": "Louis-Ferdinand C\u00e9line",
     "country": "France",
     "imageLink": "./data/books/images/voyage-au-bout-de-la-nuit.jpg",
@@ -160,6 +272,13 @@
     "year": 1932
   },
   {
+    "book_status": {
+      "available_copies": 3,
+      "current_user": "",
+      "user_history": [
+
+      ]
+    },
     "author": "Miguel de Cervantes",
     "country": "Spain",
     "imageLink": "./data/books/images/don-quijote-de-la-mancha.jpg",
@@ -170,6 +289,13 @@
     "year": 1610
   },
   {
+    "book_status": {
+      "available_copies": 3,
+      "current_user": "",
+      "user_history": [
+
+      ]
+    },
     "author": "Geoffrey Chaucer",
     "country": "England",
     "imageLink": "./data/books/images/the-canterbury-tales.jpg",
@@ -180,6 +306,13 @@
     "year": 1450
   },
   {
+    "book_status": {
+      "available_copies": 3,
+      "current_user": "",
+      "user_history": [
+
+      ]
+    },
     "author": "Anton Chekhov",
     "country": "Russia",
     "imageLink": "./data/books/images/stories-of-anton-chekhov.jpg",
@@ -190,6 +323,13 @@
     "year": 1886
   },
   {
+    "book_status": {
+      "available_copies": 3,
+      "current_user": "",
+      "user_history": [
+
+      ]
+    },
     "author": "Joseph Conrad",
     "country": "United Kingdom",
     "imageLink": "./data/books/images/nostromo.jpg",
@@ -200,6 +340,13 @@
     "year": 1904
   },
   {
+    "book_status": {
+      "available_copies": 3,
+      "current_user": "",
+      "user_history": [
+
+      ]
+    },
     "author": "Charles Dickens",
     "country": "United Kingdom",
     "imageLink": "./data/books/images/great-expectations.jpg",
@@ -210,6 +357,13 @@
     "year": 1861
   },
   {
+    "book_status": {
+      "available_copies": 3,
+      "current_user": "",
+      "user_history": [
+
+      ]
+    },
     "author": "Denis Diderot",
     "country": "France",
     "imageLink": "./data/books/images/jacques-the-fatalist.jpg",
@@ -220,6 +374,13 @@
     "year": 1796
   },
   {
+    "book_status": {
+      "available_copies": 3,
+      "current_user": "",
+      "user_history": [
+
+      ]
+    },
     "author": "Alfred D\u00f6blin",
     "country": "Germany",
     "imageLink": "./data/books/images/berlin-alexanderplatz.jpg",
@@ -230,6 +391,13 @@
     "year": 1929
   },
   {
+    "book_status": {
+      "available_copies": 3,
+      "current_user": "",
+      "user_history": [
+
+      ]
+    },
     "author": "Fyodor Dostoevsky",
     "country": "Russia",
     "imageLink": "./data/books/images/crime-and-punishment.jpg",
@@ -240,6 +408,13 @@
     "year": 1866
   },
   {
+    "book_status": {
+      "available_copies": 3,
+      "current_user": "",
+      "user_history": [
+
+      ]
+    },
     "author": "Fyodor Dostoevsky",
     "country": "Russia",
     "imageLink": "./data/books/images/the-idiot.jpg",
@@ -250,6 +425,13 @@
     "year": 1869
   },
   {
+    "book_status": {
+      "available_copies": 3,
+      "current_user": "",
+      "user_history": [
+
+      ]
+    },
     "author": "Fyodor Dostoevsky",
     "country": "Russia",
     "imageLink": "./data/books/images/the-possessed.jpg",
@@ -260,6 +442,13 @@
     "year": 1872
   },
   {
+    "book_status": {
+      "available_copies": 3,
+      "current_user": "",
+      "user_history": [
+
+      ]
+    },
     "author": "Fyodor Dostoevsky",
     "country": "Russia",
     "imageLink": "./data/books/images/the-brothers-karamazov.jpg",
@@ -270,6 +459,13 @@
     "year": 1880
   },
   {
+    "book_status": {
+      "available_copies": 3,
+      "current_user": "",
+      "user_history": [
+
+      ]
+    },
     "author": "George Eliot",
     "country": "United Kingdom",
     "imageLink": "./data/books/images/middlemarch.jpg",
@@ -280,6 +476,13 @@
     "year": 1871
   },
   {
+    "book_status": {
+      "available_copies": 3,
+      "current_user": "",
+      "user_history": [
+
+      ]
+    },
     "author": "Ralph Ellison",
     "country": "United States",
     "imageLink": "./data/books/images/invisible-man.jpg",
@@ -290,6 +493,13 @@
     "year": 1952
   },
   {
+    "book_status": {
+      "available_copies": 3,
+      "current_user": "",
+      "user_history": [
+
+      ]
+    },
     "author": "Euripides",
     "country": "Greece",
     "imageLink": "./data/books/images/medea.jpg",
@@ -300,6 +510,13 @@
     "year": -431
   },
   {
+    "book_status": {
+      "available_copies": 3,
+      "current_user": "",
+      "user_history": [
+
+      ]
+    },
     "author": "William Faulkner",
     "country": "United States",
     "imageLink": "./data/books/images/absalom-absalom.jpg",
@@ -310,6 +527,13 @@
     "year": 1936
   },
   {
+    "book_status": {
+      "available_copies": 3,
+      "current_user": "",
+      "user_history": [
+
+      ]
+    },
     "author": "William Faulkner",
     "country": "United States",
     "imageLink": "./data/books/images/the-sound-and-the-fury.jpg",
@@ -320,6 +544,13 @@
     "year": 1929
   },
   {
+    "book_status": {
+      "available_copies": 3,
+      "current_user": "",
+      "user_history": [
+
+      ]
+    },
     "author": "Gustave Flaubert",
     "country": "France",
     "imageLink": "./data/books/images/madame-bovary.jpg",
@@ -330,6 +561,13 @@
     "year": 1857
   },
   {
+    "book_status": {
+      "available_copies": 3,
+      "current_user": "",
+      "user_history": [
+
+      ]
+    },
     "author": "Gustave Flaubert",
     "country": "France",
     "imageLink": "./data/books/images/l-education-sentimentale.jpg",
@@ -340,6 +578,13 @@
     "year": 1869
   },
   {
+    "book_status": {
+      "available_copies": 3,
+      "current_user": "",
+      "user_history": [
+
+      ]
+    },
     "author": "Federico Garc\u00eda Lorca",
     "country": "Spain",
     "imageLink": "./data/books/images/gypsy-ballads.jpg",
@@ -350,6 +595,13 @@
     "year": 1928
   },
   {
+    "book_status": {
+      "available_copies": 3,
+      "current_user": "",
+      "user_history": [
+
+      ]
+    },
     "author": "Gabriel Garc\u00eda M\u00e1rquez",
     "country": "Colombia",
     "imageLink": "./data/books/images/one-hundred-years-of-solitude.jpg",
@@ -360,6 +612,13 @@
     "year": 1967
   },
   {
+    "book_status": {
+      "available_copies": 3,
+      "current_user": "",
+      "user_history": [
+
+      ]
+    },
     "author": "Gabriel Garc\u00eda M\u00e1rquez",
     "country": "Colombia",
     "imageLink": "./data/books/images/love-in-the-time-of-cholera.jpg",
@@ -370,6 +629,13 @@
     "year": 1985
   },
   {
+    "book_status": {
+      "available_copies": 3,
+      "current_user": "",
+      "user_history": [
+
+      ]
+    },
     "author": "Johann Wolfgang von Goethe",
     "country": "Saxe-Weimar",
     "imageLink": "./data/books/images/faust.jpg",
@@ -380,6 +646,13 @@
     "year": 1832
   },
   {
+    "book_status": {
+      "available_copies": 3,
+      "current_user": "",
+      "user_history": [
+
+      ]
+    },
     "author": "Nikolai Gogol",
     "country": "Russia",
     "imageLink": "./data/books/images/dead-souls.jpg",
@@ -390,6 +663,13 @@
     "year": 1842
   },
   {
+    "book_status": {
+      "available_copies": 3,
+      "current_user": "",
+      "user_history": [
+
+      ]
+    },
     "author": "G\u00fcnter Grass",
     "country": "Germany",
     "imageLink": "./data/books/images/the-tin-drum.jpg",
@@ -400,6 +680,13 @@
     "year": 1959
   },
   {
+    "book_status": {
+      "available_copies": 3,
+      "current_user": "",
+      "user_history": [
+
+      ]
+    },
     "author": "Jo\u00e3o Guimar\u00e3es Rosa",
     "country": "Brazil",
     "imageLink": "./data/books/images/the-devil-to-pay-in-the-backlands.jpg",
@@ -410,6 +697,13 @@
     "year": 1956
   },
   {
+    "book_status": {
+      "available_copies": 3,
+      "current_user": "",
+      "user_history": [
+
+      ]
+    },
     "author": "Knut Hamsun",
     "country": "Norway",
     "imageLink": "./data/books/images/hunger.jpg",
@@ -420,6 +714,13 @@
     "year": 1890
   },
   {
+    "book_status": {
+      "available_copies": 3,
+      "current_user": "",
+      "user_history": [
+
+      ]
+    },
     "author": "Ernest Hemingway",
     "country": "United States",
     "imageLink": "./data/books/images/the-old-man-and-the-sea.jpg",
@@ -430,6 +731,13 @@
     "year": 1952
   },
   {
+    "book_status": {
+      "available_copies": 3,
+      "current_user": "",
+      "user_history": [
+
+      ]
+    },
     "author": "Homer",
     "country": "Greece",
     "imageLink": "./data/books/images/the-iliad-of-homer.jpg",
@@ -440,6 +748,13 @@
     "year": -735
   },
   {
+    "book_status": {
+      "available_copies": 3,
+      "current_user": "",
+      "user_history": [
+
+      ]
+    },
     "author": "Homer",
     "country": "Greece",
     "imageLink": "./data/books/images/the-odyssey-of-homer.jpg",
@@ -450,6 +765,13 @@
     "year": -800
   },
   {
+    "book_status": {
+      "available_copies": 3,
+      "current_user": "",
+      "user_history": [
+
+      ]
+    },
     "author": "Henrik Ibsen",
     "country": "Norway",
     "imageLink": "./data/books/images/a-Dolls-house.jpg",
@@ -460,6 +782,13 @@
     "year": 1879
   },
   {
+    "book_status": {
+      "available_copies": 3,
+      "current_user": "",
+      "user_history": [
+
+      ]
+    },
     "author": "James Joyce",
     "country": "Irish Free State",
     "imageLink": "./data/books/images/ulysses.jpg",
@@ -470,6 +799,13 @@
     "year": 1922
   },
   {
+    "book_status": {
+      "available_copies": 3,
+      "current_user": "",
+      "user_history": [
+
+      ]
+    },
     "author": "Franz Kafka",
     "country": "Czechoslovakia",
     "imageLink": "./data/books/images/stories-of-franz-kafka.jpg",
@@ -480,6 +816,13 @@
     "year": 1924
   },
   {
+    "book_status": {
+      "available_copies": 3,
+      "current_user": "",
+      "user_history": [
+
+      ]
+    },
     "author": "Franz Kafka",
     "country": "Czechoslovakia",
     "imageLink": "./data/books/images/the-trial.jpg",
@@ -490,6 +833,13 @@
     "year": 1925
   },
   {
+    "book_status": {
+      "available_copies": 3,
+      "current_user": "",
+      "user_history": [
+
+      ]
+    },
     "author": "Franz Kafka",
     "country": "Czechoslovakia",
     "imageLink": "./data/books/images/the-castle.jpg",
@@ -500,6 +850,13 @@
     "year": 1926
   },
   {
+    "book_status": {
+      "available_copies": 3,
+      "current_user": "",
+      "user_history": [
+
+      ]
+    },
     "author": "K\u0101lid\u0101sa",
     "country": "India",
     "imageLink": "./data/books/images/the-recognition-of-shakuntala.jpg",
@@ -510,6 +867,13 @@
     "year": 150
   },
   {
+    "book_status": {
+      "available_copies": 3,
+      "current_user": "",
+      "user_history": [
+
+      ]
+    },
     "author": "Yasunari Kawabata",
     "country": "Japan",
     "imageLink": "./data/books/images/the-sound-of-the-mountain.jpg",
@@ -520,6 +884,13 @@
     "year": 1954
   },
   {
+    "book_status": {
+      "available_copies": 3,
+      "current_user": "",
+      "user_history": [
+
+      ]
+    },
     "author": "Nikos Kazantzakis",
     "country": "Greece",
     "imageLink": "./data/books/images/zorba-the-greek.jpg",
@@ -530,6 +901,13 @@
     "year": 1946
   },
   {
+    "book_status": {
+      "available_copies": 3,
+      "current_user": "",
+      "user_history": [
+
+      ]
+    },
     "author": "D. H. Lawrence",
     "country": "United Kingdom",
     "imageLink": "./data/books/images/sons-and-lovers.jpg",
@@ -540,6 +918,13 @@
     "year": 1913
   },
   {
+    "book_status": {
+      "available_copies": 3,
+      "current_user": "",
+      "user_history": [
+
+      ]
+    },
     "author": "Halld\u00f3r Laxness",
     "country": "Iceland",
     "imageLink": "./data/books/images/independent-people.jpg",
@@ -550,6 +935,13 @@
     "year": 1934
   },
   {
+    "book_status": {
+      "available_copies": 3,
+      "current_user": "",
+      "user_history": [
+
+      ]
+    },
     "author": "Giacomo Leopardi",
     "country": "Italy",
     "imageLink": "./data/books/images/poems-giacomo-leopardi.jpg",
@@ -560,6 +952,13 @@
     "year": 1818
   },
   {
+    "book_status": {
+      "available_copies": 3,
+      "current_user": "",
+      "user_history": [
+
+      ]
+    },
     "author": "Doris Lessing",
     "country": "United Kingdom",
     "imageLink": "./data/books/images/the-golden-notebook.jpg",
@@ -570,6 +969,13 @@
     "year": 1962
   },
   {
+    "book_status": {
+      "available_copies": 3,
+      "current_user": "",
+      "user_history": [
+
+      ]
+    },
     "author": "Astrid Lindgren",
     "country": "Sweden",
     "imageLink": "./data/books/images/pippi-longstocking.jpg",
@@ -580,6 +986,13 @@
     "year": 1945
   },
   {
+    "book_status": {
+      "available_copies": 3,
+      "current_user": "",
+      "user_history": [
+
+      ]
+    },
     "author": "Lu Xun",
     "country": "China",
     "imageLink": "./data/books/images/diary-of-a-madman.jpg",
@@ -590,6 +1003,13 @@
     "year": 1918
   },
   {
+    "book_status": {
+      "available_copies": 3,
+      "current_user": "",
+      "user_history": [
+
+      ]
+    },
     "author": "Naguib Mahfouz",
     "country": "Egypt",
     "imageLink": "./data/books/images/children-of-gebelawi.jpg",
@@ -600,6 +1020,13 @@
     "year": 1959
   },
   {
+    "book_status": {
+      "available_copies": 3,
+      "current_user": "",
+      "user_history": [
+
+      ]
+    },
     "author": "Thomas Mann",
     "country": "Germany",
     "imageLink": "./data/books/images/buddenbrooks.jpg",
@@ -610,6 +1037,13 @@
     "year": 1901
   },
   {
+    "book_status": {
+      "available_copies": 3,
+      "current_user": "",
+      "user_history": [
+
+      ]
+    },
     "author": "Thomas Mann",
     "country": "Germany",
     "imageLink": "./data/books/images/the-magic-mountain.jpg",
@@ -620,6 +1054,13 @@
     "year": 1924
   },
   {
+    "book_status": {
+      "available_copies": 3,
+      "current_user": "",
+      "user_history": [
+
+      ]
+    },
     "author": "Herman Melville",
     "country": "United States",
     "imageLink": "./data/books/images/moby-dick.jpg",
@@ -630,6 +1071,13 @@
     "year": 1851
   },
   {
+    "book_status": {
+      "available_copies": 3,
+      "current_user": "",
+      "user_history": [
+
+      ]
+    },
     "author": "Michel de Montaigne",
     "country": "France",
     "imageLink": "./data/books/images/essais.jpg",
@@ -640,6 +1088,13 @@
     "year": 1595
   },
   {
+    "book_status": {
+      "available_copies": 3,
+      "current_user": "",
+      "user_history": [
+
+      ]
+    },
     "author": "Elsa Morante",
     "country": "Italy",
     "imageLink": "./data/books/images/history.jpg",
@@ -650,6 +1105,13 @@
     "year": 1974
   },
   {
+    "book_status": {
+      "available_copies": 3,
+      "current_user": "",
+      "user_history": [
+
+      ]
+    },
     "author": "Toni Morrison",
     "country": "United States",
     "imageLink": "./data/books/images/beloved.jpg",
@@ -660,6 +1122,13 @@
     "year": 1987
   },
   {
+    "book_status": {
+      "available_copies": 3,
+      "current_user": "",
+      "user_history": [
+
+      ]
+    },
     "author": "Murasaki Shikibu",
     "country": "Japan",
     "imageLink": "./data/books/images/the-tale-of-genji.jpg",
@@ -670,6 +1139,13 @@
     "year": 1006
   },
   {
+    "book_status": {
+      "available_copies": 3,
+      "current_user": "",
+      "user_history": [
+
+      ]
+    },
     "author": "Robert Musil",
     "country": "Austria",
     "imageLink": "./data/books/images/the-man-without-qualities.jpg",
@@ -680,6 +1156,13 @@
     "year": 1931
   },
   {
+    "book_status": {
+      "available_copies": 3,
+      "current_user": "",
+      "user_history": [
+
+      ]
+    },
     "author": "Vladimir Nabokov",
     "country": "Russia/United States",
     "imageLink": "./data/books/images/lolita.jpg",
@@ -690,6 +1173,13 @@
     "year": 1955
   },
   {
+    "book_status": {
+      "available_copies": 3,
+      "current_user": "",
+      "user_history": [
+
+      ]
+    },
     "author": "George Orwell",
     "country": "United Kingdom",
     "imageLink": "./data/books/images/nineteen-eighty-four.jpg",
@@ -700,6 +1190,13 @@
     "year": 1949
   },
   {
+    "book_status": {
+      "available_copies": 3,
+      "current_user": "",
+      "user_history": [
+
+      ]
+    },
     "author": "Ovid",
     "country": "Roman Empire",
     "imageLink": "./data/books/images/the-metamorphoses-of-ovid.jpg",
@@ -709,6 +1206,13 @@
     "title": "Metamorphoses",
     "year": 10  },
   {
+    "book_status": {
+      "available_copies": 3,
+      "current_user": "",
+      "user_history": [
+
+      ]
+    },
     "author": "Fernando Pessoa",
     "country": "Portugal",
     "imageLink": "./data/books/images/the-book-of-disquiet.jpg",
@@ -719,6 +1223,13 @@
     "year": 1928
   },
   {
+    "book_status": {
+      "available_copies": 3,
+      "current_user": "",
+      "user_history": [
+
+      ]
+    },
     "author": "Edgar Allan Poe",
     "country": "United States",
     "imageLink": "./data/books/images/tales-and-poems-of-edgar-allan-poe.jpg",
@@ -729,6 +1240,13 @@
     "year": 1950
   },
   {
+    "book_status": {
+      "available_copies": 3,
+      "current_user": "",
+      "user_history": [
+
+      ]
+    },
     "author": "Marcel Proust",
     "country": "France",
     "imageLink": "./data/books/images/a-la-recherche-du-temps-perdu.jpg",
@@ -739,6 +1257,13 @@
     "year": 1920
   },
   {
+    "book_status": {
+      "available_copies": 3,
+      "current_user": "",
+      "user_history": [
+
+      ]
+    },
     "author": "Fran\u00e7ois Rabelais",
     "country": "France",
     "imageLink": "./data/books/images/gargantua-and-pantagruel.jpg",
@@ -749,6 +1274,13 @@
     "year": 1533
   },
   {
+    "book_status": {
+      "available_copies": 3,
+      "current_user": "",
+      "user_history": [
+
+      ]
+    },
     "author": "Juan Rulfo",
     "country": "Mexico",
     "imageLink": "./data/books/images/pedro-paramo.jpg",
@@ -759,6 +1291,13 @@
     "year": 1955
   },
   {
+    "book_status": {
+      "available_copies": 3,
+      "current_user": "",
+      "user_history": [
+
+      ]
+    },
     "author": "Rumi",
     "country": "Sultanate of Rum",
     "imageLink": "./data/books/images/the-masnavi.jpg",
@@ -769,6 +1308,13 @@
     "year": 1236
   },
   {
+    "book_status": {
+      "available_copies": 3,
+      "current_user": "",
+      "user_history": [
+
+      ]
+    },
     "author": "Salman Rushdie",
     "country": "United Kingdom, India",
     "imageLink": "./data/books/images/midnights-children.jpg",
@@ -779,6 +1325,13 @@
     "year": 1981
   },
   {
+    "book_status": {
+      "available_copies": 3,
+      "current_user": "",
+      "user_history": [
+
+      ]
+    },
     "author": "Saadi",
     "country": "Persia, Persian Empire",
     "imageLink": "./data/books/images/bostan.jpg",
@@ -789,6 +1342,13 @@
     "year": 1257
   },
   {
+    "book_status": {
+      "available_copies": 3,
+      "current_user": "",
+      "user_history": [
+
+      ]
+    },
     "author": "Tayeb Salih",
     "country": "Sudan",
     "imageLink": "./data/books/images/season-of-migration-to-the-north.jpg",
@@ -799,6 +1359,13 @@
     "year": 1966
   },
   {
+    "book_status": {
+      "available_copies": 3,
+      "current_user": "",
+      "user_history": [
+
+      ]
+    },
     "author": "Jos\u00e9 Saramago",
     "country": "Portugal",
     "imageLink": "./data/books/images/blindness.jpg",
@@ -809,6 +1376,13 @@
     "year": 1995
   },
   {
+    "book_status": {
+      "available_copies": 3,
+      "current_user": "",
+      "user_history": [
+
+      ]
+    },
     "author": "William Shakespeare",
     "country": "England",
     "imageLink": "./data/books/images/hamlet.jpg",
@@ -819,6 +1393,13 @@
     "year": 1603
   },
   {
+    "book_status": {
+      "available_copies": 3,
+      "current_user": "",
+      "user_history": [
+
+      ]
+    },
     "author": "William Shakespeare",
     "country": "England",
     "imageLink": "./data/books/images/king-lear.jpg",
@@ -829,6 +1410,13 @@
     "year": 1608
   },
   {
+    "book_status": {
+      "available_copies": 3,
+      "current_user": "",
+      "user_history": [
+
+      ]
+    },
     "author": "William Shakespeare",
     "country": "England",
     "imageLink": "./data/books/images/othello.jpg",
@@ -839,6 +1427,13 @@
     "year": 1609
   },
   {
+    "book_status": {
+      "available_copies": 3,
+      "current_user": "",
+      "user_history": [
+
+      ]
+    },
     "author": "Sophocles",
     "country": "Greece",
     "imageLink": "./data/books/images/oedipus-the-king.jpg",
@@ -849,6 +1444,13 @@
     "year": -430
   },
   {
+    "book_status": {
+      "available_copies": 3,
+      "current_user": "",
+      "user_history": [
+
+      ]
+    },
     "author": "Stendhal",
     "country": "France",
     "imageLink": "./data/books/images/le-rouge-et-le-noir.jpg",
@@ -859,6 +1461,13 @@
     "year": 1830
   },
   {
+    "book_status": {
+      "available_copies": 3,
+      "current_user": "",
+      "user_history": [
+
+      ]
+    },
     "author": "Laurence Sterne",
     "country": "England",
     "imageLink": "./data/books/images/the-life-and-opinions-of-tristram-shandy.jpg",
@@ -869,6 +1478,13 @@
     "year": 1760
   },
   {
+    "book_status": {
+      "available_copies": 3,
+      "current_user": "",
+      "user_history": [
+
+      ]
+    },
     "author": "Italo Svevo",
     "country": "Italy",
     "imageLink": "./data/books/images/confessions-of-zeno.jpg",
@@ -879,6 +1495,13 @@
     "year": 1923
   },
   {
+    "book_status": {
+      "available_copies": 3,
+      "current_user": "",
+      "user_history": [
+
+      ]
+    },
     "author": "Jonathan Swift",
     "country": "Ireland",
     "imageLink": "./data/books/images/gullivers-travels.jpg",
@@ -889,6 +1512,13 @@
     "year": 1726
   },
   {
+    "book_status": {
+      "available_copies": 3,
+      "current_user": "",
+      "user_history": [
+
+      ]
+    },
     "author": "Leo Tolstoy",
     "country": "Russia",
     "imageLink": "./data/books/images/war-and-peace.jpg",
@@ -899,6 +1529,13 @@
     "year": 1867
   },
   {
+    "book_status": {
+      "available_copies": 3,
+      "current_user": "",
+      "user_history": [
+
+      ]
+    },
     "author": "Leo Tolstoy",
     "country": "Russia",
     "imageLink": "./data/books/images/anna-karenina.jpg",
@@ -909,6 +1546,13 @@
     "year": 1877
   },
   {
+    "book_status": {
+      "available_copies": 3,
+      "current_user": "",
+      "user_history": [
+
+      ]
+    },
     "author": "Leo Tolstoy",
     "country": "Russia",
     "imageLink": "./data/books/images/the-death-of-ivan-ilyich.jpg",
@@ -919,6 +1563,13 @@
     "year": 1886
   },
   {
+    "book_status": {
+      "available_copies": 3,
+      "current_user": "",
+      "user_history": [
+
+      ]
+    },
     "author": "Mark Twain",
     "country": "United States",
     "imageLink": "./data/books/images/the-adventures-of-huckleberry-finn.jpg",
@@ -929,6 +1580,13 @@
     "year": 1884
   },
   {
+    "book_status": {
+      "available_copies": 3,
+      "current_user": "",
+      "user_history": [
+
+      ]
+    },
     "author": "Valmiki",
     "country": "India",
     "imageLink": "./data/books/images/ramayana.jpg",
@@ -939,6 +1597,13 @@
     "year": -450
   },
   {
+    "book_status": {
+      "available_copies": 3,
+      "current_user": "",
+      "user_history": [
+
+      ]
+    },
     "author": "Virgil",
     "country": "Roman Empire",
     "imageLink": "./data/books/images/the-aeneid.jpg",
@@ -949,6 +1614,13 @@
     "year": -23
   },
   {
+    "book_status": {
+      "available_copies": 3,
+      "current_user": "",
+      "user_history": [
+
+      ]
+    },
     "author": "Vyasa",
     "country": "India",
     "imageLink": "./data/books/images/the-mahab-harata.jpg",
@@ -959,6 +1631,13 @@
     "year": -700
   },
   {
+    "book_status": {
+      "available_copies": 3,
+      "current_user": "",
+      "user_history": [
+
+      ]
+    },
     "author": "Walt Whitman",
     "country": "United States",
     "imageLink": "./data/books/images/leaves-of-grass.jpg",
@@ -969,6 +1648,13 @@
     "year": 1855
   },
   {
+    "book_status": {
+      "available_copies": 3,
+      "current_user": "",
+      "user_history": [
+
+      ]
+    },
     "author": "Virginia Woolf",
     "country": "United Kingdom",
     "imageLink": "./data/books/images/mrs-dalloway.jpg",
@@ -979,6 +1665,13 @@
     "year": 1925
   },
   {
+    "book_status": {
+      "available_copies": 3,
+      "current_user": "",
+      "user_history": [
+
+      ]
+    },
     "author": "Virginia Woolf",
     "country": "United Kingdom",
     "imageLink": "./data/books/images/to-the-lighthouse.jpg",
@@ -989,6 +1682,13 @@
     "year": 1927
   },
   {
+    "book_status": {
+      "available_copies": 3,
+      "current_user": "",
+      "user_history": [
+
+      ]
+    },
     "author": "Marguerite Yourcenar",
     "country": "France/Belgium",
     "imageLink": "./data/books/images/memoirs-of-hadrian.jpg",

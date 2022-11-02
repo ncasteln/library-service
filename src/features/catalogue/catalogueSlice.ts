@@ -1,9 +1,14 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { useAppSelector } from "../../app/hooks";
-import { RootState } from "../../app/store";
 
 // Types
+export interface IBookStatus {
+  available_copies: number;
+  current_user: string;
+  user_history: string[];
+}
+
 export interface IBook {
+  book_status: IBookStatus;
   author: string;
   country: string;
   imageLink: string;
@@ -14,12 +19,12 @@ export interface IBook {
   year: number;
 }
 
-type CatalogueState = {
+interface ICatalogueState {
   bookList: IBook[];
   responseStatus: 'init' | 'loading' | 'fulfilled' | 'rejected';
 }
 
-const initialState: CatalogueState = {
+const initialState: ICatalogueState = {
   bookList: [],
   responseStatus: 'init'
 }
@@ -27,9 +32,7 @@ const initialState: CatalogueState = {
 const catalogueSlice = createSlice({
   name: 'catalogue',
   initialState,
-  reducers: {
-
-  },
+  reducers: {},
   extraReducers: (builder) => {
     builder.addCase(fetchCatalogue.pending, (state) => {
       state.responseStatus = 'loading';

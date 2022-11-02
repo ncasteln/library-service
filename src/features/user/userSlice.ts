@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { StringMappingType } from "typescript";
-
+import { IBook } from '../catalogue/catalogueSlice';
+ 
 // NOTES
 // Registration is a POST action - only possible with backend
 // signUp function is not real-world-correct
@@ -30,6 +30,7 @@ interface IuserInfo extends ILogin {
     postcode: number | string;
   };
   picture: string;
+  wishlist: IBook[];
 }
 
 interface IUser {
@@ -56,6 +57,9 @@ const userSlice = createSlice({
   reducers: {
     logout () {
       return initialState;
+    },
+    addToWishlist (state, action) {
+      state.userInfo.wishlist.push(action.payload);
     }
   },
   extraReducers: (builder) => {
@@ -118,7 +122,6 @@ export const login = createAsyncThunk(
         const user = data.find((item: IuserInfo) => {
           return item.email === email && item.password === password;
         });
-        localStorage.setItem('userId', user.id);
         return user;
       }
       else {
@@ -131,18 +134,6 @@ export const login = createAsyncThunk(
   }
 )
 
-// export const logout = createAsyncThunk(
-//   'user/logout',
-//   async () => {
-//     try {
-      
-//     }
-//     catch (error) {
-  
-//     }
-//   }
-// )
-
-export const { logout } = userSlice.actions;
+export const { logout, addToWishlist } = userSlice.actions;
 
 export default userSlice.reducer;

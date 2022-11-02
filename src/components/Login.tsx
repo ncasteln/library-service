@@ -2,13 +2,14 @@ import { useState, useEffect } from "react";
 import { Form, Button } from "react-bootstrap";
 import { useAppDispatch, useAppSelector } from "../app/hooks";
 import { login } from "../features/user/userSlice";
-import { Link, redirect } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 // NOTES
 // automatically redirect to profile! use redirect or useNavigate or what??
 // Pop out a message for successfully login - failed login
+// use localSotrage or something similar to make the state persistent
 
-const LoginForm = () => {
+const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const dispatch = useAppDispatch();
@@ -53,4 +54,4 @@ const LoginForm = () => {
   )
 };
 
-export default LoginForm;
+export default Login;

@@ -10,7 +10,7 @@ import { signUp } from "../features/user/userSlice";
   //   "picture": "algolia/women/pragati.png"
 // Refactor and understand well the code
 
-const RegistrationForm = () => {
+const Registration = () => {
   const dispatch = useAppDispatch();
   const [validated, setValidated] = useState(false);
 
@@ -148,4 +148,4 @@ const RegistrationForm = () => {
   );
 };
 
-export default RegistrationForm;
+export default Registration;
