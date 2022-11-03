@@ -1,18 +1,17 @@
-import { useEffect } from 'react';
-import { Navbar, Container, Nav, NavDropdown, Button } from 'react-bootstrap';
-import { Link, useNavigate } from 'react-router-dom';
+import { Navbar, Container, Nav } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../app/hooks';
-import { logout } from '../features/user/userSlice';
+import RoleNav from './RoleNav';
+import logo from './logo.png'
 
 // NOTES
-// Change navigate() to profile (and not to catalogue) when logged
 // Add Profile image on the right of the username
 
 const Header = () => {
   const isLogged = useAppSelector(state => state.user.isLogged)
-  const { id, username, isAdmin } = useAppSelector(state => state.user.userInfo)
+  const { id, username } = useAppSelector(state => state.user.userInfo)
+  const role = useAppSelector(state => state.user.userInfo.role);
   const dispatch = useAppDispatch();
-  const navigate = useNavigate();
 
   // Another way to Navigate away from Login page
   // useEffect(() => {
@@ -24,7 +23,12 @@ const Header = () => {
   return (
     <Navbar bg="primary" variant="dark" expand="sm">
       <Container fluid>
-        <Navbar.Brand href="#home">Bibl.io</Navbar.Brand>
+        <Navbar.Brand href="#home">
+          <img 
+            src={logo}
+            alt="Bibl.io brand logo" 
+          />
+        </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
         <Nav className="ml-auto" as="ul">
@@ -34,32 +38,29 @@ const Header = () => {
           <Nav.Item as="li">
             <Nav.Link as={Link} to='/catalogue'>Catalogue</Nav.Link>
           </Nav.Item>
-          {/* Nav item to delete - only explaination pourpose */}
+
+          {/* Nav item to delete - only explaination pourpose
           <Nav.Item as="li">
             <Nav.Link as={Link} to='/profile'>Profile</Nav.Link>
           </Nav.Item>
+          <Nav.Item as="li">
+            <Nav.Link as={Link} to='/admin'>Admin</Nav.Link>
+          </Nav.Item> */}
+
           <Nav.Item className="border-right border-light"></Nav.Item>
             {
-              isLogged
-                ? 
-                <Nav.Item className="ml-3" as="li">
-                  <NavDropdown title={username} id="navbarScrollingDropdown">
-                    {/* <NavDropdown.Item as={Link} to={`/profile/${isAdmin ? 'admin' : 'user'}/${id}`}>Profile</NavDropdown.Item> */}
-                    <NavDropdown.Item as={Link} to={`/profile`}>Profile</NavDropdown.Item>
-                    <NavDropdown.Item as={Link} to={`/wishlist/${id}`}>Wishlist</NavDropdown.Item>
-                    <NavDropdown.Divider />
-                    <NavDropdown.Item as={Button} onClick={() => dispatch(logout())}>Logout</NavDropdown.Item>
-                  </NavDropdown>
-                </Nav.Item>
-                :
-                <>
-                  <Nav.Item className="ml-3" as="li">
-                    <Nav.Link as={Link} to='/login'>Login</Nav.Link>
-                  </Nav.Item>
-                  <Nav.Item className="ml-3" as="li">
-                    <Nav.Link as={Link} to='/registration'>Registration</Nav.Link>
-                  </Nav.Item>
-                </>
+              role
+                ? <RoleNav 
+                    role={role}
+                    username={username} />
+                : <>
+                    <Nav.Item className="ml-3" as="li">
+                      <Nav.Link as={Link} to='/login'>Login</Nav.Link>
+                    </Nav.Item>
+                    <Nav.Item className="ml-3" as="li">
+                      <Nav.Link as={Link} to='/registration'>Registration</Nav.Link>
+                    </Nav.Item>
+                  </>
             }
         </Nav>
         </Navbar.Collapse>

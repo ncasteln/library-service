@@ -5,8 +5,10 @@ import NoMatch from '../components/NoMatch';
 import Login from '../components/Login';
 import Registration from '../components/Registration';
 import Profile from '../components/Profile';
-import ProtectedRoute from '../routing/ProtectedRoute';
+import Admin from "../components/Admin";
 import RequireAuth from "./RequireAuth";
+import Wishlist from "../components/Wishlist";
+import Unauthorized from "../components/Unauthorized";
 
 const Routing = () => {
   return (
@@ -16,11 +18,17 @@ const Routing = () => {
       <Route path='/catalogue' element={<Catalogue />} />
       <Route path='/login' element={<Login />} />
       <Route path='/registration' element={<Registration />} />
+      <Route path='/unauthorized' element={<Unauthorized />} />
 
-      {/* Protected routes */}
-      <Route element={<RequireAuth />}>
+      {/* User protected routes */}
+      <Route element={<RequireAuth roles={['user', 'admin']} />}>
         <Route path='/profile' element={<Profile />} />
-        <Route path='/wishlist' element={<div>User Wishlist</div>} />
+        <Route path='/wishlist' element={<Wishlist />} />
+      </Route>
+
+      {/* Admin protected routes */}
+      <Route element={<RequireAuth roles={['admin']} />}>
+        <Route path='/admin' element={<Admin />} />
       </Route>
 
       {/* Not found */}

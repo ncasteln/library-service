@@ -20,7 +20,7 @@ interface ILogin {
 interface IuserInfo extends ILogin {
   id: number;
   username: string;
-  isAdmin: boolean;
+  role: string;
   first_name: string;
   last_name: string;
   location: {
@@ -38,8 +38,6 @@ interface IUser {
   isLogged: boolean;
   userInfo: IuserInfo;
   token: string;
-  error: null | string;
-  success: boolean;
 }
 
 const initialState: IUser = {
@@ -47,8 +45,6 @@ const initialState: IUser = {
   isLogged: false,
   userInfo: {} as IuserInfo, // ??????? correct ??????? ???????????
   token: '',
-  error: null,
-  success: false
 }
 
 const userSlice = createSlice({

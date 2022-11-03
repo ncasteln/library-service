@@ -8,7 +8,7 @@ const NoMatch = () => {
         <Card.Title>Whooops!</Card.Title>
         <Card.Subtitle>I couldn't find the page.</Card.Subtitle>
         <Card.Text>
-          The page you asked for doesn't exist, or is expired. 
+          The page you asked for doesn't exist. 
         </Card.Text>
       </Card.Body>
     </Card>

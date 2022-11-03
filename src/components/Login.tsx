@@ -14,10 +14,11 @@ const Login = () => {
   const [password, setPassword] = useState('');
   const dispatch = useAppDispatch();
 
+  // means: if there was a forbidden location which needs authentication, return there, otherwise go /home
   const navigate = useNavigate();
   const location = useLocation();
   const from = location.state?.from?.pathname || '/';
-  console.log(`from is ${from}`)
+  console.log(`The last path is ${from}`)
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -56,8 +57,8 @@ const Login = () => {
         <Button variant="primary" type="submit">
           Submit
         </Button>
-        <div>melissa.fleming@example.com sick</div>
-        <div>christoffer.christiansen@example.com samuel</div>
+        <div>ADMIN melissa.fleming@example.com sick</div>
+        <div>USER christoffer.christiansen@example.com samuel</div>
       </Form>
     </Container>
   )

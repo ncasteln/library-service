@@ -1,18 +1,20 @@
 import { useLocation, Navigate, Outlet } from "react-router-dom";
 import { useAppSelector } from "../app/hooks";
 
-const RequireAuth = () => {
+const RequireAuth = ({ roles }: { roles: string[]; }) => {
   const location = useLocation();
-  const isLogged = useAppSelector(state => state.user.isLogged);
+  const role = useAppSelector(state => state.user.userInfo.role);
 
-  // console.table(location)
-  console.log(isLogged)
+  const isAuth = roles.includes(role);
+  console.log(isAuth)
 
-  return (
-    isLogged
-      ? <Outlet /> // means: return the child in case of logged, else navigate to login page
-      : <Navigate to='/login' state={{ from: location }} replace />
-  )
+  if (isAuth) {
+    return <Outlet />
+  }
+  else if (role === 'user') {
+    return <Navigate to='/unauthorized' state={{ from: location }} replace />
+  }
+  return <Navigate to='/login' state={{ from: location }} replace />
 };
 
 export default RequireAuth;
