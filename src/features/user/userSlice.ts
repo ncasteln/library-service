@@ -35,14 +35,12 @@ interface IuserInfo extends ILogin {
 
 interface IUser {
   loading: boolean;
-  isLogged: boolean;
   userInfo: IuserInfo;
   token: string;
 }
 
 const initialState: IUser = {
   loading: false,
-  isLogged: false,
   userInfo: {} as IuserInfo, // ??????? correct ??????? ???????????
   token: '',
 }
@@ -73,7 +71,6 @@ const userSlice = createSlice({
     });
     builder.addCase(login.fulfilled, (state, { payload }) => {
       state.loading = false;
-      state.isLogged = true;
       state.userInfo = payload;
     });
     builder.addCase(login.rejected, (state) => {

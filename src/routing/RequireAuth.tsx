@@ -5,10 +5,10 @@ const RequireAuth = ({ roles }: { roles: string[]; }) => {
   const location = useLocation();
   const role = useAppSelector(state => state.user.userInfo.role);
 
-  const isAuth = roles.includes(role);
-  console.log(isAuth)
+  const isAuthorized = roles.includes(role);
+  console.log(isAuthorized)
 
-  if (isAuth) {
+  if (isAuthorized) {
     return <Outlet />
   }
   else if (role === 'user') {

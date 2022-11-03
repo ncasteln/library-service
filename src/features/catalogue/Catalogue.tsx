@@ -2,7 +2,7 @@ import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import { useEffect } from 'react'
 import { fetchCatalogue } from "./catalogueSlice";
 import { Spinner, Alert, Form, Button, Container, Row } from 'react-bootstrap'
-import Book from "../../components/Book";
+import BookCard from "../../components/BookCard";
 
 // NOTES
 // Make the fakePlaceholder for cards
@@ -53,7 +53,7 @@ const Catalogue = () => {
         {
           bookList.map((item, i) => {
             return (
-              <Book key={`book-${i}`} {...item} />
+              <BookCard key={`book-${i}`} {...item} />
             )
           })
         }

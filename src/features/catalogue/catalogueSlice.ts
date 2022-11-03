@@ -8,6 +8,7 @@ export interface IBookStatus {
 }
 
 export interface IBook {
+  book_id: string;
   book_status: IBookStatus;
   author: string;
   country: string;
