@@ -9,8 +9,7 @@ import { useParams } from "react-router-dom";
 // Make the fakePlaceholder for cards
 
 const Catalogue = () => {
-  const [exploredBook, setExploredBook] = useState('');
-  const responseStatus = useAppSelector(state => state.catalogue.responseStatus)
+  const responseStatus = useAppSelector(state => state.catalogue.responseStatus);
   const bookList = useAppSelector(state => state.catalogue.bookList);
   const dispatch = useAppDispatch();
 

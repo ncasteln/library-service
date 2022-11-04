@@ -2,15 +2,14 @@ import { Button } from "react-bootstrap";
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import { useNavigate, useLocation } from "react-router-dom";
 import { reserveBook } from "../user/userSlice";
+import { IBook } from "./catalogueSlice";
 
 // NOTES
-// Navigate to Login if not logged
-// redirect instead of useNavigate ?
 // Don't pass only the book_id but the entire book
 
-const CatalogueButton = ({ action, book_id }: {
+const CatalogueButton = ({ action, book }: {
   action: string;
-  book_id: string;
+  book: IBook;
 }) => {
   const userInfo = useAppSelector(state => state.user.userInfo);
   const location = useLocation();
@@ -22,11 +21,16 @@ const CatalogueButton = ({ action, book_id }: {
       navigate('/login', { replace: true, state: { from: location } })
     }
     else {
-      if (action === 'Book now!') {
-        dispatch(reserveBook(book_id))
+      if (userInfo.role === 'user') {
+        if (action === 'Book now!') {
+          dispatch(reserveBook(book))
+        }
+        else if (action === 'Add to Wishlist') {
+          // dispatch(addToWishlist(book_id))
+        }
       }
-      else if (action === 'Add to Wishlist') {
-        // dispatch(addToWishlist(book_id))
+      else {
+        alert(`You're logged as Admin. To reserve a book, use your private account.`)
       }
     }
   }

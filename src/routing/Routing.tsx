@@ -1,12 +1,12 @@
 import { Route, Routes } from "react-router-dom";
-import Home from "../components/Home";
+import Home from "../pages/Home";
 import Catalogue from '../features/catalogue/Catalogue';
 import NoMatch from '../components/NoMatch';
-import Login from '../components/Login';
-import Registration from '../components/Registration';
-import Profile from '../components/Profile';
+import Login from "../pages/Login";
+import Registration from '../pages/Registration';
+import Profile from '../pages/Profile';
 import RequireAuth from "./RequireAuth";
-import Unauthorized from "../components/Unauthorized";
+import Unauthorized from "../pages/Unauthorized";
 import BookDetails from "../components/BookDetails";
 
 const Routing = () => {
@@ -14,8 +14,8 @@ const Routing = () => {
     <Routes>
       {/* Public routes */}
       <Route path='/' element={<Home />} />
-      <Route path='catalogue' element={<Catalogue />}>
-      </Route>
+      <Route path='catalogue' element={<Catalogue />} />
+      <Route path='catalogue/:book_id' element={<BookDetails />} />
       <Route path='login' element={<Login />} />
       <Route path='registration' element={<Registration />} />
       <Route path='unauthorized' element={<Unauthorized />} />

@@ -8,12 +8,20 @@ body {
   background-color: rgb(236, 238, 255);
 }
 
+
+
 /* --------------- NAVBAR --------------- */
 .Navbar {
   padding: 0 18px;
 }
 .logo {
   width: 2.5rem;
+}
+
+
+/* --------------- HOME --------------- */
+.Home {
+  width: 50vw;
 }
 
 

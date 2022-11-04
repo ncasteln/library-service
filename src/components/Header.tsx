@@ -1,10 +1,11 @@
 import { Navbar, Container, Nav } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import { useAppDispatch, useAppSelector } from '../app/hooks';
+import { useAppSelector } from '../app/hooks';
 import RoleNav from './RoleNav';
 
 // NOTES
 // Add Profile image on the right of the username
+// Map through the routes to render the Navbar?
 
 const Header = () => {
   const { username } = useAppSelector(state => state.user.userInfo)
@@ -29,21 +30,10 @@ const Header = () => {
             <Nav.Item as="li">
               <Nav.Link as={Link} to='/catalogue'>Catalogue</Nav.Link>
             </Nav.Item>
-
-            {/* Nav item to delete - only explaination pourpose
-            <Nav.Item as="li">
-              <Nav.Link as={Link} to='/profile'>Profile</Nav.Link>
-            </Nav.Item>
-            <Nav.Item as="li">
-              <Nav.Link as={Link} to='/admin'>Admin</Nav.Link>
-            </Nav.Item> */}
-
             <Nav.Item className="border-right border-light ml-3"></Nav.Item>
               {
                 role
-                  ? <RoleNav 
-                      role={role}
-                      username={username} />
+                  ? <RoleNav role={role} username={username} />
                   : <>
                       <Nav.Item className="ml-3" as="li">
                         <Nav.Link as={Link} to='/login'>Login</Nav.Link>

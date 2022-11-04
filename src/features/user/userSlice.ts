@@ -2,22 +2,16 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { IBook } from '../catalogue/catalogueSlice';
  
 // NOTES
-// Registration is a POST action - only possible with backend
-// signUp function is not real-world-correct
-// Some state keys, MAYBE are not useful
-
-// LOGIN : send the data and GET simply from .json and related renders
-// POST : simulate the irgendwie the process, with renders
-  // LOADING-animation, 
-  // SUCCESS
-  // FAILURE
+// reserveBook() - no double bookings
+// initialState userInfo doubts
+// Registration is a POST action - how to simulate?
 
 interface ILogin {
   email: string;
   password: string;
 }
 
-interface IuserInfo extends ILogin {
+interface IUserInfo extends ILogin {
   id: number;
   reservations: {
     current: IBook[];
@@ -39,14 +33,12 @@ interface IuserInfo extends ILogin {
 
 interface IUser {
   loading: boolean;
-  userInfo: IuserInfo;
-  token: string;
+  userInfo: IUserInfo;
 }
 
 const initialState: IUser = {
   loading: false,
-  userInfo: {} as IuserInfo, // ??????? correct ??????? ???????????
-  token: '',
+  userInfo: {} as IUserInfo
 }
 
 const userSlice = createSlice({
@@ -57,22 +49,13 @@ const userSlice = createSlice({
       return initialState;
     },
     reserveBook (state, action) {
-      // state.userInfo.reservations.toValidate.push(action.payload);
-      console.log(action.payload)
+      console.log(`${action.payload.title} need validation from Admin`);
+      state.userInfo.reservations.toValidate.push(action.payload);
     },
     addToWishlist (state, action) {
     }
   },
   extraReducers: (builder) => {
-    builder.addCase(signUp.pending, (state) => {
-
-    });
-    builder.addCase(signUp.fulfilled, (state) => {
-
-    });
-    builder.addCase(signUp.rejected, (state) => {
-
-    });
     builder.addCase(login.pending, (state) => {
       state.loading = true;
     });
@@ -86,31 +69,31 @@ const userSlice = createSlice({
   }
 });
 
-export const signUp = createAsyncThunk(
-  'user/signUp',
-  async (signUpData: string, { rejectWithValue }) => {
-    try {
-      const response = await fetch('./data/users/userData.json');
-      if (response.status !== 200) {
-        return rejectWithValue(`signUp failed - response status: ${response.status}`)
-      }
-      else {
-        const data = await response.json();
-        const alreadyExist = data.some((item: IuserInfo) => item.email === signUpData)
-        if (alreadyExist) {
-          console.log('The email is already been used')
-        }
-        else {
-          console.log(`Successful registration`)
-          return data;
-        }
-      }
-    }
-    catch (error) {
-      console.error(`Catched error - ${error}`)
-    }
-  }
-);
+// export const signUp = createAsyncThunk(
+//   'user/signUp',
+//   async (signUpData: string, { rejectWithValue }) => {
+//     try {
+//       const response = await fetch('./data/users/userData.json');
+//       if (response.status !== 200) {
+//         return rejectWithValue(`signUp failed - response status: ${response.status}`)
+//       }
+//       else {
+//         const data = await response.json();
+//         const alreadyExist = data.some((item: IUserInfo) => item.email === signUpData)
+//         if (alreadyExist) {
+//           console.log('The email is already been used')
+//         }
+//         else {
+//           console.log(`Successful registration`)
+//           return data;
+//         }
+//       }
+//     }
+//     catch (error) {
+//       console.error(`Catched error - ${error}`)
+//     }
+//   }
+// );
 
 export const login = createAsyncThunk(
   'user/login',
@@ -119,7 +102,7 @@ export const login = createAsyncThunk(
       const response = await fetch('./data/users/userData.json');
       if (response.status === 200) {
         const data = await response.json();
-        const user = data.find((item: IuserInfo) => {
+        const user = data.find((item: IUserInfo) => {
           return item.email === email && item.password === password;
         });
         return user;

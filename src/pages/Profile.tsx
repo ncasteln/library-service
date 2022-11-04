@@ -4,7 +4,7 @@ import { useAppSelector } from "../app/hooks";
 // NOTES
 // Add a message to log in and a link in case of the dashboard doesn't exist
 
-const ProfilePage = () => {
+const Profile = () => {
   return (
     <div>
       Profile page!
@@ -12,4 +12,4 @@ const ProfilePage = () => {
   )
 };
 
-export default ProfilePage;
+export default Profile;

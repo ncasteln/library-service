@@ -2,6 +2,7 @@ import { Col, Card, Row, Badge } from "react-bootstrap";
 import { IBook } from "../features/catalogue/catalogueSlice";
 import CatalogueButton from "../features/catalogue/CatalogueButton";
 import { useAppSelector } from "../app/hooks";
+import { Link } from "react-router-dom";
 
 const BookCard = (props: IBook) => {
   const {
@@ -16,7 +17,6 @@ const BookCard = (props: IBook) => {
     title, 
     year
   } = props;
-  const role = useAppSelector(state => state.user.userInfo.role);
 
   return (
     <Col>
@@ -32,6 +32,7 @@ const BookCard = (props: IBook) => {
           <Col>
             <Card.Body>
               <Card.Title>{title}</Card.Title>
+              <Card.Link as={Link} to={`${book_id}`}>{title}</Card.Link>
               <Card.Subtitle>{author}, {year}</Card.Subtitle>
               <Card.Text>
                 {
@@ -42,10 +43,10 @@ const BookCard = (props: IBook) => {
               </Card.Text>
               <Card.Text>
                 <CatalogueButton 
-                  book_id={book_id}
+                  book={props}
                   action="Book now!" />
                 <CatalogueButton
-                  book_id={book_id}
+                  book={props}
                   action="Add to Wishlist" />
               </Card.Text>
               <Card.Link href={link} target='_blank'>

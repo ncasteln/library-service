@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Form, Row, InputGroup, Col, Button, Container } from "react-bootstrap";
 import { useAppDispatch } from "../app/hooks";
-import { signUp } from "../features/user/userSlice";
+// import { signUp } from "../features/user/userSlice";
 
 // NOTES
 // Add the following fields
@@ -21,7 +21,7 @@ const Registration = () => {
       e.stopPropagation();
     }
     setValidated(true);
-    dispatch(signUp('miononnno@ogijeg.it'))
+    // dispatch(signUp('miononnno@ogijeg.it'))
   };
 
   return (
