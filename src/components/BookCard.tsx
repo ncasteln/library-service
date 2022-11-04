@@ -1,19 +1,22 @@
 import { Col, Card, Row, Badge } from "react-bootstrap";
 import { IBook } from "../features/catalogue/catalogueSlice";
-import { Link } from "react-router-dom";
 import CatalogueButton from "../features/catalogue/CatalogueButton";
+import { useAppSelector } from "../app/hooks";
 
-const BookCard = ({
-  book_id,
-  book_status,
-  author, 
-  country, 
-  imageLink, 
-  language, 
-  link,
-  pages, 
-  title, 
-  year }: IBook) => {
+const BookCard = (props: IBook) => {
+  const {
+    book_id,
+    book_status,
+    author, 
+    country,
+    imageLink, 
+    language, 
+    link,
+    pages, 
+    title, 
+    year
+  } = props;
+  const role = useAppSelector(state => state.user.userInfo.role);
 
   return (
     <Col>
@@ -28,7 +31,7 @@ const BookCard = ({
           </Col>
           <Col>
             <Card.Body>
-              <Card.Link as={Link} to={`/catalogue/${book_id}`}>{title}</Card.Link>
+              <Card.Title>{title}</Card.Title>
               <Card.Subtitle>{author}, {year}</Card.Subtitle>
               <Card.Text>
                 {
@@ -38,12 +41,12 @@ const BookCard = ({
                 }
               </Card.Text>
               <Card.Text>
-              <CatalogueButton 
-                action="Book now!"
-                bookTitle={title} />
-              <CatalogueButton 
-                action="Add to Wishlist"
-                bookTitle={title} />
+                <CatalogueButton 
+                  book_id={book_id}
+                  action="Book now!" />
+                <CatalogueButton
+                  book_id={book_id}
+                  action="Add to Wishlist" />
               </Card.Text>
               <Card.Link href={link} target='_blank'>
                 <small>More about <em>{title}</em> on Wikipedia</small>

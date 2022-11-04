@@ -14,11 +14,18 @@ const RoleNav = ({ role, username } : {
       <NavDropdown title={username} id="navbarScrollingDropdown">
         {
           role === 'admin'
-            ? <NavDropdown.Item as={Link} to={`/dashboard`}>Dashboard</NavDropdown.Item>
+            ? 
+            <>
+              <NavDropdown.Item as={Link} to={`/dashboard`}>Dashboard</NavDropdown.Item>
+              <NavDropdown.Item as={Link} to={`/validation`}>Validation</NavDropdown.Item>
+              <NavDropdown.Item as={Link} to={`/addBook`}>Add new book</NavDropdown.Item>
+              <NavDropdown.Item as={Link} to={`/editBook`}>Edit book</NavDropdown.Item>
+              <NavDropdown.Item as={Link} to={`/history`}>History</NavDropdown.Item>
+              <NavDropdown.Item as={Link} to={`/users`}>Users</NavDropdown.Item>
+            </>
             : 
             <>
               <NavDropdown.Item as={Link} to={`/profile`}>Profile</NavDropdown.Item>
-              <NavDropdown.Item as={Link} to={`/wishlist`}>Wishlist</NavDropdown.Item>
             </>
         }
         <NavDropdown.Divider />

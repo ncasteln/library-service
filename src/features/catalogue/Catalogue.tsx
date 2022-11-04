@@ -1,13 +1,15 @@
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { fetchCatalogue } from "./catalogueSlice";
 import { Spinner, Alert, Form, Button, Container, Row } from 'react-bootstrap'
 import BookCard from "../../components/BookCard";
+import { useParams } from "react-router-dom";
 
 // NOTES
 // Make the fakePlaceholder for cards
 
 const Catalogue = () => {
+  const [exploredBook, setExploredBook] = useState('');
   const responseStatus = useAppSelector(state => state.catalogue.responseStatus)
   const bookList = useAppSelector(state => state.catalogue.bookList);
   const dispatch = useAppDispatch();
@@ -53,7 +55,9 @@ const Catalogue = () => {
         {
           bookList.map((item, i) => {
             return (
-              <BookCard key={`book-${i}`} {...item} />
+              <BookCard 
+                key={`book-${i}`} 
+                {...item} />
             )
           })
         }

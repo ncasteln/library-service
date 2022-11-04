@@ -19,6 +19,10 @@ interface ILogin {
 
 interface IuserInfo extends ILogin {
   id: number;
+  reservations: {
+    current: IBook[];
+    toValidate: IBook[];
+  };
   username: string;
   role: string;
   first_name: string;
@@ -52,8 +56,11 @@ const userSlice = createSlice({
     logout () {
       return initialState;
     },
+    reserveBook (state, action) {
+      // state.userInfo.reservations.toValidate.push(action.payload);
+      console.log(action.payload)
+    },
     addToWishlist (state, action) {
-      state.userInfo.wishlist.push(action.payload);
     }
   },
   extraReducers: (builder) => {
@@ -127,6 +134,6 @@ export const login = createAsyncThunk(
   }
 )
 
-export const { logout, addToWishlist } = userSlice.actions;
+export const { reserveBook, logout, addToWishlist } = userSlice.actions;
 
 export default userSlice.reducer;

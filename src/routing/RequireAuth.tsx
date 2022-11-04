@@ -4,14 +4,12 @@ import { useAppSelector } from "../app/hooks";
 const RequireAuth = ({ roles }: { roles: string[]; }) => {
   const location = useLocation();
   const role = useAppSelector(state => state.user.userInfo.role);
-
   const isAuthorized = roles.includes(role);
-  console.log(isAuthorized)
 
   if (isAuthorized) {
     return <Outlet />
   }
-  else if (role === 'user') {
+  if (role === 'user') {
     return <Navigate to='/unauthorized' state={{ from: location }} replace />
   }
   return <Navigate to='/login' state={{ from: location }} replace />

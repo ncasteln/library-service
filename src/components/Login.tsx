@@ -14,11 +14,11 @@ const Login = () => {
   const [password, setPassword] = useState('');
   const dispatch = useAppDispatch();
 
-  // means: if there was a forbidden location which needs authentication, return there, otherwise go /home
+  // means: if there was a forbidden location which needs authentication, return there, otherwise go /profile
   const navigate = useNavigate();
   const location = useLocation();
-  const from = location.state?.from?.pathname || '/';
-  console.log(`The last path was ${from}`)
+  const from = location.state?.from?.pathname || '/profile';
+  console.log(`The redirection path was ${from}`)
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
