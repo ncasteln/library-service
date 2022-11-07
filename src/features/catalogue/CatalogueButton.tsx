@@ -2,7 +2,7 @@ import { Button } from "react-bootstrap";
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import { useNavigate, useLocation } from "react-router-dom";
 import { reserveBook } from "../user/userSlice";
-import { IBook } from "./catalogueSlice";
+import { IBook, patchCatalogue } from "./catalogueSlice";
 
 // NOTES
 // Don't pass only the book_id but the entire book
@@ -23,7 +23,8 @@ const CatalogueButton = ({ action, book }: {
     else {
       if (userInfo.role === 'user') {
         if (action === 'Book now!') {
-          dispatch(reserveBook(book))
+          dispatch(reserveBook(book));
+          dispatch(patchCatalogue(book.id))
         }
         else if (action === 'Add to Wishlist') {
           // dispatch(addToWishlist(book_id))

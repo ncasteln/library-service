@@ -18,7 +18,6 @@ const Login = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const from = location.state?.from?.pathname || '/profile';
-  console.log(`The redirection path was ${from}`)
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -26,6 +25,7 @@ const Login = () => {
     setEmail('');
     setPassword('');
     navigate(from, { replace: true });
+    console.log(`The redirection path was ${from}`)
   }
 
   return (

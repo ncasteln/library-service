@@ -1,7 +1,13 @@
 import { useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '../app/hooks';
-import { fetchCatalogue } from '../features/catalogue/catalogueSlice';
+import { getCatalogue } from '../features/catalogue/catalogueSlice';
 import { Carousel, Spinner, Alert, Container } from 'react-bootstrap';
+
+// NOTES
+// Make the carousel dynamic with random books, or last books (3 or 4)
+// Link to the relative book
+// Understand if use a Container is better
+// Make DRY - Spinner and Alert shared components, between Home and Catalogue
 
 const Home = () => {
   const responseStatus = useAppSelector(state => state.catalogue.responseStatus);
@@ -9,7 +15,7 @@ const Home = () => {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    dispatch(fetchCatalogue());
+    dispatch(getCatalogue());
   }, []);
 
   if (responseStatus === 'loading') {
@@ -35,47 +41,36 @@ const Home = () => {
     )
   }
   return (
-    <Container className='Home'>
-      <Carousel>
-        <Carousel.Item>
+    <div className='Carousel-container'>
+      <Carousel 
+        className='Carousel'
+        nextLabel={''}
+        prevLabel={''}>
+        <Carousel.Item className='Carousel-item'>
           <img
-            className="d-block w-100"
-            src={bookList[4]?.imageLink}
-            alt="First slide"
+            className="d-block w-75 mx-auto mt-4"
+            src={bookList[40]?.imageLink}
+            alt={`${bookList[40]?.title} cover`}
           />
-          <Carousel.Caption>
-            <h3>First slide label</h3>
-            <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
-          </Carousel.Caption>
         </Carousel.Item>
-        <Carousel.Item>
-          <img
-            className="d-block w-100"
-            src={bookList[5]?.imageLink}
-            alt="Second slide"
-          />
-          <Carousel.Caption>
-            <h3>Second slide label</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-          </Carousel.Caption>
-        </Carousel.Item>
-        <Carousel.Item>
-          <img
-            className="d-block w-100"
-            src={bookList[6]?.imageLink}
-            alt="Third slide"
-            
-          />
 
-          <Carousel.Caption>
-            <h3>Third slide label</h3>
-            <p>
-              Praesent commodo cursus magna, vel scelerisque nisl consectetur.
-            </p>
-          </Carousel.Caption>
+        <Carousel.Item className='Carousel-item'>
+          <img
+            className="d-block w-75 mx-auto mt-4"
+            src={bookList[50]?.imageLink}
+            alt={`${bookList[50]?.title} cover`}
+          />
+        </Carousel.Item>
+
+        <Carousel.Item className='Carousel-item'>
+          <img
+            className="d-block w-75 mx-auto mt-4"
+            src={bookList[70]?.imageLink}
+            alt={`${bookList[70]?.title} cover`}
+          />
         </Carousel.Item>
       </Carousel>
-    </Container>
+    </div>
   )
 };
 

@@ -1,8 +1,6 @@
 import { createBrowserRouter } from "react-router-dom";
-import { useAppDispatch } from "../app/hooks";
 import NoMatch from "../components/NoMatch";
 import Catalogue from "../features/catalogue/Catalogue";
-import { fetchCatalogue } from "../features/catalogue/catalogueSlice";
 import Home from "../pages/Home";
 import Login from "../pages/Login";
 import Profile from "../pages/Profile";
@@ -10,6 +8,9 @@ import Registration from "../pages/Registration";
 import Unauthorized from "../pages/Unauthorized";
 import Root from "../Root";
 import RequireAuth from "./RequireAuth";
+
+// NOTES
+// The backend routes are not protected
 
 export const router = createBrowserRouter([
   {
@@ -81,7 +82,7 @@ export const router = createBrowserRouter([
               {
                 path: 'exploreUsers',
                 element: <div>Explore users</div>
-              }
+              },
             ]
           }
         ]

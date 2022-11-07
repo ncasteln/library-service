@@ -1,151 +1,121 @@
 import { useState } from "react";
-import { Form, Row, InputGroup, Col, Button, Container } from "react-bootstrap";
-import { useAppDispatch } from "../app/hooks";
-// import { signUp } from "../features/user/userSlice";
+import { Form, Spinner, Col, Button, Container, Alert } from "react-bootstrap";
+import { useAppDispatch, useAppSelector } from "../app/hooks";
+import { IRegistration, registration } from "../features/user/userSlice";
 
 // NOTES
-// Add the following fields
-  // "email": "melissa.fleming@example.com",
-  //   "birthdate": 469521368,
-  //   "picture": "algolia/women/pragati.png"
-// Refactor and understand well the code
+// Form require a validation - use Formik, HTML or other ?
+// not valid if empty
 
 const Registration = () => {
+  const responseStatus = useAppSelector(state => state.user.responseStatus)
   const dispatch = useAppDispatch();
   const [validated, setValidated] = useState(false);
-
+  const [formData, setFormData] = useState<IRegistration>({
+    username: '',
+    email: '',
+    password: '',
+    first_name: '',
+    last_name: '',
+  });
+  
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    const form = e.currentTarget;
-    if (form.checkValidity() === false) {
-      e.preventDefault();
-      e.stopPropagation();
-    }
-    setValidated(true);
-    // dispatch(signUp('miononnno@ogijeg.it'))
+    // const form = e.currentTarget;
+    // if (form.checkValidity() === false) {
+    //   e.preventDefault();
+    //   e.stopPropagation();
+    // }
+    // setValidated(true);
+    e.preventDefault();
+    dispatch(registration(formData));
   };
 
+  const handleChange: React.ChangeEventHandler<HTMLInputElement> = (e) => {
+    const { name, value } = e.target;
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
+  };
+
+  if (responseStatus === 'init') {
+    return (
+      <Container>
+        <Form noValidate validated={validated} onSubmit={handleSubmit}>
+          {
+            Object.entries(formData).map(([key, value], i) => {
+              return (
+                <Form.Group key={`form-group-${i}`} as={Col} md="4" controlId={`validationCustom0${i + 1}`}>
+                  <Form.Label>{key}</Form.Label>
+                  <Form.Control
+                    required
+                    type={
+                      key === 'email'
+                        ? 'email'
+                        : key === 'password'
+                          ? 'password'
+                          : 'text'
+                    }
+                    placeholder={key}
+                    name={key}
+                    value={value}
+                    onChange={handleChange}
+                  />
+                  <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+                </Form.Group>
+              )
+            })
+          }
+          <Form.Group className="mb-3">
+            <Form.Check
+              required
+              label="Agree to terms and conditions"
+              feedback="You must agree before submitting."
+              feedbackType="invalid"
+              />
+          </Form.Group>
+          <Button type="submit">Submit form</Button>
+        </Form>
+      </Container>
+    );
+  }
+  else if (responseStatus === 'loading') {
+    return (
+      <Spinner animation="grow" />
+    )
+  }
+  else if (responseStatus === 'rejected') {
+    return (
+      <Container className="p-3">
+        <Alert variant="danger">
+          <Alert.Heading>Whoops! Something went wrong...</Alert.Heading>
+          <p>
+            Relax! Something with our database went wrong. Maybe the cause was 
+            the Front-End, or maybe it was the Back-End.
+          </p>
+          <hr />
+          <p className="mb-0">
+            In every case, don't worry, you need only to refresh the page!
+          </p>
+        </Alert>
+      </Container>
+    )
+  }
   return (
-    <Container>
-      <Form noValidate validated={validated} onSubmit={handleSubmit}>
-        <Row className="mb-3">
-          <Form.Group as={Col} md="4" controlId="validationCustom01">
-            <Form.Label>First name</Form.Label>
-            <Form.Control
-              required
-              type="text"
-              placeholder="First name"
-              defaultValue="Mark"
-            />
-            <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
-          </Form.Group>
-          <Form.Group as={Col} md="4" controlId="validationCustom02">
-            <Form.Label>Last name</Form.Label>
-            <Form.Control
-              required
-              type="text"
-              placeholder="Last name"
-              defaultValue="Otto"
-            />
-            <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
-          </Form.Group>
-          <Form.Group as={Col} md="4" controlId="validationCustomUsername">
-            <Form.Label>Username</Form.Label>
-            <InputGroup hasValidation>
-              <InputGroup.Text id="inputGroupPrepend">@</InputGroup.Text>
-              <Form.Control
-                type="text"
-                placeholder="Username"
-                aria-describedby="inputGroupPrepend"
-                required
-                />
-              <Form.Control.Feedback type="invalid">
-                Please choose a username.
-              </Form.Control.Feedback>
-            </InputGroup>
-          </Form.Group>
-          <Form.Group as={Col} md="4" controlId="">
-            <Form.Label>Password</Form.Label>
-            <InputGroup hasValidation>
-              <Form.Control
-                type="text"
-                placeholder="Password"
-                aria-describedby="inputGroupPrepend"
-                required
-                />
-              <Form.Control.Feedback type="invalid">
-                Please choose a password.
-              </Form.Control.Feedback>
-            </InputGroup>
-          </Form.Group>
-        </Row>
-
-        <Row className="mb-3">
-          <Form.Group as={Col} md="6" controlId="validationCustom03">
-            <Form.Label>City</Form.Label>
-            <Form.Control type="text" placeholder="City" required />
-            <Form.Control.Feedback type="invalid">
-              Please provide a valid city.
-            </Form.Control.Feedback>
-          </Form.Group>
-          <Form.Group as={Col} md="6" controlId="validationCustom03">
-            <Form.Label>Street</Form.Label>
-            <Form.Control type="text" placeholder="Street address" required />
-            <Form.Control.Feedback type="invalid">
-              Please provide a valid street address.
-            </Form.Control.Feedback>
-          </Form.Group>
-          <Form.Group as={Col} md="3" controlId="validationCustom04">
-            <Form.Label>State</Form.Label>
-            <Form.Control type="text" placeholder="State" required />
-            <Form.Control.Feedback type="invalid">
-              Please provide a valid state.
-            </Form.Control.Feedback>
-          </Form.Group>
-          <Form.Group as={Col} md="3" controlId="validationCustom05">
-            <Form.Label>Postcode</Form.Label>
-            <Form.Control type="text" placeholder="Postcode" required />
-            <Form.Control.Feedback type="invalid">
-              Please provide a valid postcode.
-            </Form.Control.Feedback>
-          </Form.Group>
-        </Row>
-
-        <Row className="mb-3">
-          <Form.Group as={Col} md="6" controlId="validationCustom03">
-            <Form.Label>City</Form.Label>
-            <Form.Control type="text" placeholder="City" required />
-            <Form.Control.Feedback type="invalid">
-              Please provide a valid city.
-            </Form.Control.Feedback>
-          </Form.Group>
-          <Form.Group as={Col} md="3" controlId="validationCustom04">
-            <Form.Label>State</Form.Label>
-            <Form.Control type="text" placeholder="State" required />
-            <Form.Control.Feedback type="invalid">
-              Please provide a valid state.
-            </Form.Control.Feedback>
-          </Form.Group>
-          <Form.Group as={Col} md="3" controlId="validationCustom05">
-            <Form.Label>Postcode</Form.Label>
-            <Form.Control type="text" placeholder="Postcode" required />
-            <Form.Control.Feedback type="invalid">
-              Please provide a valid postcode.
-            </Form.Control.Feedback>
-          </Form.Group>
-        </Row>
-
-        <Form.Group className="mb-3">
-          <Form.Check
-            required
-            label="Agree to terms and conditions"
-            feedback="You must agree before submitting."
-            feedbackType="invalid"
-            />
-        </Form.Group>
-        <Button type="submit">Submit form</Button>
-      </Form>
+    <Container className="p-3">
+      <Alert variant="success">
+        <Alert.Heading>Successfully registered!</Alert.Heading>
+        <p>
+          Welcome in Bibl.io. We hope, the service will be enough good.
+        </p>
+        <hr />
+        <p className="mb-0">
+          You will recive a mail to confirm your registration. In this part 
+          there is a Backend which I cannot configure for now.
+        </p>
+      </Alert>
     </Container>
-  );
+  )
 };
 
 export default Registration;

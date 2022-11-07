@@ -5,7 +5,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: rgb(236, 238, 255);
+  background-color: rgb(153, 154, 170);
 }
 
 
@@ -20,8 +20,20 @@ body {
 
 
 /* --------------- HOME --------------- */
-.Home {
-  width: 50vw;
+.Carousel-container {
+}
+.Carousel {
+  /* text-align: center; is an alternative to center */
+  filter: drop-shadow(4px 4px 5px black)
+}
+.Carousel-item {
+}
+.Carousel-item > img {
+  object-fit: cover;
+  height: 80vh;
+}
+.Carousel-caption {
+  background-color: rgb(44, 44, 44);
 }
 
 
