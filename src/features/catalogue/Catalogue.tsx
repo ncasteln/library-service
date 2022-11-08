@@ -2,14 +2,14 @@ import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import { useEffect } from 'react'
 import { getCatalogue } from "./catalogueSlice";
 import { Spinner, Alert, Form, Button, Container, Row } from 'react-bootstrap'
-import BookCard from "../../components/BookCard";
+import BookCard from "./BookCard";
 
 // NOTES
 // Make the fakePlaceholder for cards
 
 const Catalogue = () => {
   const responseStatus = useAppSelector(state => state.catalogue.responseStatus);
-  const bookList = useAppSelector(state => state.catalogue.bookList);
+  const list = useAppSelector(state => state.catalogue.list);
   const dispatch = useAppDispatch();
 
   useEffect(() => {
@@ -40,6 +40,7 @@ const Catalogue = () => {
   }
   return (
     <Container as="ul" className="p-3">
+      <button onClick={() => dispatch(getCatalogue())}>Refresh</button>
       <Form className="d-flex"> 
         <Form.Control
           type="search"
@@ -51,7 +52,7 @@ const Catalogue = () => {
       </Form>
       <Row xs={1} md={3} className="g-4">
         {
-          bookList.map((item, i) => {
+          list.map((item, i) => {
             return (
               <BookCard 
                 key={`book-${i}`} 

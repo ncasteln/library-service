@@ -8,7 +8,7 @@ import RoleNav from './RoleNav';
 // Map through the routes to render the Navbar?
 
 const Header = () => {
-  const { username } = useAppSelector(state => state.user.userInfo)
+  const userInfo = useAppSelector(state => state.user.userInfo)
   const role = useAppSelector(state => state.user.userInfo.role);
 
   return (
@@ -33,7 +33,7 @@ const Header = () => {
             <Nav.Item className="border-right border-light ml-3"></Nav.Item>
               {
                 role
-                  ? <RoleNav role={role} username={username} />
+                  ? <RoleNav role={role} username={userInfo.username} />
                   : <>
                       <Nav.Item className="ml-3" as="li">
                         <Nav.Link as={Link} to='/login'>Login</Nav.Link>

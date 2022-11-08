@@ -11,7 +11,7 @@ import { Carousel, Spinner, Alert, Container } from 'react-bootstrap';
 
 const Home = () => {
   const responseStatus = useAppSelector(state => state.catalogue.responseStatus);
-  const bookList = useAppSelector(state => state.catalogue.bookList);
+  const list = useAppSelector(state => state.catalogue.list);
   const dispatch = useAppDispatch();
 
   useEffect(() => {
@@ -49,24 +49,24 @@ const Home = () => {
         <Carousel.Item className='Carousel-item'>
           <img
             className="d-block w-75 mx-auto mt-4"
-            src={bookList[40]?.imageLink}
-            alt={`${bookList[40]?.title} cover`}
+            src={list[40]?.imageLink}
+            alt={`${list[40]?.title} cover`}
           />
         </Carousel.Item>
 
         <Carousel.Item className='Carousel-item'>
           <img
             className="d-block w-75 mx-auto mt-4"
-            src={bookList[50]?.imageLink}
-            alt={`${bookList[50]?.title} cover`}
+            src={list[50]?.imageLink}
+            alt={`${list[50]?.title} cover`}
           />
         </Carousel.Item>
 
         <Carousel.Item className='Carousel-item'>
           <img
             className="d-block w-75 mx-auto mt-4"
-            src={bookList[70]?.imageLink}
-            alt={`${bookList[70]?.title} cover`}
+            src={list[70]?.imageLink}
+            alt={`${list[70]?.title} cover`}
           />
         </Carousel.Item>
       </Carousel>

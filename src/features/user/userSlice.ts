@@ -21,7 +21,7 @@ export interface IRegistration {
 };
 
 export interface IUserInfo extends ILogin {
-  id: number | null;
+  id: number;
   reservations: {
     current: string[];
     history: string[];
@@ -48,7 +48,29 @@ interface IUser {
 
 const initialState: IUser = {
   isLoading: false,
-  userInfo: {} as IUserInfo,
+  // userInfo: {} as IUserInfo,
+  userInfo:
+  {
+    id: 244475798,
+    role: "user",
+    reservations: {
+      "current": [],
+      "history": [],
+      "wishlist": []
+    },
+    email: "christoffer.christiansen@example.com",
+    location: {
+      street: "3391 pilevangen",
+      city: "overby lyng",
+      state: "danmark",
+      postcode: 88520
+    },
+    username: "smallbird985",
+    password: "samuel",
+    first_name: "christoffer",
+    last_name: "christiansen",
+    picture: "./pictures/algolia/men/lucas.png"
+  },
   responseStatus: 'init'
 }
 
@@ -58,9 +80,6 @@ const userSlice = createSlice({
   reducers: {
     logout () {
       return initialState;
-    },
-    reserveBook (state, { payload }) {
-      console.log('Book reserved');
     },
     addToWishlist (state, action) {
       console.log('Added to Wishlist')
@@ -86,6 +105,16 @@ const userSlice = createSlice({
     builder.addCase(registration.rejected, (state) => {
       state.responseStatus = 'rejected'
     });
+    builder.addCase(reserve.pending, (state) => {
+      state.responseStatus = 'loading'
+    });
+    builder.addCase(reserve.fulfilled, (state, { payload }) => {
+      state.userInfo = payload;
+      state.responseStatus = 'fulfilled';
+    });
+    builder.addCase(reserve.rejected, (state) => {
+      state.responseStatus = 'rejected'
+    })
   }
 });
 
@@ -134,6 +163,41 @@ export const registration = createAsyncThunk(
   }
 );
 
-export const { reserveBook, logout, addToWishlist } = userSlice.actions;
+export const reserve = createAsyncThunk(
+  'user/reserve',
+  async ({ book, userInfo }: {
+    book: IBook;
+    userInfo: IUserInfo;
+  }, thunkAPI) => {
+    const {
+      id: userId,
+      reservations: {
+        current,
+        history,
+        wishlist
+      }
+    } = userInfo;
+    const {
+      id: bookId,
+      title,
+    } = book;
+    try {
+      const response = await axios.patch(`http://localhost:5000/users/${userId}`, 
+      {
+        reservations: {
+          current: [...current, [bookId, title]],
+          history: [...history], // remember to modify this field
+          wishlist: [...wishlist], // remember to modify this field
+        }
+      });
+      return response.data;
+    }
+    catch {
+
+    }
+  }
+)
+
+export const { logout, addToWishlist } = userSlice.actions;
 
 export default userSlice.reducer;
