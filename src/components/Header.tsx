@@ -1,7 +1,6 @@
-import { Navbar, Container, Nav } from 'react-bootstrap';
+import { Navbar, Container, Nav, NavLink } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { useAppSelector } from '../app/hooks';
-import RoleNav from './RoleNav';
 
 // NOTES
 // Add Profile image on the right of the username
@@ -9,7 +8,6 @@ import RoleNav from './RoleNav';
 
 const Header = () => {
   const userInfo = useAppSelector(state => state.user.userInfo)
-  const role = useAppSelector(state => state.user.userInfo.role);
 
   return (
     <Navbar className='Navbar' bg="primary" variant="dark" expand="sm">
@@ -32,8 +30,15 @@ const Header = () => {
             </Nav.Item>
             <Nav.Item className="border-right border-light ml-3"></Nav.Item>
               {
-                role
-                  ? <RoleNav role={role} username={userInfo.username} />
+                userInfo?.role
+                  ? <>
+                      <Nav.Item as={Link} to={`${userInfo.id}/reservations`} className="user ml-3">
+                        <Nav.Item>{userInfo.username}</Nav.Item>
+                        <div className='profile-img-container'>
+                          <img src={userInfo.picture} alt='Profile image' />
+                        </div>
+                      </Nav.Item>
+                    </>
                   : <>
                       <Nav.Item className="ml-3" as="li">
                         <Nav.Link as={Link} to='/login'>Login</Nav.Link>

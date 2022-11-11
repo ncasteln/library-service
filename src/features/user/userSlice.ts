@@ -1,6 +1,6 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { IBook } from '../catalogue/catalogueSlice';
+import { createAsyncThunk, createSlice, nanoid } from "@reduxjs/toolkit";
 import axios from "axios";
+import { BaseThunkAPI } from "@reduxjs/toolkit/dist/createAsyncThunk";
 
 // NOTES
 // reserveBook() - no double bookings
@@ -21,11 +21,10 @@ export interface IRegistration {
 };
 
 export interface IUserInfo extends ILogin {
-  id: number;
+  id: string;
   reservations: {
     current: string[];
     history: string[];
-    wishlist: string[];
   };
   username: string;
   role: string;
@@ -41,37 +40,40 @@ export interface IUserInfo extends ILogin {
 }
 
 interface IUser {
-  isLoading: boolean;
   userInfo: IUserInfo;
   responseStatus: 'init' | 'loading' | 'fulfilled' | 'rejected';
 }
 
 const initialState: IUser = {
-  isLoading: false,
-  // userInfo: {} as IUserInfo,
-  userInfo:
-  {
-    id: 244475798,
-    role: "user",
-    reservations: {
-      "current": [],
-      "history": [],
-      "wishlist": []
-    },
-    email: "christoffer.christiansen@example.com",
-    location: {
-      street: "3391 pilevangen",
-      city: "overby lyng",
-      state: "danmark",
-      postcode: 88520
-    },
-    username: "smallbird985",
-    password: "samuel",
-    first_name: "christoffer",
-    last_name: "christiansen",
-    picture: "./pictures/algolia/men/lucas.png"
-  },
-  responseStatus: 'init'
+  responseStatus: 'init',
+  userInfo: {} as IUserInfo,
+  // userInfo:
+  // {
+  //   "id": "2u0b2CGrt_XrT6nNIGKqw",
+  //   "role": "user",
+  //   "reservations": {
+  //     "current": [
+  //       "mqdUyS5Z8sOdvtPQEI9ry",
+  //         "fpNFiKI7KtCkoLfJWKfGq"
+  //     ],
+  //     "history": [
+  //       "mqdUyS5Z8sOdvtPQEI9ry",
+  //         "fpNFiKI7KtCkoLfJWKfGq"
+  //     ]
+  //   },
+  //   "email": "christoffer.christiansen@example.com",
+  //   "location": {
+  //     "street": "3391 pilevangen",
+  //     "city": "overby lyng",
+  //     "state": "danmark",
+  //     "postcode": 88520
+  //   },
+  //   "username": "smallbird985",
+  //   "password": "samuel",
+  //   "first_name": "christoffer",
+  //   "last_name": "christiansen",
+  //   "picture": "/data/users/pictures/algolia/men/lucas.png"
+  // },
 }
 
 const userSlice = createSlice({
@@ -81,17 +83,14 @@ const userSlice = createSlice({
     logout () {
       return initialState;
     },
-    addToWishlist (state, action) {
-      console.log('Added to Wishlist')
-    }
   },
   extraReducers: (builder) => {
     builder.addCase(login.pending, (state) => {
       state.responseStatus = 'loading';
     });
     builder.addCase(login.fulfilled, (state, { payload }) => {
-      state.responseStatus = 'fulfilled';
       state.userInfo = payload[0];
+      state.responseStatus = 'fulfilled';
     });
     builder.addCase(login.rejected, (state) => {
       state.responseStatus = 'rejected';
@@ -140,11 +139,10 @@ export const registration = createAsyncThunk(
     try {
       const newUser = {
         ...formData,
-        id: Math.floor(Math.random() * (999 - 111 + 1) + 111),
+        id: nanoid(),
         reservations: {
           current: [],
           history: [],
-          wishlist: []
         },
         role: 'user',
         location: {
@@ -165,39 +163,30 @@ export const registration = createAsyncThunk(
 
 export const reserve = createAsyncThunk(
   'user/reserve',
-  async ({ book, userInfo }: {
-    book: IBook;
-    userInfo: IUserInfo;
+  async ({ bookId, userId, reservations }: {
+    bookId: string;
+    userId: string;
+    reservations: {
+      current: string[];
+      history: string[];
+    }
   }, thunkAPI) => {
-    const {
-      id: userId,
-      reservations: {
-        current,
-        history,
-        wishlist
-      }
-    } = userInfo;
-    const {
-      id: bookId,
-      title,
-    } = book;
     try {
       const response = await axios.patch(`http://localhost:5000/users/${userId}`, 
       {
         reservations: {
-          current: [...current, [bookId, title]],
-          history: [...history], // remember to modify this field
-          wishlist: [...wishlist], // remember to modify this field
+          current: [...reservations.current, bookId],
+          history: [...reservations.history, bookId],
         }
       });
       return response.data;
     }
-    catch {
-
+    catch (error) {
+      console.error(error)
     }
   }
-)
+);
 
-export const { logout, addToWishlist } = userSlice.actions;
+export const { logout } = userSlice.actions;
 
 export default userSlice.reducer;

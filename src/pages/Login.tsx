@@ -2,28 +2,30 @@ import { useState } from "react";
 import { Form, Button, Container } from "react-bootstrap";
 import { useAppDispatch } from "../app/hooks";
 import { login } from "../features/user/userSlice";
-import { Link, useNavigate, useLocation } from "react-router-dom";
+import { Link, useNavigate, useLocation, useParams } from "react-router-dom";
 
 // NOTES
 // automatically redirect to profile! use redirect or useNavigate or what??
 // Pop out a message for successfully login - failed login
 // use localSotrage or something similar to make the state persistent
+// navigate in useEffect ?
 
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const dispatch = useAppDispatch();
 
-  // means: if there was a forbidden location which needs authentication, return there, otherwise go /profile
+  // means: if there was a location which needs authentication, return there, otherwise go /profile
   const navigate = useNavigate();
   const location = useLocation();
-  const from = location.state?.from?.pathname || '/profile';
-
+  
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    await dispatch(login({ email, password }));
+    const loginResult = await dispatch(login({ email, password }));
+    const userId = loginResult.payload[0].id;
     setEmail('');
     setPassword('');
+    const from = location.state?.from?.pathname || `/${userId}/profile`;
     navigate(from, { replace: true });
     console.log(`The redirection path was ${from}`)
   }
@@ -59,6 +61,7 @@ const Login = () => {
         </Button>
         <div>ADMIN melissa.fleming@example.com sick</div>
         <div>USER christoffer.christiansen@example.com samuel</div>
+        <div>USER kayla.hall@example.com lickit</div>
       </Form>
     </Container>
   )

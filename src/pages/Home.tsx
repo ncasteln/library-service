@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '../app/hooks';
 import { getCatalogue } from '../features/catalogue/catalogueSlice';
 import { Carousel, Spinner, Alert, Container } from 'react-bootstrap';
+import Rejected from '../components/Rejected';
 
 // NOTES
 // Make the carousel dynamic with random books, or last books (3 or 4)
@@ -19,26 +20,10 @@ const Home = () => {
   }, []);
 
   if (responseStatus === 'loading') {
-    return (
-      <Spinner animation="grow" />
-    )
+    return <Spinner animation="grow" />
   }
   else if (responseStatus === 'rejected') {
-    return (
-      <Container className="p-3">
-        <Alert variant="danger">
-          <Alert.Heading>Whoops! Something went wrong...</Alert.Heading>
-          <p>
-            Relax! Something with our database went wrong. Maybe the cause was 
-            the Front-End, or maybe it was the Back-End.
-          </p>
-          <hr />
-          <p className="mb-0">
-            In every case, don't worry, you need only to refresh the page!
-          </p>
-        </Alert>
-      </Container>
-    )
+    return <Rejected />
   }
   return (
     <div className='Carousel-container'>

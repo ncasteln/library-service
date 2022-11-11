@@ -1,6 +1,6 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import axios from "axios";
-import { IUserInfo } from "../user/userSlice";
+import { IUserInfo, reserve } from "../user/userSlice";
 
 // NOTES
 // PATCH - set a limit
@@ -8,8 +8,8 @@ import { IUserInfo } from "../user/userSlice";
 // Types
 export interface IBookStatus {
   copies: number;
-  current: string[];
-  history: string[];
+  current: number[];
+  history: number[];
 }
 
 export interface IBook {
@@ -32,7 +32,7 @@ interface ICatalogueState {
 
 const initialState: ICatalogueState = {
   list: [],
-  responseStatus: 'init'
+  responseStatus: 'init',
 }
 
 const catalogueSlice = createSlice({
@@ -47,7 +47,7 @@ const catalogueSlice = createSlice({
       state.list.push(...payload);
       state.responseStatus = 'fulfilled';
     });
-    builder.addCase(getCatalogue.rejected, (state) => {
+    builder.addCase(getCatalogue.rejected, (state, action) => {
       state.responseStatus = 'rejected';
     });
     builder.addCase(patchCatalogue.pending, (state) => {
@@ -72,30 +72,23 @@ const catalogueSlice = createSlice({
 
 export const patchCatalogue = createAsyncThunk(
   'catalogue/patch',
-  async ({book, userInfo}: {
-    book: IBook;
-    userInfo: IUserInfo;
+  async ({ bookId, userId, book_status }: {
+    bookId: string;
+    userId: string;
+    book_status: {
+      copies: number;
+      current: number[];
+      history: number[];
+    }
   }, thunkAPI) => {
-    const {
-      id: bookId,
-      book_status: {
-        copies,
-        history,
-        current
-      }
-    } = book;
-    const { 
-      id: userId, 
-      username 
-    } = userInfo;
     try {
       const response = await axios.patch(
         `http://localhost:5000/catalogue/${bookId}`,
         {
           book_status: {
-            copies: copies - 1,
-            current: [...current, [userId, username]], // MODIFY THE CURRENT LIST - MAKE IMPOSSIBLE MULTIPLE SAME RESERVATIONS
-            history: [...history, [userId, username]]
+            copies: book_status.copies - 1,
+            current: [...book_status.current, userId],
+            history: [...book_status.history, userId]
           }
         });
       if (response.status === 200) {
@@ -105,12 +98,12 @@ export const patchCatalogue = createAsyncThunk(
     catch (error) {
       console.error(`PATCH failed - ${error}`)
     }
-  }
+  },
 );
 
 export const getCatalogue = createAsyncThunk(
   'catalogue/get',
-  async (_, thunkAPI) => {
+  async (_) => {
     try {
       const response = await axios.get('http://localhost:5000/catalogue');
       if (response.status === 200) {
@@ -118,7 +111,7 @@ export const getCatalogue = createAsyncThunk(
       }
     }
     catch (error) {
-      console.error(`GET failed - ${error}`)
+      console.error(`GET failed - ${error}`);
     }
   }
 );

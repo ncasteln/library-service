@@ -44,17 +44,18 @@ const BookCard = (props: IBook) => {
               {
                   book_status.copies > 0
                     ?
+                    // <CatalogueButton 
+                    //   book={props} 
+                    //   action="Book now!" />
+                    // : null
                     <CatalogueButton 
                       book={props} 
                       action="Book now!" />
                     : null
               }
-                {/* <CatalogueButton
-                  book={props} 
-                  bookId={id}
-                  copies={book_status.copies}
-                  history={book_status.history}
-                  action="Add to Wishlist" /> */}
+              <CatalogueButton
+                book={props} 
+                action="Add to Wishlist" />
               </Card.Text>
               <Card.Link href={link} target='_blank'>
                 <small>More about <em>{title}</em> on Wikipedia</small>

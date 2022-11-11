@@ -3,6 +3,7 @@ import { useEffect } from 'react'
 import { getCatalogue } from "./catalogueSlice";
 import { Spinner, Alert, Form, Button, Container, Row } from 'react-bootstrap'
 import BookCard from "./BookCard";
+import Rejected from "../../components/Rejected";
 
 // NOTES
 // Make the fakePlaceholder for cards
@@ -17,30 +18,13 @@ const Catalogue = () => {
   }, []);
 
   if (responseStatus === 'loading') {
-    return (
-      <Spinner animation="grow" />
-    )
+    return <Spinner animation="grow" />
   }
   else if (responseStatus === 'rejected') {
-    return (
-      <Container className="p-3">
-        <Alert variant="danger">
-          <Alert.Heading>Whoops! Something went wrong...</Alert.Heading>
-          <p>
-            Relax! Something with our database went wrong. Maybe the cause was 
-            the Front-End, or maybe it was the Back-End.
-          </p>
-          <hr />
-          <p className="mb-0">
-            In every case, don't worry, you need only to refresh the page!
-          </p>
-        </Alert>
-      </Container>
-    )
+    return <Rejected />
   }
   return (
     <Container as="ul" className="p-3">
-      <button onClick={() => dispatch(getCatalogue())}>Refresh</button>
       <Form className="d-flex"> 
         <Form.Control
           type="search"

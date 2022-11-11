@@ -6,36 +6,39 @@ import { IBook } from "./catalogueSlice";
 import { reserve } from "../user/userSlice";
 
 // NOTES
-// Don't pass only the book_id but the entire book
+// substitute 2 alerts with Modal message from Bootstrap
+// extract condition to dispatch action in createAsyncThunk?
 
 const CatalogueButton = ({ action, book }: {
   action: string;
   book: IBook;
 }) => {
-  // const { id: userId, role, reservations, username } = useAppSelector(state => state.user.userInfo);
-  const userInfo = useAppSelector(state => state.user.userInfo)
+  const { id: userId, role, reservations } = useAppSelector(state => state.user.userInfo);
+  const { id: bookId, book_status } = book;
   const location = useLocation();
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
 
   const handleClick = async (e: React.MouseEvent<HTMLButtonElement>) => {
-    if (userInfo.id === undefined) {
+    if (userId === undefined) {
       navigate('/login', { replace: true, state: { from: location } })
     }
     else {
-      if (userInfo.role === 'user') {
+      if (role === 'user') {
         if (action === 'Book now!') {
-          const alreadyBooked = userInfo.reservations.current.find(item => item[0] === book.id)
+          const alreadyBooked = reservations.current.find(id => id === bookId)
           if (!alreadyBooked) {
-            await dispatch(patchCatalogue({ book, userInfo }))
-            dispatch(reserve({ book, userInfo }))
+            const patchResult = await dispatch(patchCatalogue({ bookId, userId, book_status }));
+            if (patchResult.meta.requestStatus === 'fulfilled') {
+              dispatch(reserve({ bookId, userId, reservations }))
+            }
           }
           else {
             alert('The book is already reserved!')
           }
         }
         else if (action === 'Add to Wishlist') {
-          // wishlist action
+
         }
       }
       else {
