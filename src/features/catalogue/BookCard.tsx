@@ -1,9 +1,11 @@
 import { Col, Card, Row, Badge } from "react-bootstrap";
 import { IBook } from "./catalogueSlice";
-import CatalogueButton from "./CatalogueButton";
+import CatalogueButton from "./Reserve";
 import { Link } from "react-router-dom";
+import AddToWishlist from "./AddToWishlist";
+import Reserve from "./Reserve";
 
-const BookCard = (props: IBook) => {
+const BookCard = (book: IBook) => {
   const {
     id,
     book_status,
@@ -15,7 +17,7 @@ const BookCard = (props: IBook) => {
     pages, 
     title, 
     year
-  } = props;
+  } = book;
 
   return (
     <Col>
@@ -40,23 +42,12 @@ const BookCard = (props: IBook) => {
                     : <Badge bg="danger">Out of stock</Badge>
                 }
               </Card.Text>
-              <Card.Text>
               {
                   book_status.copies > 0
-                    ?
-                    // <CatalogueButton 
-                    //   book={props} 
-                    //   action="Book now!" />
-                    // : null
-                    <CatalogueButton 
-                      book={props} 
-                      action="Book now!" />
+                    ? <Reserve {...book} />
                     : null
               }
-              <CatalogueButton
-                book={props} 
-                action="Add to Wishlist" />
-              </Card.Text>
+              <AddToWishlist {...book} />
               <Card.Link href={link} target='_blank'>
                 <small>More about <em>{title}</em> on Wikipedia</small>
               </Card.Link>

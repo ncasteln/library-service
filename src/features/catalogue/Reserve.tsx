@@ -8,11 +8,9 @@ import { reserve } from "../user/userSlice";
 // NOTES
 // substitute 2 alerts with Modal message from Bootstrap
 // extract condition to dispatch action in createAsyncThunk?
+// role === user a level up, so it doesn't render?
 
-const CatalogueButton = ({ action, book }: {
-  action: string;
-  book: IBook;
-}) => {
+const Reserve = (book: IBook) => {
   const { id: userId, role, reservations } = useAppSelector(state => state.user.userInfo);
   const { id: bookId, book_status } = book;
   const location = useLocation();
@@ -25,20 +23,15 @@ const CatalogueButton = ({ action, book }: {
     }
     else {
       if (role === 'user') {
-        if (action === 'Book now!') {
-          const alreadyBooked = reservations.current.find(id => id === bookId)
-          if (!alreadyBooked) {
-            const patchResult = await dispatch(patchCatalogue({ bookId, userId, book_status }));
-            if (patchResult.meta.requestStatus === 'fulfilled') {
-              dispatch(reserve({ bookId, userId, reservations }))
-            }
-          }
-          else {
-            alert('The book is already reserved!')
+        const alreadyBooked = reservations.current.find(id => id === bookId)
+        if (!alreadyBooked) {
+          const patchResult = await dispatch(patchCatalogue({ bookId, userId, book_status }));
+          if (patchResult.meta.requestStatus === 'fulfilled') {
+            dispatch(reserve({ bookId, userId, reservations }))
           }
         }
-        else if (action === 'Add to Wishlist') {
-
+        else {
+          alert('The book is already reserved!')
         }
       }
       else {
@@ -48,8 +41,8 @@ const CatalogueButton = ({ action, book }: {
   }
 
   return (
-    <Button onClick={handleClick}>{action}</Button>
+    <Button onClick={handleClick}>Book now!</Button>
   )
 };
 
-export default CatalogueButton;
+export default Reserve;

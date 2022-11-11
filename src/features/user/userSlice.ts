@@ -26,6 +26,7 @@ export interface IUserInfo extends ILogin {
     current: string[];
     history: string[];
   };
+  wishlist: string[];
   username: string;
   role: string;
   first_name: string;
@@ -183,6 +184,30 @@ export const reserve = createAsyncThunk(
     }
     catch (error) {
       console.error(error)
+    }
+  }
+);
+
+export const addToWishlist = createAsyncThunk(
+  'user/addToWishlist',
+  async () => {
+    try {
+
+    }
+    catch (error) {
+
+    }
+  }
+);
+
+export const removeFromWishlist = createAsyncThunk(
+  'user/removeFromWishlist',
+  async () => {
+    try {
+
+    }
+    catch (error) {
+      
     }
   }
 );
