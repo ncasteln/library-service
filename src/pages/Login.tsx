@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Form, Button, Container } from "react-bootstrap";
-import { useAppDispatch } from "../app/hooks";
+import { useAppDispatch, useAppSelector } from "../app/hooks";
 import { login } from "../features/user/userSlice";
 import { Link, useNavigate, useLocation, useParams } from "react-router-dom";
 
@@ -9,11 +9,13 @@ import { Link, useNavigate, useLocation, useParams } from "react-router-dom";
 // Pop out a message for successfully login - failed login
 // use localSotrage or something similar to make the state persistent
 // navigate in useEffect ?
+// add isAuthenticated state ??
 
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const dispatch = useAppDispatch();
+  const userInfo = useAppSelector(state => state.user.userInfo)
 
   // means: if there was a location which needs authentication, return there, otherwise go /profile
   const navigate = useNavigate();
@@ -22,14 +24,17 @@ const Login = () => {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const loginResult = await dispatch(login({ email, password }));
-    const userId = loginResult.payload[0].id;
+    const userId: string = loginResult.payload[0].id;
     setEmail('');
     setPassword('');
     const from = location.state?.from?.pathname || `/${userId}/profile`;
-    navigate(from, { replace: true });
+    navigate(from, { replace: true, state: userId });
     console.log(`The redirection path was ${from}`)
   }
 
+  if (userInfo?.id) {
+    return <div>You're already logged in</div>
+  }
   return (
     <Container className='Login-container d-flex justify-content-center align-items-center'>
       <Form className='Login p-4' onSubmit={handleSubmit}>

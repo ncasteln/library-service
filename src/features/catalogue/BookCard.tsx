@@ -1,9 +1,8 @@
 import { Col, Card, Row, Badge } from "react-bootstrap";
 import { IBook } from "./catalogueSlice";
-import CatalogueButton from "./Reserve";
 import { Link } from "react-router-dom";
-import AddToWishlist from "./AddToWishlist";
-import Reserve from "./Reserve";
+import AddToWishlist from "../user/AddToWishlist";
+import Reserve from "../user/Reserve";
 
 const BookCard = (book: IBook) => {
   const {

@@ -20,7 +20,16 @@ export interface IRegistration {
   last_name: string;
 };
 
-export interface IUserInfo extends ILogin {
+export interface ILocation {
+  location: {
+    street: string;
+    city: string;
+    state: string;
+    postcode: number | string | null;
+  };
+}
+
+export interface IUserInfo extends ILogin, ILocation {
   id: string;
   reservations: {
     current: string[];
@@ -31,12 +40,6 @@ export interface IUserInfo extends ILogin {
   role: string;
   first_name: string;
   last_name: string;
-  location: {
-    street: string;
-    city: string;
-    state: string;
-    postcode: number | string | null;
-  };
   picture: string;
 }
 
@@ -62,6 +65,11 @@ const initialState: IUser = {
   //         "fpNFiKI7KtCkoLfJWKfGq"
   //     ]
   //   },
+  //   "wishlist": [
+  //     "FDoEBDPO6VClej6ugRf9z",
+  //       "fA5zMWMP_CDOAbJks2YTh",
+  //       "NoNhHHVDx08UXBiKdSnCu"
+  //   ],
   //   "email": "christoffer.christiansen@example.com",
   //   "location": {
   //     "street": "3391 pilevangen",
@@ -74,7 +82,7 @@ const initialState: IUser = {
   //   "first_name": "christoffer",
   //   "last_name": "christiansen",
   //   "picture": "/data/users/pictures/algolia/men/lucas.png"
-  // },
+  // }
 }
 
 const userSlice = createSlice({
@@ -114,7 +122,16 @@ const userSlice = createSlice({
     });
     builder.addCase(reserve.rejected, (state) => {
       state.responseStatus = 'rejected'
-    })
+    });
+    // Wishlist
+    builder.addCase(addToWishlist.fulfilled, (state, { payload }) => {
+      state.userInfo = payload;
+      state.responseStatus = 'fulfilled';
+    });
+    builder.addCase(removeFromWishlist.fulfilled, (state, { payload }) => {
+      state.userInfo = payload;
+      state.responseStatus = 'fulfilled';
+    });
   }
 });
 
@@ -190,9 +207,17 @@ export const reserve = createAsyncThunk(
 
 export const addToWishlist = createAsyncThunk(
   'user/addToWishlist',
-  async () => {
+  async ({ bookId, userId, wishlist }: {
+    bookId: string;
+    userId: string;
+    wishlist: string[];
+  }) => {
     try {
-
+      const response = await axios.patch(`http://localhost:5000/users/${userId}`, 
+      {
+        wishlist: [...wishlist, bookId]
+      });
+      return response.data;
     }
     catch (error) {
 
@@ -202,12 +227,19 @@ export const addToWishlist = createAsyncThunk(
 
 export const removeFromWishlist = createAsyncThunk(
   'user/removeFromWishlist',
-  async () => {
+  async ({ userId, newWishlist }: {
+    userId: string;
+    newWishlist: string[];
+  }) => {
     try {
-
+      const response = await axios.patch(`http://localhost:5000/users/${userId}`,
+      {
+        wishlist: newWishlist 
+      });
+      return response.data;
     }
     catch (error) {
-      
+
     }
   }
 );

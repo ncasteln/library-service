@@ -44,7 +44,7 @@ const catalogueSlice = createSlice({
       state.responseStatus = 'loading';
     });
     builder.addCase(getCatalogue.fulfilled, (state, { payload }) => {
-      state.list.push(...payload);
+      state.list = payload;
       state.responseStatus = 'fulfilled';
     });
     builder.addCase(getCatalogue.rejected, (state, action) => {

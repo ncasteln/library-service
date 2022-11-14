@@ -9,8 +9,8 @@ import Reservations from "../pages/User/Reservations";
 import Unauthorized from "../pages/Unauthorized";
 import Root from "../Root";
 import RequireAuth from "./RequireAuth";
-import UserLayout from "../pages/User/UserLayout";
 import Profile from "../pages/User/Profile";
+import Wishlist from "../pages/User/Wishlist";
 
 // NOTES
 // The backend routes are not protected
@@ -45,22 +45,20 @@ export const router = createBrowserRouter([
         element: <RequireAuth admittedRoles={['user']} />,
         children: [
           {
-            path: ':userId',
-            element: <UserLayout />,
-            children: [
-              {
-                path: 'profile',
-                element: <Profile />
-              },
-              {
-                path: 'reservations',
-                element: <Reservations />
-              },
-              {
-                path: 'history',
-                element: <UserHistory />
-              },
-            ]
+            path: '/:userId/profile',
+            element: <Profile />
+          },
+          {
+            path: '/:userId/reservations',
+            element: <Reservations />
+          },
+          {
+            path: '/:userId/history',
+            element: <UserHistory />
+          },
+          {
+            path: '/:userId/wishlist',
+            element: <Wishlist />
           }
         ] 
       },
@@ -68,26 +66,24 @@ export const router = createBrowserRouter([
         element: <RequireAuth admittedRoles={['admin']} />,
         children: [
           {
-            path: 'dashboard',
-            element: <div>Admin Dashboard</div>,
-            children: [
-              {
-                path: 'validation',
-                element: <div>Admin validation</div>
-              },
-              {
-                path: 'addBook',
-                element: <div>Admin addBook</div> 
-              },
-              {
-                path: 'history',
-                element: <div>History</div> 
-              },
-              {
-                path: 'exploreUsers',
-                element: <div>Explore users</div>
-              },
-            ]
+            path: '/:userId/dashboard',
+            element: <div>Admin Dashboard</div>
+          },
+          {
+            path: '/:userId/validation',
+            element: <div>Admin validation</div>
+          },
+          {
+            path: '/:userId/addBook',
+            element: <div>Admin addBook</div> 
+          },
+          {
+            path: '/:userId/history',
+            element: <div>History</div> 
+          },
+          {
+            path: '/:userId/exploreUsers',
+            element: <div>Explore users</div>
           }
         ]
       },

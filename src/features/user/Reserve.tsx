@@ -1,9 +1,9 @@
 import { Button } from "react-bootstrap";
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import { useNavigate, useLocation } from "react-router-dom";
-import { patchCatalogue } from "./catalogueSlice";
-import { IBook } from "./catalogueSlice";
-import { reserve } from "../user/userSlice";
+import { patchCatalogue } from "../catalogue/catalogueSlice";
+import { IBook } from "../catalogue/catalogueSlice";
+import { reserve } from "./userSlice";
 
 // NOTES
 // substitute 2 alerts with Modal message from Bootstrap

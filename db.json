@@ -6,14 +6,20 @@
       "reservations": {
         "current": [
           "mqdUyS5Z8sOdvtPQEI9ry",
-          "fpNFiKI7KtCkoLfJWKfGq"
+          "fpNFiKI7KtCkoLfJWKfGq",
+          "naukiyPKmYYc4n26L6uRD"
         ],
         "history": [
           "mqdUyS5Z8sOdvtPQEI9ry",
-          "fpNFiKI7KtCkoLfJWKfGq"
+          "fpNFiKI7KtCkoLfJWKfGq",
+          "naukiyPKmYYc4n26L6uRD"
         ]
       },
-      "wishlist": [],
+      "wishlist": [
+        "FDoEBDPO6VClej6ugRf9z",
+        "fA5zMWMP_CDOAbJks2YTh",
+        "NoNhHHVDx08UXBiKdSnCu"
+      ],
       "email": "christoffer.christiansen@example.com",
       "location": {
         "street": "3391 pilevangen",
@@ -4438,9 +4444,13 @@
     {
       "id": "RGW1qKhKRdO5QitG21rKo",
       "book_status": {
-        "copies": 23,
-        "current": [],
-        "history": []
+        "copies": 22,
+        "current": [
+          "2u0b2CGrt_XrT6nNIGKqw"
+        ],
+        "history": [
+          "2u0b2CGrt_XrT6nNIGKqw"
+        ]
       },
       "author": "Dante Alighieri",
       "country": "Italy",
@@ -4554,9 +4564,13 @@
     {
       "id": "naukiyPKmYYc4n26L6uRD",
       "book_status": {
-        "copies": 3,
-        "current": [],
-        "history": []
+        "copies": 2,
+        "current": [
+          "2u0b2CGrt_XrT6nNIGKqw"
+        ],
+        "history": [
+          "2u0b2CGrt_XrT6nNIGKqw"
+        ]
       },
       "author": "Samuel Beckett",
       "country": "Republic of Ireland",

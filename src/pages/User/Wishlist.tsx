@@ -2,10 +2,10 @@ import { Table } from "react-bootstrap";
 import { useAppSelector } from "../../app/hooks";
 import renderTable from "./renderTable";
 
-const Reservations = () => {
-  const current = useAppSelector(state => state.user.userInfo.reservations.current);
+const Wishlist = () => {
+  const wishlist = useAppSelector(state => state.user.userInfo.wishlist);
   const list = useAppSelector(state => state.catalogue.list);
-
+  
   return (
     <Table striped bordered hover>
       <thead>
@@ -17,10 +17,10 @@ const Reservations = () => {
         </tr>
       </thead>
       <tbody>
-        {renderTable('reservations', list, current)}
+        {renderTable('wishlist', list, wishlist)}
       </tbody>
     </Table>
   )
 };
 
-export default Reservations;
+export default Wishlist;
