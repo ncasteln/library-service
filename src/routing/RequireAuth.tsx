@@ -11,8 +11,7 @@ import { getCatalogue } from '../features/catalogue/catalogueSlice';
 const RequireAuth = ({ admittedRoles }: { admittedRoles: string[] }) => {
   const dispatch = useAppDispatch();
   const location = useLocation();
-  const role = useAppSelector(state => state.user.userInfo.role);
-  const userId = useAppSelector(state => state.user.userInfo.id);
+  const role = useAppSelector(state => state.user.profile.role);
   const isAuthorized = admittedRoles.includes(role);
 
   useEffect(() => {

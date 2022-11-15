@@ -9,7 +9,7 @@ import RoleNav from './RoleNav';
 
 const Header = () => {
   const dispatch = useAppDispatch();
-  const userInfo = useAppSelector(state => state.user.userInfo);
+  const profile = useAppSelector(state => state.user.profile);
 
   return (
     <Navbar className='Navbar' bg="primary" variant="dark" expand="sm">
@@ -32,7 +32,7 @@ const Header = () => {
             </Nav.Item>
             <Nav.Item className="border-right border-light ml-3"></Nav.Item>
               {
-                !userInfo?.role
+                !profile?.role
                   ? <>
                       <Nav.Item className="ml-3" as="li">
                         <Nav.Link as={Link} to='/login'>Login</Nav.Link>
@@ -41,16 +41,16 @@ const Header = () => {
                         <Nav.Link as={Link} to='/registration'>Registration</Nav.Link>
                       </Nav.Item>
                     </>
-                  : userInfo.role === 'user'
+                  : profile.role === 'user'
                     ? <RoleNav 
-                        userId={userInfo.id}
-                        username={userInfo.username}
-                        picture={userInfo.picture}
+                        userId={profile.id}
+                        username={profile.username}
+                        picture={profile.picture}
                         routes={['profile', 'reservations', 'history','wishlist']} />
                     : <RoleNav 
-                        userId={userInfo.id}
-                        username={userInfo.username}
-                        picture={userInfo.picture}
+                        userId={profile.id}
+                        username={profile.username}
+                        picture={profile.picture}
                         routes={['dashboard', 'validation', 'addBook','history', 'exploreUsers']} />
               }
           </Nav>

@@ -4,34 +4,40 @@ import { useNavigate, useLocation } from "react-router-dom";
 import { patchCatalogue } from "../catalogue/catalogueSlice";
 import { IBook } from "../catalogue/catalogueSlice";
 import { reserve } from "./userSlice";
+import ModalMessage from "../../components/ModalMessage";
+import { useState } from "react";
 
 // NOTES
 // substitute 2 alerts with Modal message from Bootstrap
 // extract condition to dispatch action in createAsyncThunk?
 // role === user a level up, so it doesn't render?
+// copies > 0 is maybe not necessary, but is a good ass check if the action should be dispatched
 
 const Reserve = (book: IBook) => {
-  const { id: userId, role, reservations } = useAppSelector(state => state.user.userInfo);
-  const { id: bookId, book_status } = book;
+  const reservations = useAppSelector(state => state.user.reservations)
+  const { id: userId, role } = useAppSelector(state => state.user.profile);
+  const { id: bookId, book_status} = book;
   const location = useLocation();
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
 
   const handleClick = async (e: React.MouseEvent<HTMLButtonElement>) => {
-    if (userId === undefined) {
+    if (!userId) {
       navigate('/login', { replace: true, state: { from: location } })
     }
     else {
       if (role === 'user') {
-        const alreadyBooked = reservations.current.find(id => id === bookId)
-        if (!alreadyBooked) {
-          const patchResult = await dispatch(patchCatalogue({ bookId, userId, book_status }));
-          if (patchResult.meta.requestStatus === 'fulfilled') {
-            dispatch(reserve({ bookId, userId, reservations }))
+        if (book_status.copies > 0) {
+          const alreadyBooked = reservations.find(id => id === bookId)
+          if (!alreadyBooked) {
+            const patchResponse = await dispatch(patchCatalogue({ bookId, userId, book_status }));
+            if (patchResponse.payload) {
+              dispatch(reserve({ bookId, userId, reservations }))
+            }
           }
-        }
-        else {
-          alert('The book is already reserved!')
+          else {
+            alert('Already booked')
+          }
         }
       }
       else {
@@ -41,7 +47,9 @@ const Reserve = (book: IBook) => {
   }
 
   return (
-    <Button onClick={handleClick}>Book now!</Button>
+    <>
+      <Button onClick={handleClick}>Book now!</Button>
+    </>
   )
 };
 

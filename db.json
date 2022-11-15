@@ -16,9 +16,10 @@
         ]
       },
       "wishlist": [
+        "GTAdv0djI5WAEbReUrvK2",
         "FDoEBDPO6VClej6ugRf9z",
         "fA5zMWMP_CDOAbJks2YTh",
-        "NoNhHHVDx08UXBiKdSnCu"
+        "mqdUyS5Z8sOdvtPQEI9ry"
       ],
       "email": "christoffer.christiansen@example.com",
       "location": {
@@ -4444,11 +4445,13 @@
     {
       "id": "RGW1qKhKRdO5QitG21rKo",
       "book_status": {
-        "copies": 22,
+        "copies": 21,
         "current": [
+          "2u0b2CGrt_XrT6nNIGKqw",
           "2u0b2CGrt_XrT6nNIGKqw"
         ],
         "history": [
+          "2u0b2CGrt_XrT6nNIGKqw",
           "2u0b2CGrt_XrT6nNIGKqw"
         ]
       },
@@ -4548,9 +4551,13 @@
     {
       "id": "J3L34rNktmMRJo_Q8ehmX",
       "book_status": {
-        "copies": 2,
-        "current": [],
-        "history": []
+        "copies": 1,
+        "current": [
+          "2u0b2CGrt_XrT6nNIGKqw"
+        ],
+        "history": [
+          "2u0b2CGrt_XrT6nNIGKqw"
+        ]
       },
       "author": "Honoré de Balzac",
       "country": "France",

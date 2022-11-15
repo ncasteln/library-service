@@ -3,7 +3,7 @@ import { useAppSelector } from "../../app/hooks";
 import renderTable from "./renderTable";
 
 const Wishlist = () => {
-  const wishlist = useAppSelector(state => state.user.userInfo.wishlist);
+  const wishlist = useAppSelector(state => state.user.wishlist);
   const list = useAppSelector(state => state.catalogue.list);
   
   return (

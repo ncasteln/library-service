@@ -3,7 +3,7 @@ import { useAppSelector } from "../../app/hooks";
 import renderTable from "./renderTable";
 
 const Reservations = () => {
-  const current = useAppSelector(state => state.user.userInfo.reservations.current);
+  const reservations = useAppSelector(state => state.user.reservations);
   const list = useAppSelector(state => state.catalogue.list);
 
   return (
@@ -17,7 +17,7 @@ const Reservations = () => {
         </tr>
       </thead>
       <tbody>
-        {renderTable('reservations', list, current)}
+        {renderTable('reservations', list, reservations)}
       </tbody>
     </Table>
   )

@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import axios from "axios";
-import { IUserInfo, reserve } from "../user/userSlice";
+import { IProfile, reserve } from "../user/userSlice";
 
 // NOTES
 // PATCH - set a limit
@@ -27,12 +27,10 @@ export interface IBook {
 
 interface ICatalogueState {
   list: IBook[];
-  responseStatus: 'init' | 'loading' | 'fulfilled' | 'rejected';
 }
 
 const initialState: ICatalogueState = {
   list: [],
-  responseStatus: 'init',
 }
 
 const catalogueSlice = createSlice({
@@ -40,21 +38,10 @@ const catalogueSlice = createSlice({
   initialState,
   reducers: {},
   extraReducers: (builder) => {
-    builder.addCase(getCatalogue.pending, (state) => {
-      state.responseStatus = 'loading';
-    });
     builder.addCase(getCatalogue.fulfilled, (state, { payload }) => {
       state.list = payload;
-      state.responseStatus = 'fulfilled';
-    });
-    builder.addCase(getCatalogue.rejected, (state, action) => {
-      state.responseStatus = 'rejected';
-    });
-    builder.addCase(patchCatalogue.pending, (state) => {
-      state.responseStatus = 'loading';
     });
     builder.addCase(patchCatalogue.fulfilled, (state, { payload }) => {
-      console.log(payload)
       state.list.filter(book => {
         return book.id === payload.id;
       })[0].book_status = {
@@ -62,10 +49,6 @@ const catalogueSlice = createSlice({
         current: payload.book_status.username,
         history: payload.book_status.history
       }
-      state.responseStatus = 'fulfilled';
-    });
-    builder.addCase(patchCatalogue.rejected, (state) => {
-      state.responseStatus = 'rejected';
     });
   }
 });

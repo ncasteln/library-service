@@ -8,7 +8,7 @@ import { IRegistration, registration } from "../features/user/userSlice";
 // not valid if empty
 
 const Registration = () => {
-  const responseStatus = useAppSelector(state => state.user.responseStatus)
+  const status = useAppSelector(state => state.response.status);
   const dispatch = useAppDispatch();
   const [validated, setValidated] = useState(false);
   const [formData, setFormData] = useState<IRegistration>({
@@ -38,7 +38,7 @@ const Registration = () => {
     });
   };
 
-  if (responseStatus === 'init') {
+  if (status === 'idle') {
     return (
       <Container>
         <Form noValidate validated={validated} onSubmit={handleSubmit}>
@@ -79,12 +79,12 @@ const Registration = () => {
       </Container>
     );
   }
-  else if (responseStatus === 'loading') {
+  else if (status === 'pending') {
     return (
       <Spinner animation="grow" />
     )
   }
-  else if (responseStatus === 'rejected') {
+  else if (status === 'rejected') {
     return (
       <Container className="p-3">
         <Alert variant="danger">

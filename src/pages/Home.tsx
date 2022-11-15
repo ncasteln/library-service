@@ -11,7 +11,7 @@ import Rejected from '../components/Rejected';
 // Make DRY - Spinner and Alert shared components, between Home and Catalogue
 
 const Home = () => {
-  const responseStatus = useAppSelector(state => state.catalogue.responseStatus);
+  const status = useAppSelector(state => state.response.status);
   const list = useAppSelector(state => state.catalogue.list);
   const dispatch = useAppDispatch();
 
@@ -19,10 +19,10 @@ const Home = () => {
     dispatch(getCatalogue());
   }, []);
 
-  if (responseStatus === 'loading') {
+  if (status === 'pending') {
     return <Spinner animation="grow" />
   }
-  else if (responseStatus === 'rejected') {
+  else if (status === 'rejected') {
     return <Rejected />
   }
   return (

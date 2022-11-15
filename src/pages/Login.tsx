@@ -1,8 +1,8 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Form, Button, Container } from "react-bootstrap";
 import { useAppDispatch, useAppSelector } from "../app/hooks";
-import { login } from "../features/user/userSlice";
-import { Link, useNavigate, useLocation, useParams } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
+import { login } from "../features/authentication/authSlice";
 
 // NOTES
 // automatically redirect to profile! use redirect or useNavigate or what??
@@ -14,25 +14,27 @@ import { Link, useNavigate, useLocation, useParams } from "react-router-dom";
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const userId = useAppSelector(state => state.auth.userId)
   const dispatch = useAppDispatch();
-  const userInfo = useAppSelector(state => state.user.userInfo)
-
-  // means: if there was a location which needs authentication, return there, otherwise go /profile
   const navigate = useNavigate();
   const location = useLocation();
+
+  useEffect(() => {
+    if (userId) {
+      const from = location.state?.from?.pathname || `/${userId}/profile`;
+      navigate(from, { replace: true, state: userId });
+      console.log(`The redirection path was ${from}`)
+    }
+  }, [userId]);
   
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const loginResult = await dispatch(login({ email, password }));
-    const userId: string = loginResult.payload[0].id;
+    await dispatch(login({ email, password }));
     setEmail('');
     setPassword('');
-    const from = location.state?.from?.pathname || `/${userId}/profile`;
-    navigate(from, { replace: true, state: userId });
-    console.log(`The redirection path was ${from}`)
   }
 
-  if (userInfo?.id) {
+  if (userId) {
     return <div>You're already logged in</div>
   }
   return (
@@ -61,7 +63,7 @@ const Login = () => {
             value={password}
             onChange={(e) => setPassword(e.target.value)} />
         </Form.Group>
-        <Button variant="primary" type="submit">
+        <Button type="submit" variant="primary">
           Submit
         </Button>
         <div>ADMIN melissa.fleming@example.com sick</div>

@@ -1,4 +1,4 @@
-import { createAsyncThunk, createSlice, nanoid } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice, current, nanoid } from "@reduxjs/toolkit";
 import axios from "axios";
 import { BaseThunkAPI } from "@reduxjs/toolkit/dist/createAsyncThunk";
 
@@ -21,135 +21,102 @@ export interface IRegistration {
 };
 
 export interface ILocation {
-  location: {
-    street: string;
-    city: string;
-    state: string;
-    postcode: number | string | null;
-  };
+  street: string;
+  city: string;
+  state: string;
+  postcode: number | string | null;
 }
 
-export interface IUserInfo extends ILogin, ILocation {
+export interface IProfile {
   id: string;
-  reservations: {
-    current: string[];
-    history: string[];
-  };
-  wishlist: string[];
+  email: string;
+  password: string;
   username: string;
   role: string;
   first_name: string;
   last_name: string;
   picture: string;
+  location: ILocation;
 }
 
 interface IUser {
-  userInfo: IUserInfo;
-  responseStatus: 'init' | 'loading' | 'fulfilled' | 'rejected';
+  profile: IProfile;
+  reservations: string[];
+  history: string[];
+  wishlist: string[];
 }
 
 const initialState: IUser = {
-  responseStatus: 'init',
-  userInfo: {} as IUserInfo,
-  // userInfo:
-  // {
-  //   "id": "2u0b2CGrt_XrT6nNIGKqw",
-  //   "role": "user",
-  //   "reservations": {
-  //     "current": [
-  //       "mqdUyS5Z8sOdvtPQEI9ry",
-  //         "fpNFiKI7KtCkoLfJWKfGq"
-  //     ],
-  //     "history": [
-  //       "mqdUyS5Z8sOdvtPQEI9ry",
-  //         "fpNFiKI7KtCkoLfJWKfGq"
-  //     ]
-  //   },
-  //   "wishlist": [
-  //     "FDoEBDPO6VClej6ugRf9z",
-  //       "fA5zMWMP_CDOAbJks2YTh",
-  //       "NoNhHHVDx08UXBiKdSnCu"
-  //   ],
-  //   "email": "christoffer.christiansen@example.com",
-  //   "location": {
-  //     "street": "3391 pilevangen",
-  //     "city": "overby lyng",
-  //     "state": "danmark",
-  //     "postcode": 88520
-  //   },
-  //   "username": "smallbird985",
-  //   "password": "samuel",
-  //   "first_name": "christoffer",
-  //   "last_name": "christiansen",
-  //   "picture": "/data/users/pictures/algolia/men/lucas.png"
-  // }
+  // profile: {} as IProfile,
+  // reservations: [],
+  // history: [],
+  // wishlist: [],
+  profile: {
+    id: "2u0b2CGrt_XrT6nNIGKqw",
+    "role": "user",
+    "email": "christoffer.christiansen@example.com",
+    "location": {
+      "street": "3391 pilevangen",
+      "city": "overby lyng",
+      "state": "danmark",
+      "postcode": 88520
+    },
+    "username": "smallbird985",
+    "password": "samuel",
+    "first_name": "christoffer",
+    "last_name": "christiansen",
+    "picture": "/data/users/pictures/algolia/men/lucas.png"
+  },
+  reservations: [
+    "mqdUyS5Z8sOdvtPQEI9ry",
+    "fpNFiKI7KtCkoLfJWKfGq",
+    "naukiyPKmYYc4n26L6uRD"
+  ],
+  history: [
+    "mqdUyS5Z8sOdvtPQEI9ry",
+    "fpNFiKI7KtCkoLfJWKfGq",
+    "naukiyPKmYYc4n26L6uRD"
+  ],
+  wishlist: [
+    "mqdUyS5Z8sOdvtPQEI9ry",
+    "GTAdv0djI5WAEbReUrvK2",
+    "FDoEBDPO6VClej6ugRf9z",
+    "fA5zMWMP_CDOAbJks2YTh",
+  ]
 }
 
 const userSlice = createSlice({
   name: 'user',
   initialState,
   reducers: {
-    logout () {
-      return initialState;
+    setProfile (state, { payload }) {
+      state.profile = payload;
+      state.reservations = payload.reservations.current;
+      state.history = payload.reservations.history;
+      state.wishlist = payload.wishlist;
     },
+    resetUserState () {
+      return initialState
+    }
   },
   extraReducers: (builder) => {
-    builder.addCase(login.pending, (state) => {
-      state.responseStatus = 'loading';
-    });
-    builder.addCase(login.fulfilled, (state, { payload }) => {
-      state.userInfo = payload[0];
-      state.responseStatus = 'fulfilled';
-    });
-    builder.addCase(login.rejected, (state) => {
-      state.responseStatus = 'rejected';
-    });
-    builder.addCase(registration.pending, (state) => {
-      state.responseStatus = 'loading'
-    });
-    builder.addCase(registration.fulfilled, (state, { payload }) => {
-      state.responseStatus = 'fulfilled';
-    });
-    builder.addCase(registration.rejected, (state) => {
-      state.responseStatus = 'rejected'
-    });
-    builder.addCase(reserve.pending, (state) => {
-      state.responseStatus = 'loading'
-    });
+  //   builder.addCase(registration.pending, (state) => {
+  //     state.responseStatus = 'loading'
+  //   });
+  //   builder.addCase(registration.fulfilled, (state, { payload }) => {
+  //     state.responseStatus = 'fulfilled';
+  //   });
+  //   builder.addCase(registration.rejected, (state) => {
+  //     state.responseStatus = 'rejected'
+  //   });
     builder.addCase(reserve.fulfilled, (state, { payload }) => {
-      state.userInfo = payload;
-      state.responseStatus = 'fulfilled';
+      state.reservations = payload;
     });
-    builder.addCase(reserve.rejected, (state) => {
-      state.responseStatus = 'rejected'
-    });
-    // Wishlist
-    builder.addCase(addToWishlist.fulfilled, (state, { payload }) => {
-      state.userInfo = payload;
-      state.responseStatus = 'fulfilled';
-    });
-    builder.addCase(removeFromWishlist.fulfilled, (state, { payload }) => {
-      state.userInfo = payload;
-      state.responseStatus = 'fulfilled';
+    builder.addCase(updateWishlist.fulfilled, (state, { payload }) => {
+      state.wishlist = payload;
     });
   }
 });
-
-export const login = createAsyncThunk(
-  'user/login',
-  async ({ email, password }: ILogin, { rejectWithValue }) => {
-    try {
-      const response = await axios.get(`http://localhost:5000/users?email=${email}&password=${password}`);
-      if (response.status === 200) {
-        return response.data;
-      }
-      return rejectWithValue(`login failed - response status ${response.status}`)
-    }
-    catch (error) {
-      console.error(`Login error - ${error}`)
-    }
-  }
-);
 
 export const registration = createAsyncThunk(
   'user/registration',
@@ -184,20 +151,19 @@ export const reserve = createAsyncThunk(
   async ({ bookId, userId, reservations }: {
     bookId: string;
     userId: string;
-    reservations: {
-      current: string[];
-      history: string[];
-    }
+    reservations: string[];
   }, thunkAPI) => {
     try {
       const response = await axios.patch(`http://localhost:5000/users/${userId}`, 
       {
         reservations: {
-          current: [...reservations.current, bookId],
-          history: [...reservations.history, bookId],
+          current: [...reservations, bookId],
+          history: [...reservations, bookId],
         }
       });
-      return response.data;
+      if (response.status === 200) {
+        return response.data.reservations.current;
+      }
     }
     catch (error) {
       console.error(error)
@@ -205,28 +171,8 @@ export const reserve = createAsyncThunk(
   }
 );
 
-export const addToWishlist = createAsyncThunk(
-  'user/addToWishlist',
-  async ({ bookId, userId, wishlist }: {
-    bookId: string;
-    userId: string;
-    wishlist: string[];
-  }) => {
-    try {
-      const response = await axios.patch(`http://localhost:5000/users/${userId}`, 
-      {
-        wishlist: [...wishlist, bookId]
-      });
-      return response.data;
-    }
-    catch (error) {
-
-    }
-  }
-);
-
-export const removeFromWishlist = createAsyncThunk(
-  'user/removeFromWishlist',
+export const updateWishlist = createAsyncThunk(
+  'user/updateWishlist',
   async ({ userId, newWishlist }: {
     userId: string;
     newWishlist: string[];
@@ -234,16 +180,16 @@ export const removeFromWishlist = createAsyncThunk(
     try {
       const response = await axios.patch(`http://localhost:5000/users/${userId}`,
       {
-        wishlist: newWishlist 
+        wishlist: newWishlist
       });
-      return response.data;
+      return response.data.wishlist;
     }
     catch (error) {
 
     }
   }
-);
+)
 
-export const { logout } = userSlice.actions;
+export const { setProfile, resetUserState } = userSlice.actions;
 
 export default userSlice.reducer;
