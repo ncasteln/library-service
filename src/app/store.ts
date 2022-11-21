@@ -3,13 +3,15 @@ import userReducer from '../features/user/userSlice';
 import catalogueReducer from '../features/catalogue/catalogueSlice';
 import responseReducer from '../features/response/responseSlice';
 import authReducer from '../features/authentication/authSlice';
+import messageReducer from '../features/message/messageSlice';
 
 export const store = configureStore({
   reducer: {
-    catalogue: catalogueReducer,
+    auth: authReducer,
     user: userReducer,
+    catalogue: catalogueReducer,
     response: responseReducer,
-    auth: authReducer
+    message: messageReducer
   }
 });
 

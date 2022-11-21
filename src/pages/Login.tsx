@@ -19,13 +19,13 @@ const Login = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
-  useEffect(() => {
-    if (userId) {
-      const from = location.state?.from?.pathname || `/${userId}/profile`;
-      navigate(from, { replace: true, state: userId });
-      console.log(`The redirection path was ${from}`)
-    }
-  }, [userId]);
+  // useEffect(() => {
+  //   if (userId) {
+  //     const from = location.state?.from?.pathname || `/${userId}/profile`;
+  //     navigate(from, { replace: true, state: userId });
+  //     console.log(`The redirection path was ${from}`)
+  //   }
+  // }, [userId]);
   
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();

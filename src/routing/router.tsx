@@ -1,7 +1,6 @@
 import { createBrowserRouter } from "react-router-dom";
 import NoMatch from "../components/NoMatch";
 import Catalogue from "../features/catalogue/Catalogue";
-import UserHistory from "../pages/User/UserHistory";
 import Home from "../pages/Home";
 import Login from "../pages/Login";
 import Registration from "../pages/Registration";
@@ -11,6 +10,7 @@ import Root from "../Root";
 import RequireAuth from "./RequireAuth";
 import Profile from "../pages/User/Profile";
 import Wishlist from "../pages/User/Wishlist";
+import AddBook from "../pages/Admin/AddBook";
 
 // NOTES
 // The backend routes are not protected
@@ -45,19 +45,15 @@ export const router = createBrowserRouter([
         element: <RequireAuth admittedRoles={['user']} />,
         children: [
           {
-            path: '/:userId/profile',
+            path: '/user/:userId/profile',
             element: <Profile />
           },
           {
-            path: '/:userId/reservations',
+            path: '/user/:userId/reservations',
             element: <Reservations />
           },
           {
-            path: '/:userId/history',
-            element: <UserHistory />
-          },
-          {
-            path: '/:userId/wishlist',
+            path: '/user/:userId/wishlist',
             element: <Wishlist />
           }
         ] 
@@ -66,24 +62,28 @@ export const router = createBrowserRouter([
         element: <RequireAuth admittedRoles={['admin']} />,
         children: [
           {
-            path: '/:userId/dashboard',
-            element: <div>Admin Dashboard</div>
+            path: '/admin/:userId/profile',
+            element: <Profile />
           },
           {
-            path: '/:userId/validation',
-            element: <div>Admin validation</div>
+            path: '/admin/:userId/dashboard',
+            element: <div>Admin Dashboard - need implementation</div>
           },
           {
-            path: '/:userId/addBook',
-            element: <div>Admin addBook</div> 
+            path: '/admin/:userId/addBook',
+            element: <AddBook /> 
           },
           {
-            path: '/:userId/history',
-            element: <div>History</div> 
+            path: '/admin/:userId/edit',
+            element: <div>Edit page - need implementation</div>
           },
           {
-            path: '/:userId/exploreUsers',
-            element: <div>Explore users</div>
+            path: '/admin/:userId/history',
+            element: <div>History - need implementation</div> 
+          },
+          {
+            path: '/admin/:userId/exploreUsers',
+            element: <div>Explore users page - need implementation</div>
           }
         ]
       },

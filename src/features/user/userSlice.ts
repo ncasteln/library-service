@@ -6,19 +6,7 @@ import { BaseThunkAPI } from "@reduxjs/toolkit/dist/createAsyncThunk";
 // reserveBook() - no double bookings
 // handle failed login
 // every field of registratio need validation
-
-interface ILogin {
-  email: string;
-  password: string;
-}
-
-export interface IRegistration {
-  email: string;
-  password: string;
-  username: string;
-  first_name: string;
-  last_name: string;
-};
+// TS conditional?
 
 export interface ILocation {
   street: string;
@@ -37,78 +25,65 @@ export interface IProfile {
   last_name: string;
   picture: string;
   location: ILocation;
+  // reservations?: {
+  //   current: string[];
+  //   history: string[];
+  // };
+  // wishlist?: string[];
 }
 
 interface IUser {
-  profile: IProfile;
-  reservations: string[];
-  history: string[];
-  wishlist: string[];
+  // profile: IProfile;
+  reservations: null | string[];
+  history: null | string[];
+  wishlist: null | string[];
 }
 
 const initialState: IUser = {
   // profile: {} as IProfile,
-  // reservations: [],
-  // history: [],
-  // wishlist: [],
-  profile: {
-    id: "2u0b2CGrt_XrT6nNIGKqw",
-    "role": "user",
-    "email": "christoffer.christiansen@example.com",
-    "location": {
-      "street": "3391 pilevangen",
-      "city": "overby lyng",
-      "state": "danmark",
-      "postcode": 88520
-    },
-    "username": "smallbird985",
-    "password": "samuel",
-    "first_name": "christoffer",
-    "last_name": "christiansen",
-    "picture": "/data/users/pictures/algolia/men/lucas.png"
-  },
-  reservations: [
-    "mqdUyS5Z8sOdvtPQEI9ry",
-    "fpNFiKI7KtCkoLfJWKfGq",
-    "naukiyPKmYYc4n26L6uRD"
-  ],
-  history: [
-    "mqdUyS5Z8sOdvtPQEI9ry",
-    "fpNFiKI7KtCkoLfJWKfGq",
-    "naukiyPKmYYc4n26L6uRD"
-  ],
-  wishlist: [
-    "mqdUyS5Z8sOdvtPQEI9ry",
-    "GTAdv0djI5WAEbReUrvK2",
-    "FDoEBDPO6VClej6ugRf9z",
-    "fA5zMWMP_CDOAbJks2YTh",
-  ]
+  reservations: [],
+  history: [],
+  wishlist: [],
+  // profile: {
+  //   "id": "gqpkWp0ZwXTjbAb4VzNsA",
+  //     "role": "admin",
+  //     "email": "melissa.fleming@example.com",
+  //     "location": {
+  //       "street": "3655 manchester road",
+  //       "city": "winchester",
+  //       "state": "berkshire",
+  //       "postcode": "YB2 8EJ"
+  //     },
+  //     "username": "goldenkoala410",
+  //     "password": "sick",
+  //     "first_name": "melissa",
+  //     "last_name": "fleming",
+  //     "picture": "/data/users/pictures/algolia/women/pragati.png"
+  // }
 }
 
 const userSlice = createSlice({
   name: 'user',
   initialState,
   reducers: {
-    setProfile (state, { payload }) {
-      state.profile = payload;
+    // setProfile (state, { payload }) {
+    //   if (payload.role === 'user') {
+    //     const { reservations, wishlist, ...profile } = payload;
+    //     state.profile = profile;
+    //   } else {
+    //     state.profile = payload;
+    //   }
+    // },
+    // resetUserState () {
+    //   return initialState
+    // }
+    setUserBooks (state, { payload }) {
       state.reservations = payload.reservations.current;
       state.history = payload.reservations.history;
       state.wishlist = payload.wishlist;
-    },
-    resetUserState () {
-      return initialState
     }
   },
   extraReducers: (builder) => {
-  //   builder.addCase(registration.pending, (state) => {
-  //     state.responseStatus = 'loading'
-  //   });
-  //   builder.addCase(registration.fulfilled, (state, { payload }) => {
-  //     state.responseStatus = 'fulfilled';
-  //   });
-  //   builder.addCase(registration.rejected, (state) => {
-  //     state.responseStatus = 'rejected'
-  //   });
     builder.addCase(reserve.fulfilled, (state, { payload }) => {
       state.reservations = payload;
     });
@@ -117,34 +92,6 @@ const userSlice = createSlice({
     });
   }
 });
-
-export const registration = createAsyncThunk(
-  'user/registration',
-  async (formData: IRegistration, thunkAPI) => {
-    try {
-      const newUser = {
-        ...formData,
-        id: nanoid(),
-        reservations: {
-          current: [],
-          history: [],
-        },
-        role: 'user',
-        location: {
-          street: '',
-          city: '',
-          state: '',
-          postcode: ''
-        },
-        picture: ''
-      }
-      const response = axios.post(`http://localhost:5000/users`, newUser);
-    }
-    catch (error) {
-      console.error(`Registration error - ${error}`)
-    }
-  }
-);
 
 export const reserve = createAsyncThunk(
   'user/reserve',
@@ -190,6 +137,6 @@ export const updateWishlist = createAsyncThunk(
   }
 )
 
-export const { setProfile, resetUserState } = userSlice.actions;
+export const { setUserBooks } = userSlice.actions;
 
 export default userSlice.reducer;

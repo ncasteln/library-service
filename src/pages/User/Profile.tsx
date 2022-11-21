@@ -2,7 +2,7 @@ import { useAppSelector } from "../../app/hooks";
 import { ILocation } from "../../features/user/userSlice";
 
 const Profile = () => {
-  const profile = useAppSelector(state => state.user.profile);
+  const profile = useAppSelector(state => state.auth.profile);
 
   return (
     <div>

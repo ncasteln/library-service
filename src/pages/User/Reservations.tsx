@@ -17,7 +17,11 @@ const Reservations = () => {
         </tr>
       </thead>
       <tbody>
-        {renderTable('reservations', list, reservations)}
+        {
+          reservations
+            ? renderTable('reservations', list, reservations)
+            : null
+        }
       </tbody>
     </Table>
   )

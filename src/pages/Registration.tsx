@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Form, Spinner, Col, Button, Container, Alert } from "react-bootstrap";
 import { useAppDispatch, useAppSelector } from "../app/hooks";
-import { IRegistration, registration } from "../features/user/userSlice";
+import { registration, IRegistration } from "../features/authentication/authSlice";
 
 // NOTES
 // Form require a validation - use Formik, HTML or other ?

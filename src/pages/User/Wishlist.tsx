@@ -17,7 +17,11 @@ const Wishlist = () => {
         </tr>
       </thead>
       <tbody>
-        {renderTable('wishlist', list, wishlist)}
+        {
+          wishlist
+            ? renderTable('wishlist', list, wishlist)
+            : null
+        }
       </tbody>
     </Table>
   )

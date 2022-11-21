@@ -1,7 +1,7 @@
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import { getCatalogue } from "./catalogueSlice";
-import { Spinner, Alert, Form, Button, Container, Row } from 'react-bootstrap'
+import {  Spinner, Form, Button, Container, Row } from 'react-bootstrap'
 import BookCard from "./BookCard";
 import Rejected from "../../components/Rejected";
 import ModalMessage from "../../components/ModalMessage";
@@ -12,8 +12,8 @@ import ModalMessage from "../../components/ModalMessage";
 const Catalogue = () => {
   const status = useAppSelector(state => state.response.status);
   const list = useAppSelector(state => state.catalogue.list);
+  const { title, bodyText, show } = useAppSelector(state => state.message)
   const dispatch = useAppDispatch();
-  const [show, setShow] = useState(false)
 
   useEffect(() => {
     dispatch(getCatalogue());
@@ -27,11 +27,6 @@ const Catalogue = () => {
   }
   return (
     <Container as="ul" className="p-3">
-      {/* <ModalMessage     NEED TO PASS DOWN THE SETSHOW!!!!!!!!!!
-        title={'I am a modal'}
-        text={'PLace for text'}
-        onHide={() => setShow(false)}
-        show={show} /> */}
       <Form className="d-flex"> 
         <Form.Control
           type="search"
@@ -46,12 +41,20 @@ const Catalogue = () => {
           list.map((book, i) => {
             return (
               <BookCard
-                key={`book-${i}`} 
-                {...book} />
+                book={book}
+                key={`book-${i}`} />
             )
           })
         }
       </Row>
+      {
+        show
+          ? <ModalMessage
+              title={title}
+              bodyText={bodyText}
+              show={show} />
+          : null  
+      }
     </Container>
   )
 };

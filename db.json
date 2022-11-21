@@ -1,47 +1,8 @@
 {
   "users": [
     {
-      "id": "2u0b2CGrt_XrT6nNIGKqw",
-      "role": "user",
-      "reservations": {
-        "current": [
-          "mqdUyS5Z8sOdvtPQEI9ry",
-          "fpNFiKI7KtCkoLfJWKfGq",
-          "naukiyPKmYYc4n26L6uRD"
-        ],
-        "history": [
-          "mqdUyS5Z8sOdvtPQEI9ry",
-          "fpNFiKI7KtCkoLfJWKfGq",
-          "naukiyPKmYYc4n26L6uRD"
-        ]
-      },
-      "wishlist": [
-        "GTAdv0djI5WAEbReUrvK2",
-        "FDoEBDPO6VClej6ugRf9z",
-        "fA5zMWMP_CDOAbJks2YTh",
-        "mqdUyS5Z8sOdvtPQEI9ry"
-      ],
-      "email": "christoffer.christiansen@example.com",
-      "location": {
-        "street": "3391 pilevangen",
-        "city": "overby lyng",
-        "state": "danmark",
-        "postcode": 88520
-      },
-      "username": "smallbird985",
-      "password": "samuel",
-      "first_name": "christoffer",
-      "last_name": "christiansen",
-      "picture": "/data/users/pictures/algolia/men/lucas.png"
-    },
-    {
       "id": "gqpkWp0ZwXTjbAb4VzNsA",
       "role": "admin",
-      "reservations": {
-        "current": [],
-        "history": []
-      },
-      "wishlist": [],
       "email": "melissa.fleming@example.com",
       "location": {
         "street": "3655 manchester road",
@@ -58,11 +19,6 @@
     {
       "id": "VrRtjQ_Pj_xc8t7g0iRNb",
       "role": "admin",
-      "reservations": {
-        "current": [],
-        "history": []
-      },
-      "wishlist": [],
       "email": "valtteri.pulkkinen@example.com",
       "location": {
         "street": "6489 hermiankatu",
@@ -75,6 +31,27 @@
       "first_name": "valtteri",
       "last_name": "pulkkinen",
       "picture": "/data/users/pictures/men/49.jpg"
+    },
+    {
+      "id": "2u0b2CGrt_XrT6nNIGKqw",
+      "role": "user",
+      "reservations": {
+        "current": [],
+        "history": []
+      },
+      "wishlist": [],
+      "email": "christoffer.christiansen@example.com",
+      "location": {
+        "street": "3391 pilevangen",
+        "city": "overby lyng",
+        "state": "danmark",
+        "postcode": 88520
+      },
+      "username": "smallbird985",
+      "password": "samuel",
+      "first_name": "christoffer",
+      "last_name": "christiansen",
+      "picture": "/data/users/pictures/algolia/men/lucas.png"
     },
     {
       "id": "CXXS9ggB8NUFBH7swY143",
@@ -4407,7 +4384,7 @@
     {
       "id": "mqdUyS5Z8sOdvtPQEI9ry",
       "book_status": {
-        "copies": 34,
+        "copies": 28,
         "current": [
           "2u0b2CGrt_XrT6nNIGKqw",
           "2u0b2CGrt_XrT6nNIGKqw"
@@ -6028,5 +6005,10 @@
       "title": "Memoirs of Hadrian",
       "year": 1951
     }
-  ]
+  ],
+  "history": {
+    "current": [],
+    "returned": [],
+    "delay": []
+  }
 }

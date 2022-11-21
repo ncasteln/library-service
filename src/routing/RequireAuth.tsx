@@ -11,7 +11,7 @@ import { getCatalogue } from '../features/catalogue/catalogueSlice';
 const RequireAuth = ({ admittedRoles }: { admittedRoles: string[] }) => {
   const dispatch = useAppDispatch();
   const location = useLocation();
-  const role = useAppSelector(state => state.user.profile.role);
+  const role = useAppSelector(state => state.auth.profile.role);
   const isAuthorized = admittedRoles.includes(role);
 
   useEffect(() => {
@@ -21,7 +21,7 @@ const RequireAuth = ({ admittedRoles }: { admittedRoles: string[] }) => {
   }, []);
 
   if (isAuthorized) {
-    // if (location.state !== userId) {
+    // if (location.state !== userId) {     // Works only when initState isn't already a user
     //   return <Navigate to='/unauthorized' state={{ from: location }} replace />
     // }
     return <Outlet />
