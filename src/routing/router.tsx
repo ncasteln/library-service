@@ -1,7 +1,7 @@
 import { createBrowserRouter } from "react-router-dom";
 import NoMatch from "../components/NoMatch";
 import Catalogue from "../features/catalogue/Catalogue";
-import Home from "../pages/Home";
+import Home from "../pages/Home/Home";
 import Login from "../pages/Login";
 import Registration from "../pages/Registration";
 import Reservations from "../pages/User/Reservations";

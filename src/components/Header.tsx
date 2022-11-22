@@ -6,9 +6,11 @@ import { FiMenu } from 'react-icons/fi'
 import { IoMdClose } from 'react-icons/io';
 import useOutsideAlerter from './useOutsideAlerter';
 
-const Header = () => {
+const Header = ({ isActive, setIsActive }: {
+  isActive: boolean;
+  setIsActive: (arg: boolean) => void;
+}) => {
   const profile = useAppSelector(state => state.auth.profile);
-  const [isActive, setIsActive] = useState(false);
   const sidebarRef = useRef(null);
   useOutsideAlerter(sidebarRef, setIsActive)
   const location = useLocation();
@@ -23,10 +25,10 @@ const Header = () => {
 
   return (
     <nav>
-      <button className='sidebar-toggle' onClick={handleSidebar}>
+      <button className={`sidebar-toggle ${isActive ? null : 'isClosed'}`} onClick={handleSidebar}>
         {isActive ? <IoMdClose /> : <FiMenu />}
       </button>
-      <aside ref={sidebarRef} className={`sidebar ${isActive ? 'isOpen' : 'isClosed'}`}>
+      <aside ref={sidebarRef} className={`sidebar ${isActive ? null : 'isClosed'}`}>
         {
           profile?.role
             ?
