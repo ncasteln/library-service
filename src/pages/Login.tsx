@@ -38,37 +38,37 @@ const Login = () => {
     return <div>You're already logged in</div>
   }
   return (
-    <Container className='Login-container d-flex justify-content-center align-items-center'>
-      <Form className='Login p-4' onSubmit={handleSubmit}>
+    <Container className='d-flex justify-content-center align-items-center'>
+      <Form className='generic-form p-4' onSubmit={handleSubmit}>
         <h2>Login form</h2>
-        <Form.Group>
+        <Form.Group className="mb-3">
           <Form.Label>
-            Enter your email and password to access your private data.
+            Enter your email and password to access your data.
+            <Link to='/registration'> Not an account yet?</Link>
           </Form.Label>
-          <Link to='/registration'> Are you not yet registered?</Link>
         </Form.Group>
         <Form.Group className="mb-3" controlId="formBasicEmail">
-          <Form.Label>Email address</Form.Label>
+          <Form.Label className='form-label'>Email address</Form.Label>
           <Form.Control 
             type="email" 
             placeholder="Enter your email"
             value={email}
             onChange={(e) => setEmail(e.target.value)} />
         </Form.Group>
-        <Form.Group className="mb-3" controlId="formBasicPassword">
-          <Form.Label>Password</Form.Label>
+        <Form.Group className="mb-4" controlId="formBasicPassword">
+          <Form.Label className='form-label'>Password</Form.Label>
           <Form.Control 
             type="password" 
             placeholder="Password"
             value={password}
             onChange={(e) => setPassword(e.target.value)} />
         </Form.Group>
-        <Button type="submit" variant="primary">
+        <button className="main-button" type="submit">
           Submit
-        </Button>
-        <div>ADMIN melissa.fleming@example.com sick</div>
+        </button>
+        {/* <div>ADMIN melissa.fleming@example.com sick</div>
         <div>USER christoffer.christiansen@example.com samuel</div>
-        <div>USER kayla.hall@example.com lickit</div>
+        <div>USER kayla.hall@example.com lickit</div> */}
       </Form>
     </Container>
   )

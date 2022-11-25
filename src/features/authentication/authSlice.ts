@@ -64,6 +64,9 @@ const authSlice = createSlice({
       const { reservations, wishlist, ...profile } = payload;
       state.profile = profile;
     });
+    builder.addCase(registration.fulfilled, (state, action) => {
+      
+    })
   },
 });
 
@@ -76,7 +79,6 @@ export const login = createAsyncThunk(
     try {
       const response = await axios.get(`http://localhost:5000/users?email=${email}&password=${password}`);
       if (response.status === 200) {
-        // dispatch(setProfile(response.data[0]))
         const { reservations, wishlist } = response.data[0]
         dispatch(setUserBooks({ reservations, wishlist }))
         return response.data[0];

@@ -15,9 +15,6 @@ const Root = () => {
       <main>
         <Outlet />
       </main>
-      <footer>
-        <small>Bibl.io is a fake mark  |  Coded by NicoCastel</small>
-      </footer>
     </div>
   )
 }

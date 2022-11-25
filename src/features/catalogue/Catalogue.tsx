@@ -20,13 +20,13 @@ const Catalogue = () => {
   }, []);
 
   if (status === 'pending') {
-    return <Spinner animation="grow" />
+    return <Spinner animation="border" />
   }
   else if (status === 'rejected') {
     return <Rejected />
   }
   return (
-    <Container as="ul" className="p-3">
+    <div className="Catalogue">
       <Form className="d-flex"> 
         <Form.Control
           type="search"
@@ -36,7 +36,7 @@ const Catalogue = () => {
         />
         <Button variant="outline-success">Search</Button>
       </Form>
-      <Row xs={1} md={3} className="g-4">
+      <Row xs={1} md={2} className="g-4">
         {
           list.map((book, i) => {
             return (
@@ -55,7 +55,7 @@ const Catalogue = () => {
               show={show} />
           : null  
       }
-    </Container>
+    </div>
   )
 };
 
