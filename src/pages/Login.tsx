@@ -14,7 +14,7 @@ import { login } from "../features/authentication/authSlice";
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const userId = useAppSelector(state => state.auth.userId)
+  const userId = useAppSelector(state => state.auth.profile.id)
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const location = useLocation();

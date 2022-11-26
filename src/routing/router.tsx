@@ -11,6 +11,7 @@ import RequireAuth from "./RequireAuth";
 import Profile from "../pages/User/Profile";
 import Wishlist from "../pages/User/Wishlist";
 import AddBook from "../pages/Admin/AddBook";
+import BookDetails from "../features/catalogue/BookDetails";
 
 // NOTES
 // The backend routes are not protected
@@ -28,6 +29,10 @@ export const router = createBrowserRouter([
       {
         path: 'catalogue',
         element: <Catalogue />,
+      },
+      {
+        path: 'book/:bookId',
+        element: <BookDetails />
       },
       {
         path: 'login',

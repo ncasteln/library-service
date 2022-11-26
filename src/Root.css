@@ -23,11 +23,6 @@
 
 /* ------------------------------ VARIBLES ------------------------------ */
 :root {
-  --font-extralight: 'Raleway-ExtraLight';
-  --font-light: 'Raleway-Light';
-  --font-regular: 'Raleway-Regular';
-  --font-bold: 'Raleway-Bold';
-  --font-extrabold: 'Raleway-ExtraBold';
   --white: rgb(237, 242, 245);
   --black: rgb(24, 25, 26);
   --red: hsla(14, 92%, 54%, 1);
@@ -45,7 +40,7 @@
   box-sizing: border-box;
 }
 body {
-  font-family: var(--font-regular), -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+  font-family: 'Raleway-regular', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
   'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
   sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -70,10 +65,10 @@ main.nav-is-open {
 h1 {
   font-size: 4em;
   margin-bottom: 24px;
-  font-family: var(--font-extrabold);
+  font-family: 'Raleway-ExtraBold';
 }
 h2, h3, h4, h5, h6 {
-  font-family: var(--font-bold);
+  font-family: 'Raleway-Bold';
 }
 ol, ul {
 	list-style: none;
@@ -139,7 +134,7 @@ button {
   background-color: var(--blue);
   transition: all 0.4s linear;
   filter: drop-shadow(3px 0 3px var(--black));
-  font-family: var(--font-extralight);
+  font-family: 'Raleway-ExtraLight';
 }
 .sidebar-toggle {
   position: fixed;
@@ -158,7 +153,13 @@ button {
   width: 0;
   margin-left: -210px;
 }
-.sidebar-img > img {
+.sidebar-figure > blockquote {
+  font-family: 'Raleway-Bold';
+  margin-top: 6px;
+  color: var(--white);
+}
+.sidebar-figure > img {
+  color: var(--white);
   width: 80%;
   border-radius: 50%;
 }
@@ -187,6 +188,7 @@ button {
   width: auto;
   height: 180px;
   margin-right: 6px;
+  cursor: pointer;
 }
 .carousel-title {
   color: var(--blue);

@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice, nanoid } from "@reduxjs/toolkit";
 import axios from "axios";
+import { isPartiallyEmittedExpression } from "typescript";
 import { setUserBooks } from "../user/userSlice";
 
 // NOTES
@@ -39,13 +40,11 @@ export interface IProfile {
 
 interface IAuthState {
   isAuth: boolean;
-  userId: null | string;
   profile: IProfile;
 }
 
 const initialState: IAuthState = {
   isAuth: false,
-  userId: null,
   profile: {} as IProfile
 }
 
@@ -60,12 +59,12 @@ const authSlice = createSlice({
   extraReducers(builder) {
     builder.addCase(login.fulfilled, (state, { payload }) => {
       state.isAuth = true;
-      state.userId = payload.id;
       const { reservations, wishlist, ...profile } = payload;
       state.profile = profile;
     });
-    builder.addCase(registration.fulfilled, (state, action) => {
-      
+    builder.addCase(registration.fulfilled, (state, { payload }) => {
+      state.isAuth = true;
+      state.profile = payload;
     })
   },
 });
@@ -95,13 +94,13 @@ export const registration = createAsyncThunk(
   'user/registration',
   async (formData: IRegistration, thunkAPI) => {
     try {
-      const newUser = {
+      const newUser: IProfile = {
         ...formData,
         id: nanoid(),
-        reservations: {
-          current: [],
-          history: [],
-        },
+        // reservations: {
+        //   current: [],
+        //   history: [],
+        // },
         role: 'user',
         location: {
           street: '',
@@ -111,7 +110,8 @@ export const registration = createAsyncThunk(
         },
         picture: ''
       }
-      const response = axios.post(`http://localhost:5000/users`, newUser);
+      const response = await axios.post(`http://localhost:5000/users`, newUser);
+      return response.data;
     }
     catch (error) {
       console.error(`Registration error - ${error}`)

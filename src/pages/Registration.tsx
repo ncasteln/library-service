@@ -2,15 +2,18 @@ import { Form, Container, Spinner } from 'react-bootstrap';
 import { useAppDispatch, useAppSelector } from '../app/hooks';
 import { registration, IRegistration } from '../features/authentication/authSlice';
 import { useForm, SubmitHandler } from 'react-hook-form'
+import { useNavigate } from 'react-router-dom';
+import { useEffect } from 'react';
 
 // NOTES
-// 1) submit and verify if exist
-// 2) handle the response message in case of fulfilled
-// 3) redirect to profile page
+// 1) check if email-username exist (with a watcher)
+// 2) submit
+// 3) generate nanoid() but different - but the ids are fake
+// 4) login directly && make a new empty reservation field - also fake
+// 5) redirect to the profile page
 
 // add pwd confirmation
 // add pattern and validation messages
-// (watcher?) Database
 
 const Registration = () => {
   const dispatch = useAppDispatch();
@@ -21,9 +24,17 @@ const Registration = () => {
       email: '',
       password: '',
       first_name: '',
-      last_name: ''
+      last_name: '',
     }
   });
+  const navigate = useNavigate();
+  const userId = useAppSelector(state => state.auth.profile.id)
+
+  useEffect(() => {
+    if(userId) {
+      navigate(`/user/${userId}/profile`);
+    }
+  }, [userId]);
 
   const onSubmit: SubmitHandler<IRegistration> = async (data) => {
     await dispatch(registration(data));
@@ -94,47 +105,11 @@ const Registration = () => {
             aria-invalid={errors.password ? 'true' : 'false'} />
             {errors.password && <small className='form-error ml-3'>This field is required</small>}
         </Form.Group>
+
         <button className='main-button' type='submit'>Submit</button>
       </Form>
     </Container>
   );
-  // else if (status === 'pending') {
-  //   return (
-  //     <Spinner className='spinner' animation='border' />
-  //   )
-  // }
-  // else if (status === 'rejected') {
-  //   return (
-  //     <Container className='p-3'>
-  //       <Alert variant='danger'>
-  //         <Alert.Heading>Whoops! Something went wrong...</Alert.Heading>
-  //         <p>
-  //           Relax! Something with our database went wrong. Maybe the cause was 
-  //           the Front-End, or maybe it was the Back-End.
-  //         </p>
-  //         <hr />
-  //         <p className='mb-0'>
-  //           In every case, don't worry, you need only to refresh the page!
-  //         </p>
-  //       </Alert>
-  //     </Container>
-  //   )
-  // }
-  // return (
-  //   <Container className='p-3'>
-  //     <Alert variant='success'>
-  //       <Alert.Heading>Successfully registered!</Alert.Heading>
-  //       <p>
-  //         Welcome in Bibl.io. We hope, the service will be enough good.
-  //       </p>
-  //       <hr />
-  //       <p className='mb-0'>
-  //         You will recive a mail to confirm your registration. In this part 
-  //         there is a Backend which I cannot configure for now.
-  //       </p>
-  //     </Alert>
-  //   </Container>
-  // )
 };
 
 export default Registration;

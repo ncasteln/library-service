@@ -30,13 +30,12 @@ const Header = ({ isActive, setIsActive }: {
       </button>
       <aside ref={sidebarRef} className={`sidebar ${isActive ? null : 'isClosed'}`}>
         {
-          profile?.role
-            ?
-              <figure className='sidebar-img'>
-                <img src={profile.picture} alt='User profile picture' />
+          profile?.id
+            ? <figure className='sidebar-figure'>
+                <img src={profile.picture ? profile.picture : require('../images/profile-placeholder.png')} alt='User profile picture' />
                 <blockquote>{profile.first_name} {profile.last_name}</blockquote>
               </figure>
-          : null
+            : null
         }
         <ul className='nav-group'>
           <li className='nav-item'>
