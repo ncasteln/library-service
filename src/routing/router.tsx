@@ -20,7 +20,7 @@ import BookDetails from "../features/catalogue/BookDetails";
 export const router = createBrowserRouter([
   {
     element: <Root />,
-    errorElement: <h1>A routing error occured. Refresh the page.</h1>,
+    errorElement: <h2>A routing error occured. Refresh the page.</h2>,
     children: [
       {
         path: '/',
@@ -28,11 +28,25 @@ export const router = createBrowserRouter([
       },
       {
         path: 'catalogue',
-        element: <Catalogue />,
+        errorElement: <h2>The book doesn't exist.</h2>,
+        children: [
+          {
+            index: true,
+            element: <Catalogue />
+          },
+          {
+            path: '/catalogue/:bookId',
+            element: <BookDetails />
+          }
+        ]
       },
       {
-        path: 'book/:bookId',
-        element: <BookDetails />
+        path: 'find-biblio',
+        element: <div>Under construction</div>
+      },
+      {
+        path: 'contacts',
+        element: <div>Under construction</div>
       },
       {
         path: 'login',

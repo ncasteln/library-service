@@ -1,6 +1,6 @@
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
-import { useEffect } from 'react'
-import { getCatalogue } from "./catalogueSlice";
+import { useEffect, useState } from 'react'
+import { exploredBook, getCatalogue, IBook } from "./catalogueSlice";
 import {  Spinner, Form, Button, Container, Row } from 'react-bootstrap'
 import BookCard from "./BookCard";
 import Rejected from "../../components/Rejected";
@@ -14,10 +14,29 @@ const Catalogue = () => {
   const list = useAppSelector(state => state.catalogue.list);
   const { title, bodyText, show } = useAppSelector(state => state.message)
   const dispatch = useAppDispatch();
+  const [filter, setFilter] = useState('')
 
   useEffect(() => {
     dispatch(getCatalogue());
   }, []);
+
+  const filteredList = (filter: string) => {
+    list.filter((book, i) => {
+      if (Object.values(book).includes(filter)) {
+        return book;
+      }
+    })
+  }
+
+  const wholeList = () => {
+    list.map((book, i) => {
+      return (
+        <BookCard
+          book={book}
+          key={`book-${i}`} />
+      )
+    })
+  }
 
   if (status === 'pending') {
     return <Spinner animation="border" />
@@ -27,24 +46,38 @@ const Catalogue = () => {
   }
   return (
     <div className="Catalogue">
-      <Form className="d-flex"> 
+      <Form className="d-flex mb-5"> 
         <Form.Control
+          value={filter}
+          onChange={(e) => setFilter((e.target.value).toLowerCase())}
           type="search"
-          placeholder="Search"
+          placeholder="Filter the catalogue"
           className="me-2"
           aria-label="Search"
         />
-        <Button variant="outline-success">Search</Button>
       </Form>
+
       <Row xs={1} md={2} className="g-4">
         {
-          list.map((book, i) => {
-            return (
-              <BookCard
-                book={book}
-                key={`book-${i}`} />
-            )
-          })
+          filter
+            ? list
+              .filter(book => {
+                return Object.values(book)[8].toLowerCase().includes(filter)
+              })
+              .map((book, i) => {
+                return (
+                  <BookCard
+                    book={book}
+                    key={`book-${i}`} />
+                )
+              })
+            : list.map((book, i) => {
+                return (
+                  <BookCard
+                    book={book}
+                    key={`book-${i}`} />
+                )
+              })
         }
       </Row>
       {

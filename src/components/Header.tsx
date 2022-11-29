@@ -45,10 +45,10 @@ const Header = ({ isActive, setIsActive }: {
             <Link className='nav-link' to='/catalogue'>Catalogue</Link>
           </li>
           <li className='nav-item'>
-            <Link className='nav-link' to='/'>Find your Biblio</Link>
+            <Link className='nav-link' to='/find-biblio'>Find your Biblio</Link>
           </li>
           <li className='nav-item'>
-            <Link className='nav-link' to='/'>Contacts</Link>
+            <Link className='nav-link' to='/contacts'>Contacts</Link>
           </li>
         </ul>
         <ul className='login-group'>
@@ -79,57 +79,7 @@ const Header = ({ isActive, setIsActive }: {
         </ul>
       </aside>
     </nav>
-  )
-
-  // return (
-  //   <Navbar className='Navbar' bg="primary" variant="dark" expand="sm">
-  //     <Container fluid>
-  //       <Navbar.Brand as={Link} to='/'>
-  //         <img
-  //           className='logo'
-  //           src={require('../images/logo.png')}
-  //           alt="Bibl.io brand logo" 
-  //         />
-  //       </Navbar.Brand>
-  //       <Navbar.Toggle aria-controls="basic-navbar-nav" />
-  //       <Navbar.Collapse id="basic-navbar-nav">
-  //         <Nav className="ml-auto" as="ul">
-  //           <Nav.Item as="li">
-  //             <Nav.Link as={Link} to='/'>Home</Nav.Link>
-  //           </Nav.Item>
-  //           <Nav.Item as="li">
-  //             <Nav.Link as={Link} to='/catalogue'>Catalogue</Nav.Link>
-  //           </Nav.Item>
-  //           <Nav.Item className="border-right border-light ml-3"></Nav.Item>
-  //             {
-  //               !profile?.role
-  //                 ? <>
-  //                     <Nav.Item className="ml-3" as="li">
-  //                       <Nav.Link as={Link} to='/login'>Login</Nav.Link>
-  //                     </Nav.Item>
-  //                     <Nav.Item className="ml-3" as="li">
-  //                       <Nav.Link as={Link} to='/registration'>Registration</Nav.Link>
-  //                     </Nav.Item>
-  //                   </>
-  //                 : profile.role === 'user'
-  //                   ? <RoleNav
-  //                       role={profile.role}
-  //                       userId={profile.id}
-  //                       username={profile.username}
-  //                       picture={profile.picture}
-  //                       routes={['profile', 'reservations','wishlist']} />
-  //                   : <RoleNav
-  //                       role={profile.role}
-  //                       userId={profile.id}
-  //                       username={profile.username}
-  //                       picture={profile.picture}
-  //                       routes={['profile', 'dashboard', 'edit', 'addBook', 'history', 'exploreUsers']} />
-  //             }
-  //         </Nav>
-  //       </Navbar.Collapse>
-  //     </Container>
-  //   </Navbar>
-  // )
+  );
 }
 
 export default Header;

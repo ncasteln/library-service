@@ -1,6 +1,7 @@
 import { Col, Card, Row, Badge } from "react-bootstrap";
 import { IBook } from "./catalogueSlice";
 import CatalogueActions from "./CatalogueActions";
+import { Link } from "react-router-dom";
 
 const BookCard = ({ book }: {
   book: IBook;
@@ -18,7 +19,7 @@ const BookCard = ({ book }: {
           </Col>
           <Col>
             <Card.Body>
-              <Card.Title>{book.title}</Card.Title>
+              <Card.Title as={Link} to={`/catalogue/${book.id}`}>{book.title}</Card.Title>
               <Card.Subtitle>{book.author}, {book.year}</Card.Subtitle>
               {  
                 book.book_status.copies <= 0

@@ -24,7 +24,7 @@ const Home = () => {
   }, []);
 
   const handleClick = (bookId: string): void => {
-    navigate(`/book/${bookId}`);
+    navigate(`/catalogue/${bookId}`);
   }
 
   if (status === 'pending') {

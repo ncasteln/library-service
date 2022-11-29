@@ -27,16 +27,22 @@ export interface IBook {
 
 interface ICatalogueState {
   list: IBook[];
+  explored: IBook;
 }
 
 const initialState: ICatalogueState = {
   list: [],
+  explored: {} as IBook
 }
 
 const catalogueSlice = createSlice({
   name: 'catalogue',
   initialState,
-  reducers: {},
+  reducers: {
+    exploredBook (state, action) {
+      state.explored = action.payload;
+    }
+  },
   extraReducers: (builder) => {
     builder.addCase(getCatalogue.fulfilled, (state, { payload }) => {
       state.list = payload;
@@ -99,6 +105,6 @@ export const getCatalogue = createAsyncThunk(
   }
 );
 
-export const {  } = catalogueSlice.actions;
+export const { exploredBook } = catalogueSlice.actions;
 
 export default catalogueSlice.reducer;
