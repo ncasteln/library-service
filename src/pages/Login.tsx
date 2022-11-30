@@ -5,27 +5,26 @@ import { Link, useNavigate, useLocation } from "react-router-dom";
 import { login } from "../features/authentication/authSlice";
 
 // NOTES
-// automatically redirect to profile! use redirect or useNavigate or what??
-// Pop out a message for successfully login - failed login
 // use localSotrage or something similar to make the state persistent
-// navigate in useEffect ?
-// add isAuthenticated state ??
+// handle failed Login
+// Add form validation
 
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const userId = useAppSelector(state => state.auth.profile.id)
+  const userId = useAppSelector(state => state.auth.profile.id);
+  const isAuth = useAppSelector(state => state.auth.isAuth);
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const location = useLocation();
-
-  // useEffect(() => {
-  //   if (userId) {
-  //     const from = location.state?.from?.pathname || `/${userId}/profile`;
-  //     navigate(from, { replace: true, state: userId });
-  //     console.log(`The redirection path was ${from}`)
-  //   }
-  // }, [userId]);
+  
+  useEffect(() => {
+    if (userId) {
+      const from = location.state?.from?.pathname || `/user/${userId}/profile`;
+      navigate(from, { replace: true, state: userId });
+      console.log(`The redirection path was ${from}`)
+    }
+  }, [userId]);
   
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -34,11 +33,11 @@ const Login = () => {
     setPassword('');
   }
 
-  if (userId) {
+  if (isAuth) {
     return <div>You're already logged in</div>
   }
   return (
-    <Container className='d-flex justify-content-center align-items-center'>
+    <Container className='d-flex justify-content-center align-items-center Login'>
       <Form className='generic-form p-4' onSubmit={handleSubmit}>
         <h2>Login form</h2>
         <Form.Group className="mb-3">
@@ -66,9 +65,9 @@ const Login = () => {
         <button className="main-button" type="submit">
           Submit
         </button>
-        {/* <div>ADMIN melissa.fleming@example.com sick</div>
+        <div>ADMIN melissa.fleming@example.com sick</div>
         <div>USER christoffer.christiansen@example.com samuel</div>
-        <div>USER kayla.hall@example.com lickit</div> */}
+        <div>USER kayla.hall@example.com lickit</div>
       </Form>
     </Container>
   )

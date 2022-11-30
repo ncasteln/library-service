@@ -1,4 +1,4 @@
-import { Badge, Button } from "react-bootstrap";
+import { Button } from "react-bootstrap";
 import { useAppSelector } from "../../app/hooks";
 import AddToWishlist from "../user/AddToWishlist";
 import Reserve from "../user/Reserve";

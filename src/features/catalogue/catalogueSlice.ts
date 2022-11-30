@@ -1,9 +1,5 @@
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import axios from "axios";
-import { IProfile, reserve } from "../user/userSlice";
-
-// NOTES
-// PATCH - set a limit
 
 // Types
 export interface IBookStatus {

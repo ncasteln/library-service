@@ -11,8 +11,6 @@ import { showMessage } from '../message/messageSlice';
 
 const AddToWishlist = (book: IBook) => {
   const [isFavourite, setIsFavourite] = useState(false);
-  // const userId = useAppSelector(state => state.user.profile.id);
-  // const { role } = useAppSelector(state => state.user.profile);
   const userId = useAppSelector(state => state.auth.profile.id);
   const { role } = useAppSelector(state => state.auth.profile);
   const wishlist = useAppSelector(state => state.user.wishlist);
@@ -38,7 +36,7 @@ const AddToWishlist = (book: IBook) => {
     return newWishlist;
   }
 
-  const handleClick = async (e: React.MouseEvent<HTMLButtonElement>) => {
+  const handleClick = async () => {
     if (!userId) {
       navigate('/login', { replace: true, state: { from: location } })
     }
@@ -57,7 +55,6 @@ const AddToWishlist = (book: IBook) => {
       }
     }
   };
-
   return (
     <>
       <button 

@@ -1,6 +1,6 @@
 import { createBrowserRouter } from "react-router-dom";
 import NoMatch from "../components/NoMatch";
-import Catalogue from "../features/catalogue/Catalogue";
+import Catalogue from "../pages/Catalogue/Catalogue";
 import Home from "../pages/Home/Home";
 import Login from "../pages/Login";
 import Registration from "../pages/Registration";
@@ -11,11 +11,7 @@ import RequireAuth from "./RequireAuth";
 import Profile from "../pages/User/Profile";
 import Wishlist from "../pages/User/Wishlist";
 import AddBook from "../pages/Admin/AddBook";
-import BookDetails from "../features/catalogue/BookDetails";
-
-// NOTES
-// The backend routes are not protected
-// :userId route: need to be the parent? Content of the parent and children?
+import BookDetails from "../pages/Catalogue/BookDetails";
 
 export const router = createBrowserRouter([
   {

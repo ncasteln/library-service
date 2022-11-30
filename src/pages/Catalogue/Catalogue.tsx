@@ -1,7 +1,7 @@
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import { useEffect, useState } from 'react'
-import { exploredBook, getCatalogue, IBook } from "./catalogueSlice";
-import {  Spinner, Form, Button, Container, Row } from 'react-bootstrap'
+import { getCatalogue, IBook } from "../../features/catalogue/catalogueSlice";
+import {  Spinner, Form, Row } from 'react-bootstrap'
 import BookCard from "./BookCard";
 import Rejected from "../../components/Rejected";
 import ModalMessage from "../../components/ModalMessage";
@@ -19,24 +19,6 @@ const Catalogue = () => {
   useEffect(() => {
     dispatch(getCatalogue());
   }, []);
-
-  const filteredList = (filter: string) => {
-    list.filter((book, i) => {
-      if (Object.values(book).includes(filter)) {
-        return book;
-      }
-    })
-  }
-
-  const wholeList = () => {
-    list.map((book, i) => {
-      return (
-        <BookCard
-          book={book}
-          key={`book-${i}`} />
-      )
-    })
-  }
 
   if (status === 'pending') {
     return <Spinner animation="border" />

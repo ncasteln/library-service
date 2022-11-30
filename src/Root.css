@@ -54,14 +54,6 @@ main {
   align-items: center;
   justify-content: center;
 }
-/* main.nav-is-closed {
-  margin-left: 0;
-  transition: all 0.5s linear;
-}
-main.nav-is-open {
-  margin-left: 210px;
-  transition: all 0.5s linear;
-} */
 h1 {
   font-size: 4em;
   margin-bottom: 24px;
@@ -156,6 +148,7 @@ button {
 .sidebar-figure > blockquote {
   font-family: 'Raleway-Bold';
   margin-top: 6px;
+  text-transform: capitalize;
   color: var(--white);
 }
 .sidebar-figure > img {
@@ -168,10 +161,25 @@ button {
 .nav-item {
 }
 .nav-link {
+  padding: 0;
   color: var(--white);
+}
+.nav-link::first-letter {
+  font-family: 'Raleway-Bold';
+  text-transform: capitalize;
 }
 .nav-link:hover {
   color: var(--light-blue);
+}
+.logout-button {
+  color: var(--white);
+  background-color: transparent;
+}
+.logout-button:hover {
+  color: var(--light-blue);
+}
+.logout-button::first-letter {
+  font-family: 'Raleway-Bold';
 }
 
 

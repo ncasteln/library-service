@@ -7,8 +7,6 @@ import { reserve } from "./userSlice";
 import { showMessage } from "../message/messageSlice";
 
 // NOTES
-// substitute 2 alerts with Modal message from Bootstrap
-// extract condition to dispatch action in createAsyncThunk?
 // role === user a level up, so it doesn't render?
 // copies > 0 is maybe not necessary, but is a good ass check if the action should be dispatched
 // moveup a level alreadyBooked -> it changes the text into the button and it will no more clickable
@@ -17,7 +15,6 @@ const Reserve = ({ book }: {
   book: IBook; 
 }) => {
   const reservations = useAppSelector(state => state.user.reservations)
-  // const { id: userId, role } = useAppSelector(state => state.user.profile);
   const { id: userId, role } = useAppSelector(state => state.auth.profile);
   const { id: bookId, book_status} = book;
   const location = useLocation();

@@ -12,6 +12,7 @@ import { useEffect } from 'react';
 // 4) login directly && make a new empty reservation field - also fake
 // 5) redirect to the profile page
 
+// handle failed registration
 // add pwd confirmation
 // add pattern and validation messages
 

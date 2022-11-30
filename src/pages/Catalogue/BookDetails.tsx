@@ -1,9 +1,9 @@
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from 'react';
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
-import { getCatalogue, IBook } from "./catalogueSlice";
+import { getCatalogue, IBook } from "../../features/catalogue/catalogueSlice";
 import { Badge, Card, Col, Row } from "react-bootstrap";
-import CatalogueActions from "./CatalogueActions";
+import CatalogueActions from "../../features/catalogue/CatalogueActions";
 
 const BookDetails = () => {
   const list = useAppSelector(state => state.catalogue.list);
@@ -22,11 +22,11 @@ const BookDetails = () => {
 
   if (book) {
     return (
-      <Row>
-        <Card className="book-card">
-          <Col>
+      <Card className="book-details">
+        <Row>
+          <Col className='book-details-img-container'>
             <Card.Img 
-              className="book-img"
+              className="book-details-img"
               variant="top"
               src={`.${book.imageLink}`}
               alt={`${book.title} book cover`} />            
@@ -46,8 +46,8 @@ const BookDetails = () => {
               </Card.Link>
             </Card.Body>
           </Col>
-        </Card>
-      </Row>
+        </Row>
+      </Card>
     )
   }
   return (

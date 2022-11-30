@@ -1,10 +1,10 @@
 import { createAsyncThunk, createSlice, nanoid } from "@reduxjs/toolkit";
 import axios from "axios";
-import { isPartiallyEmittedExpression } from "typescript";
 import { setUserBooks } from "../user/userSlice";
 
 // NOTES
 // The userId's place is the place for token?
+// handle failed login
 
 export interface IRegistration {
   email: string;
@@ -41,11 +41,13 @@ export interface IProfile {
 interface IAuthState {
   isAuth: boolean;
   profile: IProfile;
+  error: string;
 }
 
 const initialState: IAuthState = {
   isAuth: false,
-  profile: {} as IProfile
+  profile: {} as IProfile,
+  error: ''
 }
 
 const authSlice = createSlice({
@@ -58,9 +60,13 @@ const authSlice = createSlice({
   },
   extraReducers(builder) {
     builder.addCase(login.fulfilled, (state, { payload }) => {
+      if (payload.reservations) {
+        const { reservations, wishlist, ...profile } = payload;
+        state.profile = profile;
+      } else {
+        state.profile = payload;
+      }
       state.isAuth = true;
-      const { reservations, wishlist, ...profile } = payload;
-      state.profile = profile;
     });
     builder.addCase(registration.fulfilled, (state, { payload }) => {
       state.isAuth = true;
@@ -77,15 +83,14 @@ export const login = createAsyncThunk(
   }, { rejectWithValue, dispatch }) => {
     try {
       const response = await axios.get(`http://localhost:5000/users?email=${email}&password=${password}`);
-      if (response.status === 200) {
-        const { reservations, wishlist } = response.data[0]
-        dispatch(setUserBooks({ reservations, wishlist }))
+        if (response.data[0].role === 'user') {
+          const { reservations, wishlist } = response.data[0];
+          dispatch(setUserBooks({ reservations, wishlist }))
+        }
         return response.data[0];
       }
-      return rejectWithValue(`login failed - response status ${response.status}`)
-    }
     catch (error) {
-      console.error(`Login error - ${error}`)
+      return rejectWithValue(`Login failed`)
     }
   }
 );

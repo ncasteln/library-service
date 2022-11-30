@@ -1,19 +1,21 @@
-import { useState, useRef, useEffect } from 'react';
+import { useRef, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { useAppSelector } from '../app/hooks';
+import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import RoleNav from './RoleNav';
 import { FiMenu } from 'react-icons/fi'
 import { IoMdClose } from 'react-icons/io';
-import useOutsideAlerter from './useOutsideAlerter';
+import useOutsideAlerter from './useOutsideAlerter.js';
+import { logout } from '../../features/authentication/authSlice';
 
 const Header = ({ isActive, setIsActive }: {
   isActive: boolean;
   setIsActive: (arg: boolean) => void;
 }) => {
+  const dispatch = useAppDispatch();
   const profile = useAppSelector(state => state.auth.profile);
   const sidebarRef = useRef(null);
-  useOutsideAlerter(sidebarRef, setIsActive)
   const location = useLocation();
+  useOutsideAlerter(sidebarRef, setIsActive)
 
   useEffect(() => {
     setIsActive(false)
@@ -32,7 +34,7 @@ const Header = ({ isActive, setIsActive }: {
         {
           profile?.id
             ? <figure className='sidebar-figure'>
-                <img src={profile.picture ? profile.picture : require('../images/profile-placeholder.png')} alt='User profile picture' />
+                <img src={profile.picture ? profile.picture : require('../../images/profile-placeholder.png')} alt='User profile picture' />
                 <blockquote>{profile.first_name} {profile.last_name}</blockquote>
               </figure>
             : null
@@ -62,19 +64,17 @@ const Header = ({ isActive, setIsActive }: {
                     <Link className='nav-link' to='/registration'>Registration</Link>
                   </li>
                 </>
-              : profile.role === 'user'
-                ? <RoleNav
+              : <>
+                  <RoleNav
                     role={profile.role}
                     userId={profile.id}
-                    username={profile.username}
-                    picture={profile.picture}
-                    routes={['profile', 'reservations','wishlist']} />
-                : <RoleNav
-                    role={profile.role}
-                    userId={profile.id}
-                    username={profile.username}
-                    picture={profile.picture}
-                    routes={['profile', 'dashboard', 'edit', 'addBook', 'history', 'exploreUsers']} />
+                    routes={profile.role === 'user'
+                      ? ['profile', 'reservations','wishlist']
+                      : ['profile', 'dashboard', 'edit', 'addBook', 'history', 'exploreUsers']} />
+                  <li className='nav-item'>
+                    <button className='logout-button' onClick={() => dispatch(logout())}>Logout</button>
+                  </li>
+                </>
           }
         </ul>
       </aside>

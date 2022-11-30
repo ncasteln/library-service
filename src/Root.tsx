@@ -1,4 +1,4 @@
-import Header from './components/Header';
+import Header from './components/Header/Header';
 import { Outlet } from 'react-router-dom';
 import './Root.css';
 import { useState } from 'react';
@@ -11,7 +11,6 @@ const Root = () => {
       <Header
         isActive={isActive} 
         setIsActive={setIsActive} />
-      {/* <main className={`${isActive ? 'nav-is-open' : 'nav-is-closed'}`}></main> */}
       <main>
         <Outlet />
       </main>
