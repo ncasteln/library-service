@@ -1,26 +1,32 @@
 import { useEffect, useState } from "react";
-import { Form, Button, Container } from "react-bootstrap";
+import { Form, Container } from "react-bootstrap";
 import { useAppDispatch, useAppSelector } from "../app/hooks";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import { login } from "../features/authentication/authSlice";
 
 // NOTES
 // use localSotrage or something similar to make the state persistent
-// handle failed Login
 // Add form validation
 
 const Login = () => {
+  // Local state
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+
+  // Redux state
   const userId = useAppSelector(state => state.auth.profile.id);
+  const role = useAppSelector(state => state.auth.profile.role);
   const isAuth = useAppSelector(state => state.auth.isAuth);
+  const error = useAppSelector(state => state.auth.error);
+  
+  // Redirect hooks
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const location = useLocation();
   
   useEffect(() => {
     if (userId) {
-      const from = location.state?.from?.pathname || `/user/${userId}/profile`;
+      const from = location.state?.from?.pathname || `/${role}/${userId}/profile`;
       navigate(from, { replace: true, state: userId });
       console.log(`The redirection path was ${from}`)
     }
@@ -31,10 +37,10 @@ const Login = () => {
     await dispatch(login({ email, password }));
     setEmail('');
     setPassword('');
-  }
+  };
 
   if (isAuth) {
-    return <div>You're already logged in</div>
+    return <small>You're already logged in!</small>
   }
   return (
     <Container className='d-flex justify-content-center align-items-center Login'>
@@ -65,9 +71,19 @@ const Login = () => {
         <button className="main-button" type="submit">
           Submit
         </button>
-        <div>ADMIN melissa.fleming@example.com sick</div>
-        <div>USER christoffer.christiansen@example.com samuel</div>
-        <div>USER kayla.hall@example.com lickit</div>
+        {
+          error
+            ? <p className="form-error m-3">
+                Sorry, your credentials were wrong. Please, check them and retry.
+              </p>
+            : null
+        }
+        <h6 className='mt-3'>Login examples</h6>
+        <small>ADMIN melissa.fleming@example.com - sick</small><br/>
+        <small>ADMIN valtteri.pulkkinen@example.com peepee</small><br/>
+        <small>USER christoffer.christiansen@example.com - samuel</small><br/>
+        <small>USER kayla.hall@example.com - lickit</small><br/>
+        <small>USER todd.beck@example.com - rrrrr</small>
       </Form>
     </Container>
   )

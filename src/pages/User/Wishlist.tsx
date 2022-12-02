@@ -20,7 +20,7 @@ const Wishlist = () => {
         {
           wishlist
             ? renderTable('wishlist', list, wishlist)
-            : null
+            : <h3>Nothing in the wishlist</h3>
         }
       </tbody>
     </Table>

@@ -1,6 +1,6 @@
 import { Col, Card, Row, Badge } from "react-bootstrap";
 import { IBook } from "../../features/catalogue/catalogueSlice";
-import CatalogueActions from "../../features/catalogue/CatalogueActions";
+import CatalogueActions from "./RoleBasedCatalogueButtons";
 import { Link } from "react-router-dom";
 
 const BookCard = ({ book }: {

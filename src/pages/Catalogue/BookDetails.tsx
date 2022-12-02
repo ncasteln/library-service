@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import { getCatalogue, IBook } from "../../features/catalogue/catalogueSlice";
 import { Badge, Card, Col, Row } from "react-bootstrap";
-import CatalogueActions from "../../features/catalogue/CatalogueActions";
+import CatalogueActions from "./RoleBasedCatalogueButtons";
 
 const BookDetails = () => {
   const list = useAppSelector(state => state.catalogue.list);

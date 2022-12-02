@@ -1,5 +1,5 @@
 import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit';
-import userReducer from '../features/user/userSlice';
+import userBooksReducer from '../features/user/userBooksSlice';
 import catalogueReducer from '../features/catalogue/catalogueSlice';
 import responseReducer from '../features/response/responseSlice';
 import authReducer from '../features/authentication/authSlice';
@@ -8,7 +8,7 @@ import messageReducer from '../features/message/messageSlice';
 export const store = configureStore({
   reducer: {
     auth: authReducer,
-    user: userReducer,
+    user: userBooksReducer,
     catalogue: catalogueReducer,
     response: responseReducer,
     message: messageReducer

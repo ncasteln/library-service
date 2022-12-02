@@ -1,7 +1,7 @@
 import { useRef, useEffect } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
-import RoleNav from './RoleNav';
+import RoleNav from './RoleBasedNavigation';
 import { FiMenu } from 'react-icons/fi'
 import { IoMdClose } from 'react-icons/io';
 import useOutsideAlerter from './useOutsideAlerter.js';
@@ -13,9 +13,12 @@ const Header = ({ isActive, setIsActive }: {
 }) => {
   const dispatch = useAppDispatch();
   const profile = useAppSelector(state => state.auth.profile);
+  const navigate = useNavigate();
+
+  // SideBar implementation
   const sidebarRef = useRef(null);
   const location = useLocation();
-  useOutsideAlerter(sidebarRef, setIsActive)
+  useOutsideAlerter(sidebarRef, setIsActive);
 
   useEffect(() => {
     setIsActive(false)
@@ -23,6 +26,11 @@ const Header = ({ isActive, setIsActive }: {
 
   const handleSidebar = () => {
     setIsActive(!isActive);
+  };
+
+  const handleLogout = () => {
+    dispatch(logout());
+    navigate('/');
   }
 
   return (
@@ -72,7 +80,7 @@ const Header = ({ isActive, setIsActive }: {
                       ? ['profile', 'reservations','wishlist']
                       : ['profile', 'dashboard', 'edit', 'addBook', 'history', 'exploreUsers']} />
                   <li className='nav-item'>
-                    <button className='logout-button' onClick={() => dispatch(logout())}>Logout</button>
+                    <button className='logout-button' onClick={handleLogout}>Logout</button>
                   </li>
                 </>
           }

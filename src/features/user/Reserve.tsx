@@ -3,13 +3,8 @@ import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import { useNavigate, useLocation } from "react-router-dom";
 import { patchCatalogue } from "../catalogue/catalogueSlice";
 import { IBook } from "../catalogue/catalogueSlice";
-import { reserve } from "./userSlice";
+import { reserve } from "./userBooksSlice";
 import { showMessage } from "../message/messageSlice";
-
-// NOTES
-// role === user a level up, so it doesn't render?
-// copies > 0 is maybe not necessary, but is a good ass check if the action should be dispatched
-// moveup a level alreadyBooked -> it changes the text into the button and it will no more clickable
 
 const Reserve = ({ book }: {
   book: IBook; 
@@ -36,7 +31,7 @@ const Reserve = ({ book }: {
             }
           }
           else {
-            dispatch(showMessage({ 
+            dispatch(showMessage({
               title: 'The book is already reserved!',
               bodyText: `You've already reserved this book. Check your reservation list in 
                 your personal section.`
@@ -44,6 +39,7 @@ const Reserve = ({ book }: {
           }
         }
       }
+      // This fallback should never happen, because the <Reserve /> is user-role based
       else {
         dispatch(showMessage({ 
           title: `You're logged as Admin!`,
@@ -55,9 +51,7 @@ const Reserve = ({ book }: {
   }
 
   return (
-    <>
-      <Button onClick={handleClick}>Book now!</Button>
-    </>
+    <Button onClick={handleClick}>Book now!</Button>
   )
 };
 

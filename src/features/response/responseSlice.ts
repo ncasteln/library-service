@@ -15,15 +15,15 @@ const responseSlice = createSlice({
   extraReducers(builder) {
     builder.addMatcher(isPending, (state) => {
       state.status = 'pending';
-      // console.log('Something is Pending')
+      // console.log('A Promise is Pending')
     });
     builder.addMatcher(isFulfilled, (state) => {
       state.status = 'fulfilled';
-      // console.log('Something is Fulfilled')
+      // console.log('A Promise is Fulfilled')
     });
     builder.addMatcher(isRejected, (state) => {
       state.status = 'rejected';
-      // console.log('Something is Rejected')
+      // console.log('A Promise is Rejected')
     });
   },
 });

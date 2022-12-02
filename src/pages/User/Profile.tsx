@@ -1,9 +1,8 @@
 import { useAppSelector } from "../../app/hooks";
-import { ILocation } from "../../features/user/userSlice";
+import { ILocation } from "../../features/authentication/authSlice";
 
 const Profile = () => {
   const profile = useAppSelector(state => state.auth.profile);
-
   return (
     <div>
       <h2>Personal Data</h2>

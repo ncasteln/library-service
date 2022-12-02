@@ -5,19 +5,19 @@ import axios from "axios";
 // reserveBook() - no double bookings
 // every field of registratio need validation
 
-interface IUserBooks {
+export interface IUserBooks {
   reservations: null | string[];
   history: null | string[];
   wishlist: null | string[];
 }
 
 const initialState: IUserBooks = {
-  reservations: [],
-  history: [],
-  wishlist: [],
+  reservations: null,
+  history: null,
+  wishlist: null
 }
 
-const userSlice = createSlice({
+const userBooksSlice = createSlice({
   name: 'user',
   initialState,
   reducers: {
@@ -81,6 +81,6 @@ export const updateWishlist = createAsyncThunk(
   }
 )
 
-export const { setUserBooks } = userSlice.actions;
+export const { setUserBooks } = userBooksSlice.actions;
 
-export default userSlice.reducer;
+export default userBooksSlice.reducer;

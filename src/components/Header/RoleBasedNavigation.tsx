@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 
-const RoleNav = ({ role, userId, routes }: {
+const RoleBasedNavigation = ({ role, userId, routes }: {
   role: string;
   userId: string;
   routes: string[];
@@ -10,7 +10,7 @@ const RoleNav = ({ role, userId, routes }: {
       {
         routes.map((page, i) => {
           return (
-          <li className='nav-item' key={`RoleNav-${i}`}>
+          <li className='nav-item' key={`RoleBasedNavigation-${i}`}>
             <Link className='nav-link' to={`${role}/${userId}/${page}`}>
               {page}
             </Link>
@@ -22,4 +22,4 @@ const RoleNav = ({ role, userId, routes }: {
   )
 };
 
-export default RoleNav;
+export default RoleBasedNavigation;

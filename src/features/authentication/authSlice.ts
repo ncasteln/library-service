@@ -1,10 +1,14 @@
-import { createAsyncThunk, createSlice, nanoid } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice, Dispatch, nanoid } from "@reduxjs/toolkit";
 import axios from "axios";
-import { setUserBooks } from "../user/userSlice";
+import { IUserBooks, setUserBooks } from "../user/userBooksSlice";
 
 // NOTES
 // The userId's place is the place for token?
 // handle failed login
+
+interface IError {
+  errorMessage: string;
+}
 
 export interface IRegistration {
   email: string;
@@ -21,7 +25,7 @@ export interface ILocation {
   postcode: number | string | null;
 }
 
-export interface IProfile {
+export interface IAdminProfile {
   id: string;
   email: string;
   password: string;
@@ -31,23 +35,22 @@ export interface IProfile {
   last_name: string;
   picture: string;
   location: ILocation;
-  // reservations?: {
-  //   current: string[];
-  //   history: string[];
-  // };
-  // wishlist?: string[];
 }
+
+interface IUserProfile extends IAdminProfile, IUserBooks {};
+
+type Profile = IUserProfile | IAdminProfile;
 
 interface IAuthState {
   isAuth: boolean;
-  profile: IProfile;
-  error: string;
+  profile: Profile;
+  error: string | null;
 }
 
 const initialState: IAuthState = {
   isAuth: false,
-  profile: {} as IProfile,
-  error: ''
+  profile: {} as Profile,
+  error: null
 }
 
 const authSlice = createSlice({
@@ -60,13 +63,14 @@ const authSlice = createSlice({
   },
   extraReducers(builder) {
     builder.addCase(login.fulfilled, (state, { payload }) => {
-      if (payload.reservations) {
-        const { reservations, wishlist, ...profile } = payload;
-        state.profile = profile;
-      } else {
-        state.profile = payload;
-      }
+      state.profile = payload;
       state.isAuth = true;
+      state.error = null;
+    });
+    builder.addCase(login.rejected, (state, { payload }) => {
+      if (typeof payload === 'string') {
+        state.error = payload;
+      }
     });
     builder.addCase(registration.fulfilled, (state, { payload }) => {
       state.isAuth = true;
@@ -75,7 +79,17 @@ const authSlice = createSlice({
   },
 });
 
-export const login = createAsyncThunk(
+export const login = createAsyncThunk<
+  Profile,
+  { 
+    email: string;
+    password: string;
+  },
+  {
+    rejectValue: string;
+    dispatch: Dispatch;
+  }
+>(
   'auth/login',
   async ({ email, password }: {
     email: string;
@@ -83,12 +97,18 @@ export const login = createAsyncThunk(
   }, { rejectWithValue, dispatch }) => {
     try {
       const response = await axios.get(`http://localhost:5000/users?email=${email}&password=${password}`);
-        if (response.data[0].role === 'user') {
-          const { reservations, wishlist } = response.data[0];
-          dispatch(setUserBooks({ reservations, wishlist }))
-        }
+      if (response.data.length === 0) {
+        return rejectWithValue(`Login failed - no match`)
+      }
+      if (response.data[0].role === 'user') {
+        const { reservations, wishlist, ...profile } = response.data[0];
+        dispatch(setUserBooks({ reservations, wishlist }));
+        return profile;
+      }
+      else {
         return response.data[0];
       }
+    }
     catch (error) {
       return rejectWithValue(`Login failed`)
     }
@@ -97,9 +117,9 @@ export const login = createAsyncThunk(
 
 export const registration = createAsyncThunk(
   'user/registration',
-  async (formData: IRegistration, thunkAPI) => {
+  async (formData: IRegistration) => {
     try {
-      const newUser: IProfile = {
+      const newUser: IAdminProfile = {
         ...formData,
         id: nanoid(),
         // reservations: {

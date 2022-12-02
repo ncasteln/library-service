@@ -57,6 +57,7 @@ export const router = createBrowserRouter([
         element: <Unauthorized />
       },
       {
+        path: 'user',
         element: <RequireAuth admittedRoles={['user']} />,
         children: [
           {
@@ -74,6 +75,7 @@ export const router = createBrowserRouter([
         ] 
       },
       {
+        path: 'admin',
         element: <RequireAuth admittedRoles={['admin']} />,
         children: [
           {

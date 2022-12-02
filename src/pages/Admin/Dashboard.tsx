@@ -1,7 +1,6 @@
 const Dashboard = () => {
-
   return (
-  <div></div>
+  <div>Place for the Admin's Dashboard</div>
   )
 };
 

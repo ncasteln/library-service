@@ -4384,11 +4384,9 @@
     {
       "id": "mqdUyS5Z8sOdvtPQEI9ry",
       "book_status": {
-        "copies": 28,
-        "current": [
-        ],
-        "history": [
-        ]
+        "copies": 27,
+        "current": [],
+        "history": []
       },
       "author": "Chinua Achebe",
       "country": "Nigeria",
@@ -4418,15 +4416,9 @@
     {
       "id": "RGW1qKhKRdO5QitG21rKo",
       "book_status": {
-        "copies": 21,
-        "current": [
-          "2u0b2CGrt_XrT6nNIGKqw",
-          "2u0b2CGrt_XrT6nNIGKqw"
-        ],
-        "history": [
-          "2u0b2CGrt_XrT6nNIGKqw",
-          "2u0b2CGrt_XrT6nNIGKqw"
-        ]
+        "copies": 20,
+        "current": [],
+        "history": []
       },
       "author": "Dante Alighieri",
       "country": "Italy",
@@ -4440,7 +4432,7 @@
     {
       "id": "GTAdv0djI5WAEbReUrvK2",
       "book_status": {
-        "copies": 19,
+        "copies": 1,
         "current": [],
         "history": []
       },
@@ -4457,12 +4449,8 @@
       "id": "fpNFiKI7KtCkoLfJWKfGq",
       "book_status": {
         "copies": 50,
-        "current": [
-          "2u0b2CGrt_XrT6nNIGKqw"
-        ],
-        "history": [
-          "2u0b2CGrt_XrT6nNIGKqw"
-        ]
+        "current": [],
+        "history": []
       },
       "author": "Unknown",
       "country": "Achaemenid Empire",

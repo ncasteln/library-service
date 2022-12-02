@@ -2,19 +2,24 @@ import { useEffect, useState } from 'react';
 import { BsStar, BsStarFill } from 'react-icons/bs';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
-import { updateWishlist } from './userSlice';
+import { updateWishlist } from './userBooksSlice';
 import { IBook } from '../catalogue/catalogueSlice';
 import { showMessage } from '../message/messageSlice';
 
 // NOTES
-// prevent global rendering of the page
+// Add scrollPosition after rendering - useState or sessionStorage
 
 const AddToWishlist = (book: IBook) => {
+  // Local state for rendering
   const [isFavourite, setIsFavourite] = useState(false);
+  
+  // Redux selectors
   const userId = useAppSelector(state => state.auth.profile.id);
   const { role } = useAppSelector(state => state.auth.profile);
   const wishlist = useAppSelector(state => state.user.wishlist);
   const { id: bookId } = book;
+
+  // Hooks for redirection
   const location = useLocation();
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
@@ -25,7 +30,7 @@ const AddToWishlist = (book: IBook) => {
     }
   }, []);
 
-  const prepareNewWishlist = async (wishlist: string[]) => {
+  const prepareNewWishlist = (wishlist: string[]) => {
     const newWishlist = [...wishlist];
     const position = newWishlist.indexOf(bookId);
     if(position === -1) {
@@ -42,10 +47,11 @@ const AddToWishlist = (book: IBook) => {
     }
     else {
       if (wishlist && role === 'user') {
-        const newWishlist = await prepareNewWishlist(wishlist);
+        const newWishlist = prepareNewWishlist(wishlist);
         setIsFavourite(!isFavourite)
         dispatch(updateWishlist({ userId, newWishlist }))
       }
+      // This fallback should never happen, because the <Reserve /> is user-role based
       else {
         dispatch(showMessage({
           title: `You're logged as Admin!`,
@@ -56,17 +62,15 @@ const AddToWishlist = (book: IBook) => {
     }
   };
   return (
-    <>
-      <button 
-        className='AddToWishlist'
-        onClick={handleClick}>
-        {
-          isFavourite
-            ? <BsStarFill />
-            : <BsStar />
-        }
-      </button>
-    </>
+    <button 
+      className='AddToWishlist'
+      onClick={handleClick}>
+      {
+        isFavourite
+          ? <BsStarFill />
+          : <BsStar />
+      }
+    </button>
   )
 };
 

@@ -20,7 +20,7 @@ const Reservations = () => {
         {
           reservations
             ? renderTable('reservations', list, reservations)
-            : null
+            : <h3>You have no current reservations.</h3>
         }
       </tbody>
     </Table>
