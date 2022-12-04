@@ -1,5 +1,6 @@
 {
   "name": "biblio-react-redux-ts",
+  "homepage": "https://nicocastelnuovo.github.io/library-service",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -13,7 +14,6 @@
     "@types/react-dom": "^18.0.6",
     "axios": "^1.1.3",
     "bootstrap": "^5.2.2",
-    "formik": "^2.2.9",
     "react": "^18.2.0",
     "react-bootstrap": "^2.5.0",
     "react-dom": "^18.2.0",
@@ -29,7 +29,9 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": [
@@ -48,5 +50,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "gh-pages": "^4.0.0"
   }
 }
