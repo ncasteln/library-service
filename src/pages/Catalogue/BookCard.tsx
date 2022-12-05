@@ -15,7 +15,7 @@ const BookCard = ({ book }: {
             <Card.Img 
               className="book-img"
               variant="top"
-              src={book.imageLink}
+              src={book?.imageLink}
               alt={`${book.title} book cover`} />            
           </Col>
           <Col>
