@@ -10,7 +10,7 @@ import Root from "../Root";
 import RequireAuth from "./RequireAuth";
 import Profile from "../pages/User/Profile";
 import Wishlist from "../pages/User/Wishlist";
-import AddBook from "../pages/Admin/AddBook";
+import AddBook from "../features/catalogue/AddBook";
 import BookDetails from "../pages/Catalogue/BookDetails";
 
 export const router = createBrowserRouter([

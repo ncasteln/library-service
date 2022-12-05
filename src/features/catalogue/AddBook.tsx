@@ -1,9 +1,6 @@
 import { Form, Row, Col, Button, Container } from "react-bootstrap";
 
 const AddBook = () => {
-  // id,
-  // book_status,
-
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     console.log('Add Book action - need implementation');
