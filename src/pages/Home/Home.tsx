@@ -95,33 +95,3 @@ const Home = () => {
 };
 
 export default Home;
-
-
-{/* <Carousel 
-        className='Carousel'
-        nextLabel={''}
-        prevLabel={''}>
-        <Carousel.Item className='Carousel-item'>
-          <img
-            className="d-block w-75 mx-auto mt-4"
-            src={list[40]?.imageLink}
-            alt={`${list[40]?.title} cover`}
-          />
-        </Carousel.Item>
-
-        <Carousel.Item className='Carousel-item'>
-          <img
-            className="d-block w-75 mx-auto mt-4"
-            src={list[50]?.imageLink}
-            alt={`${list[50]?.title} cover`}
-          />
-        </Carousel.Item>
-
-        <Carousel.Item className='Carousel-item'>
-          <img
-            className="d-block w-75 mx-auto mt-4"
-            src={list[70]?.imageLink}
-            alt={`${list[70]?.title} cover`}
-          />
-        </Carousel.Item>
-      </Carousel> */}
