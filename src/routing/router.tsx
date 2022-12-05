@@ -1,4 +1,4 @@
-import { createBrowserRouter } from "react-router-dom";
+import { createHashRouter } from "react-router-dom";
 import NoMatch from "../components/NoMatch";
 import Catalogue from "../pages/Catalogue/Catalogue";
 import Home from "../pages/Home/Home";
@@ -13,7 +13,7 @@ import Wishlist from "../pages/User/Wishlist";
 import AddBook from "../pages/Admin/AddBook";
 import BookDetails from "../pages/Catalogue/BookDetails";
 
-export const router = createBrowserRouter([
+export const router = createHashRouter([
   {
     element: <Root />,
     errorElement: <h2>A routing error occured. Refresh the page.</h2>,

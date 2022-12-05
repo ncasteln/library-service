@@ -33,7 +33,7 @@ const Catalogue = () => {
           value={filter}
           onChange={(e) => setFilter((e.target.value).toLowerCase())}
           type="search"
-          placeholder="Filter the catalogue"
+          placeholder="Filter the catalogue by title..."
           className="me-2"
           aria-label="Search"
         />
