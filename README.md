@@ -6,3 +6,10 @@ The project is not finished yet. The future main implementation are:
 - Make the state persistent.
 - Admin's actions: explore the registered users, modify the role of other users, add new books, edit existing books, look at the booking history.
 - Fetch data from a GPS service which displays the nearest bibliothek to the logged user.
+
+## Installation
+
+1. `git clone https://github.com/NicoCastelnuovo/library-service.git`
+2. `npm install`
+3. `npm run server` - to run the local json-server
+4. `npm start`
