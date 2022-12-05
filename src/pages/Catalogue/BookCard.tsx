@@ -6,7 +6,6 @@ import { Link } from "react-router-dom";
 const BookCard = ({ book }: {
   book: IBook;
 }) => {
-  console.log(book.imageLink)
   return (
     <Col>
       <Card className="book-card">
@@ -15,7 +14,7 @@ const BookCard = ({ book }: {
             <Card.Img 
               className="book-img"
               variant="top"
-              src={book?.imageLink}
+              src={`.${book.imageLink}`}
               alt={`${book.title} book cover`} />            
           </Col>
           <Col>

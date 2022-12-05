@@ -45,7 +45,7 @@ export const reserve = createAsyncThunk(
     reservations: string[];
   }, thunkAPI) => {
     try {
-      const response = await axios.patch(`https://nicocastelnuovo.github.io/library-service/users/${userId}`, 
+      const response = await axios.patch(`http://localhost:5000/users/${userId}`, 
       {
         reservations: {
           current: [...reservations, bookId],
@@ -69,7 +69,7 @@ export const updateWishlist = createAsyncThunk(
     newWishlist: string[];
   }) => {
     try {
-      const response = await axios.patch(`https://nicocastelnuovo.github.io/library-service/users/${userId}`,
+      const response = await axios.patch(`http://localhost:5000/users/${userId}`,
       {
         wishlist: newWishlist
       });

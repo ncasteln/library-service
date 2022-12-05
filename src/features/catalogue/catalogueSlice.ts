@@ -1,4 +1,4 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import axios from "axios";
 
 // Types
@@ -68,7 +68,7 @@ export const patchCatalogue = createAsyncThunk(
   }, thunkAPI) => {
     try {
       const response = await axios.patch(
-        `https://my-json-server.typicode.com/NicoCastelnuovo/library-service-db/catalogue/${bookId}`,
+        `http://localhost:5000/catalogue/${bookId}`,
         {
           book_status: {
             copies: book_status.copies - 1,
@@ -90,7 +90,7 @@ export const getCatalogue = createAsyncThunk(
   'catalogue/get',
   async (_) => {
     try {
-      const response = await axios.get('https://my-json-server.typicode.com/NicoCastelnuovo/library-service-db/catalogue');
+      const response = await axios.get('http://localhost:5000/catalogue');
       if (response.status === 200) {
         return response.data;
       }

@@ -41,7 +41,7 @@ const Home = () => {
         <hr />
         <div className='carousel-container'>
           {
-            getRandomList(10).map(n => {
+            getRandomList(16).map(n => {
               return (
                 <article key={`book-${n}`}>
                   <img
@@ -59,7 +59,7 @@ const Home = () => {
         <hr />
         <div className='carousel-container'>
           {
-            getRandomList(10).map(n => {
+            getRandomList(16).map(n => {
               return (
                 <article key={`book-${n}`}>
                   <img
@@ -76,7 +76,7 @@ const Home = () => {
         <hr />
         <div className='carousel-container'>
           {
-            getRandomList(10).map(n => {
+            getRandomList(16).map(n => {
               return (
                 <article key={`book-${n}`}>
                   <img

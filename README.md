@@ -6,5 +6,3 @@ The project is not finished yet. The future main implementation are:
 - Make the state persistent.
 - Admin's actions: explore the registered users, modify the role of other users, add new books, edit existing books, look at the booking history.
 - Fetch data from a GPS service which displays the nearest bibliothek to the logged user.
-
-Link: https://nicocastelnuovo.github.io/library-service/#/home

@@ -92,7 +92,7 @@ export const login = createAsyncThunk<
     password: string;
   }, { rejectWithValue, dispatch }) => {
     try {
-      const response = await axios.get(`https://my-json-server.typicode.com/NicoCastelnuovo/library-service-db/users?email=${email}&password=${password}`);
+      const response = await axios.get(`http://localhost:5000/users?email=${email}&password=${password}`);
       if (response.data.length === 0) {
         return rejectWithValue(`Login failed - no match`)
       }
@@ -131,7 +131,7 @@ export const registration = createAsyncThunk(
         },
         picture: ''
       }
-      const response = await axios.post(`https://my-json-server.typicode.com/NicoCastelnuovo/library-service-db/users`, newUser);
+      const response = await axios.post(`http://localhost:5000/users`, newUser);
       return response.data;
     }
     catch (error) {
