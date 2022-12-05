@@ -19,7 +19,7 @@ export const router = createHashRouter([
     errorElement: <h2>A routing error occured. Refresh the page.</h2>,
     children: [
       {
-        path: '/library-service',
+        path: '/home',
         element: <Home />,
       },
       {

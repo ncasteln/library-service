@@ -30,7 +30,7 @@ const Header = ({ isActive, setIsActive }: {
 
   const handleLogout = () => {
     dispatch(logout());
-    navigate('/library-service');
+    navigate('/home');
   }
 
   return (
@@ -49,7 +49,7 @@ const Header = ({ isActive, setIsActive }: {
         }
         <ul className='nav-group'>
           <li className='nav-item'>
-            <Link className='nav-link' to='/library-service'>Home</Link>
+            <Link className='nav-link' to='/home'>Home</Link>
           </li>
           <li className='nav-item'>
             <Link className='nav-link' to='/catalogue'>Catalogue</Link>
