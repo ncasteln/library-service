@@ -1,6 +1,6 @@
 {
   "name": "biblio-react-redux-ts",
-  "homepage": "https://nicocastelnuovo.github.io/library-service",
+  "homepage": "https://nicocastelnuovo.github.io/library-service/home",
   "version": "0.1.0",
   "private": true,
   "dependencies": {

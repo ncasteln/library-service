@@ -19,7 +19,7 @@ export const router = createBrowserRouter([
     errorElement: <h2>A routing error occured. Refresh the page.</h2>,
     children: [
       {
-        path: '/',
+        path: '/home',
         element: <Home />,
       },
       {
