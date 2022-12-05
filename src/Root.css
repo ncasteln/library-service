@@ -1,23 +1,23 @@
 /* ------------------------------ IMPORTS ------------------------------ */
 @font-face {
   font-family: 'Raleway-ExtraLight';
-  src: url(../public/static/Raleway-ExtraLight.ttf);
+  src: url(../public/static/fonts/Raleway-ExtraLight.ttf);
 }
 @font-face {
   font-family: 'Raleway-Light';
-  src: url(../public/static/Raleway-Light.ttf);
+  src: url(../public/static/fonts/Raleway-Light.ttf);
 }
 @font-face {
   font-family: 'Raleway-Regular';
-  src: url(../public/static/Raleway-Regular.ttf);
+  src: url(../public/static/fonts/Raleway-Regular.ttf);
 }
 @font-face {
   font-family: 'Raleway-Bold';
-  src: url(../public/static/Raleway-Bold.ttf);
+  src: url(../public/static/fonts/Raleway-Bold.ttf);
 }
 @font-face {
   font-family: 'Raleway-ExtraBold';
-  src: url(../public/static/Raleway-ExtraBold.ttf);
+  src: url(../public/static/fonts/Raleway-ExtraBold.ttf);
 }
 
 
