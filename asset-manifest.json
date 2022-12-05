@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/library-service/static/css/main.0a27217b.css",
-    "main.js": "/library-service/static/js/main.f9f19b90.js",
+    "main.js": "/library-service/static/js/main.680d98a0.js",
     "static/media/Raleway-ExtraLight.ttf": "/library-service/static/media/Raleway-ExtraLight.e19d39bd2c0c5f58ffea.ttf",
     "static/media/Raleway-Light.ttf": "/library-service/static/media/Raleway-Light.58bcdae09d89ccd8d086.ttf",
     "static/media/Raleway-Regular.ttf": "/library-service/static/media/Raleway-Regular.3927fa2a37e6f7f4c7c0.ttf",
@@ -9,10 +9,10 @@
     "static/media/Raleway-Bold.ttf": "/library-service/static/media/Raleway-Bold.18960343b3da49bfd353.ttf",
     "index.html": "/library-service/index.html",
     "main.0a27217b.css.map": "/library-service/static/css/main.0a27217b.css.map",
-    "main.f9f19b90.js.map": "/library-service/static/js/main.f9f19b90.js.map"
+    "main.680d98a0.js.map": "/library-service/static/js/main.680d98a0.js.map"
   },
   "entrypoints": [
     "static/css/main.0a27217b.css",
-    "static/js/main.f9f19b90.js"
+    "static/js/main.680d98a0.js"
   ]
 }
