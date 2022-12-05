@@ -6,15 +6,15 @@ import axios from "axios";
 // every field of registratio need validation
 
 export interface IUserBooks {
-  reservations: string[];
-  history: string[];
-  wishlist: string[];
+  reservations: null | string[];
+  history: null | string[];
+  wishlist: null | string[];
 }
 
 const initialState: IUserBooks = {
-  reservations: [],
-  history: [],
-  wishlist: []
+  reservations: null,
+  history: null,
+  wishlist: null
 }
 
 const userBooksSlice = createSlice({

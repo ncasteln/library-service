@@ -21,7 +21,7 @@ const Reserve = ({ book }: {
       navigate('/login', { replace: true, state: { from: location } })
     }
     else {
-      if (role === 'user' && reservations) {
+      if (role === 'user' && reservations !== null) {
         if (book_status.copies > 0) {
           const alreadyBooked = reservations.find(id => id === bookId)
           if (!alreadyBooked) {
