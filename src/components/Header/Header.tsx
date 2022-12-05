@@ -42,7 +42,7 @@ const Header = ({ isActive, setIsActive }: {
         {
           profile?.id
             ? <figure className='sidebar-figure'>
-                <img src={profile.picture ? profile.picture : require('../../images/profile-placeholder.png')} alt='User profile picture' />
+                <img src={profile.picture ? profile.picture : './static/images/profile-placeholder.png'} alt='User profile picture' />
                 <blockquote>{profile.first_name} {profile.last_name}</blockquote>
               </figure>
             : null
