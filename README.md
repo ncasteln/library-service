@@ -20,4 +20,4 @@ In a separate terminal, run the following command:
 ```
 npm start;
 ```
-The website will be available at `http:localhost:3000`.
+The website will be available at `http//:localhost:3000`.
